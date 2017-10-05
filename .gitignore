@@ -8,3 +8,7 @@
 *.AppleDouble
 *.AppleDB
 *.AppleDesktop
+
+# Tests
+/tests/_output/*
+!/tests/_output/.gitkeep

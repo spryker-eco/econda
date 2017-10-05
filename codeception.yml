@@ -1,0 +1,15 @@
+paths:
+    tests: tests
+    data: tests/_data
+    support: tests/_support
+    log: tests/_output
+    envs: tests/_envs
+include:
+  - tests/SprykerTest/Zed/Econda
+coverage:
+    enabled: true
+    remote: false
+    whitelist: { include: ['src/*'] }
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

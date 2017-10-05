@@ -1,0 +1,14 @@
+namespace: SprykerTest\Zed\Econda
+paths:
+    tests: .
+    data: ../../../_data
+    support: _support
+    log: ../../../_output
+    envs: ../../../_envs
+suites:
+    Zed:
+        path: .
+        class_name: PayolutionZedTester
+        modules:
+            enabled:
+                - Asserts
