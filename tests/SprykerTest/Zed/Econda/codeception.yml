@@ -8,7 +8,7 @@ paths:
 suites:
     Zed:
         path: .
-        class_name: PayolutionZedTester
+        class_name: EcondaZedTester
         modules:
             enabled:
                 - Asserts
