@@ -1,0 +1,59 @@
+
+    <input type="hidden" name="econda_tracking_content" value="{{ content }}">
+    {% if query is defined %}
+        <input type="hidden" name="econda_search_query_string" value="{{ query }}">
+    {% endif %}
+
+    {% if number is defined %}
+        <input type="hidden" name="econda_search_number_results" value="{{ number }}">
+    {% endif %}
+    {% if product is defined %}
+        <input type="hidden" name="econda_product_name" value="{{ product.name }}">
+        <input type="hidden" name="econda_product_sku" value="{{ product.sku }}">
+        <input type="hidden" name="econda_product_price" value="{{ product.price / 100 }}">
+    {% endif %}
+    {% if category is defined %}
+        <input type="hidden" name="econda_category_name" value="{{ category.name }}">
+    {% endif %}
+
+    {% if invoiceNumber is defined %}
+        <input type="hidden" name="econda_billing_invoice_number" value="{{ invoiceNumber }}">
+    {% endif %}
+
+    {% if location is defined %}
+        <input type="hidden" name="econda_billing_location" value="{{ location }}">
+    {% endif %}
+
+    {% if customerId is defined %}
+        <input type="hidden" name="econda_billing_customer_id" value="{{ customerId }}">
+    {% endif %}
+
+    {% if orderValue is defined %}
+        <input type="hidden" name="econda_billing_order_value" value="{{ orderValue }}">
+    {% endif %}
+
+    {% if orderProcess is defined %}
+        <input type="hidden" name="econda_order_process" value="{{ orderProcess }}">
+    {% endif %}
+
+    {%  if items is defined %}
+        {% for item in items %}
+            <input type="hidden" name="econda_bought_product_name[]" value="{{ item.name }}">
+            {#<input type="hidden" name="econda_bought_product_sku[]" value="{{ item.abstractSku }}">#}
+            <input type="hidden" name="econda_bought_product_sku[]" value="{{ item.sku }}">
+            <input type="hidden" name="econda_bought_product_price[]" value="{{ item.unitGrossPrice / 100 }}">
+            <input type="hidden" name="econda_bought_product_count[]" value="{{ item.quantity }}">
+        {% endfor %}
+    {%  endif %}
+
+    {% for econda_register_result in app.session.flashbag.get('flash.vars.register') %}
+        <input type="hidden" name="econda_user_register_result" value="{{ econda_register_result }}">
+    {% endfor %}
+
+    {% for econda_login_result in app.session.flashbag.get('flash.vars.login') %}
+        <input type="hidden" name="econda_login_result" value="{{ econda_login_result }}">
+    {% endfor %}
+
+    {% for econda_newsletter_subscription_result in app.session.flashbag.get('flash.vars.newsletter.subscription') %}
+        <input type="hidden" name="econda_newsletter_subscription_result" value="{{ econda_newsletter_subscription_result }}">
+    {% endfor %}
