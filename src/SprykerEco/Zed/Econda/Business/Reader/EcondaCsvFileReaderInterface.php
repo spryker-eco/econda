@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * MIT License
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
+namespace SprykerEco\Zed\Econda\Business\Reader;
+
+interface EcondaCsvFileReaderInterface
+{
+
+    /**
+     * @param string $type
+     * @param string $locale
+     *
+     * @return string
+     */
+    public function readFile($type, $locale);
+
+}
