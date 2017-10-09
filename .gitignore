@@ -8,6 +8,7 @@
 *.AppleDouble
 *.AppleDB
 *.AppleDesktop
+*.DS_Store
 
 # Tests
 /tests/_output/*

@@ -4,11 +4,18 @@ paths:
     data: ../../../_data
     support: _support
     log: ../../../_output
-    envs: ../../../_envs
+coverage:
+    enabled: true
+    remote: false
+    whitelist: { include: ['../../../../src/*'] }
 suites:
-    Zed:
+    Business:
         path: .
-        class_name: EcondaZedTester
+        actor: EcondaBusinessTester
         modules:
-            enabled:
-                - Asserts
+          enabled:
+            - \SprykerTest\Shared\Testify\Helper\Environment
+            - \SprykerTest\Shared\Testify\Helper\ConfigHelper
+#            - \SprykerTest\Shared\Testify\Helper\LocatorHelper
+#            - \SprykerTest\Shared\Testify\Helper\DependencyHelper
+            - \SprykerTest\Shared\Propel\Helper\TransactionHelper

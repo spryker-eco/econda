@@ -16,9 +16,9 @@ namespace SprykerTest\Zed\Econda;
  *
  * @SuppressWarnings(PHPMD)
 */
-class PayolutionZedTester extends \Codeception\Actor
+class EcondaBusinessTester extends \Codeception\Actor
 {
-    use _generated\PayolutionZedTesterActions;
+    use _generated\EcondaBusinessTesterActions;
 
    /**
     * Define custom actions here
