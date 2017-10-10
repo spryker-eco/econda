@@ -8,9 +8,9 @@
 namespace SprykerEco\Zed\Econda\Business;
 
 use Generated\Shared\Transfer\LocaleTransfer;
+use Spryker\Zed\Kernel\Business\AbstractFacade;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
-use Spryker\Zed\Kernel\Business\AbstractFacade;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -22,8 +22,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     /**
      * @api
      *
-     * @param string $locale
      * @param string $type
+     * @param string $locale
      *
      * @return mixed
      */

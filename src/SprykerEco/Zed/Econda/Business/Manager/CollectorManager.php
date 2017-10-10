@@ -32,6 +32,13 @@ class CollectorManager implements CollectorManagerInterface
     /** @var \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper */
     protected $progressBarHelper;
 
+    /**
+     * CollectorManager constructor.
+     *
+     * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
+     * @param \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface $queryContainer
+     * @param \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper $progressBarHelper
+     */
     public function __construct(
         CriteriaBuilderInterface $criteriaBuilder,
         EcondaQueryContainerInterface $queryContainer,

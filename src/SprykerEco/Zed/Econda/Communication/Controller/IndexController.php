@@ -20,6 +20,8 @@ class IndexController extends AbstractController
     const PRODUCTS = 'products';
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function categoryAction(Request $request)
@@ -36,6 +38,8 @@ class IndexController extends AbstractController
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function productAction(Request $request)
@@ -52,6 +56,8 @@ class IndexController extends AbstractController
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return string
      */
     protected function getLocale(Request $request)

@@ -13,12 +13,12 @@ use Generated\Shared\Transfer\StorageProductImageTransfer;
 use Orm\Zed\Category\Persistence\Map\SpyCategoryTableMap;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
+use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
+use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface;
 use SprykerEco\Zed\Econda\EcondaConfig;
 use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
-use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
-use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 
 class EcondaProductCollector extends AbstractDatabaseCollector
 {
@@ -103,6 +103,12 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         $this->config = $config;
     }
 
+    /**
+     * @param array $collectedSet
+     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
+     *
+     * @return array
+     */
     protected function collectData(array $collectedSet, LocaleTransfer $locale)
     {
         $setToExport = [];
@@ -245,6 +251,11 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         return $this->getSmallPictureUrlFromDefaultImageSet($imageSet);
     }
 
+    /**
+     * @param array $imageSet
+     *
+     * @return string
+     */
     protected function getSmallPictureUrlFromDefaultImageSet($imageSet)
     {
         $defaultImageSet = $this->getDefaultImageSet($imageSet);

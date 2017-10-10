@@ -1,5 +1,8 @@
 <?php
+
 namespace SprykerTest\Zed\Econda;
+
+use Codeception\Actor;
 
 /**
  * Inherited Methods
@@ -15,12 +18,14 @@ namespace SprykerTest\Zed\Econda;
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
  *
  * @SuppressWarnings(PHPMD)
-*/
-class EcondaBusinessTester extends \Codeception\Actor
+ */
+class EcondaBusinessTester extends Actor
 {
+
     use _generated\EcondaBusinessTesterActions;
 
    /**
     * Define custom actions here
     */
+
 }

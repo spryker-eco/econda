@@ -10,9 +10,9 @@ namespace SprykerEco\Zed\Econda\Business\Collector;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
+use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
-use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -40,7 +40,7 @@ interface DatabaseCollectorInterface
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Symfony\Component\Console\Output\OutputInterface $output
-     * @param \Symfony\Component\Console\Helper\ProgressBar
+     * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
      *
      * @return void
      */

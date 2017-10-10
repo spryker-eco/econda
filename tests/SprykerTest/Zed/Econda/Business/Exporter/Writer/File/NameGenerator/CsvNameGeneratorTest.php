@@ -11,8 +11,8 @@ use Codeception\Test\Unit;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
 
 /**
- * @group Unit
- * @group SprykerEco
+ * Auto-generated group annotations
+ * @group SprykerTest
  * @group Zed
  * @group Econda
  * @group Business
@@ -20,10 +20,15 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGen
  * @group Writer
  * @group File
  * @group NameGenerator
+ * @group CsvNameGeneratorTest
+ * Add your own group annotations below this line
  */
 class CsvNameGeneratorTest extends Unit
 {
 
+    /**
+     * @return void
+     */
     public function testGenerateFileName()
     {
         $generator = new CsvNameGenerator();

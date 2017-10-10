@@ -19,7 +19,7 @@ interface WriterInterface
     public function write(array $dataSet, $type = '');
 
     /**
-     * @param string $csvDir
+     * @param string $directory
      *
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
      */

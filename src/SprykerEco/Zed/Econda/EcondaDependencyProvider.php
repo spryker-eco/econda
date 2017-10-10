@@ -7,13 +7,13 @@
 
 namespace SprykerEco\Zed\Econda;
 
+use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
+use Spryker\Zed\Kernel\Container;
 use SprykerEco\Zed\Econda\Communication\Plugin\CategoryPlugin;
 use SprykerEco\Zed\Econda\Communication\Plugin\ProductsPlugin;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleBridge;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridge;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelBridge;
-use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
-use Spryker\Zed\Kernel\Container;
 
 class EcondaDependencyProvider extends AbstractBundleDependencyProvider
 {

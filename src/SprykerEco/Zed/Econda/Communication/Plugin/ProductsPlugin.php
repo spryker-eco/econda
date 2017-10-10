@@ -8,10 +8,10 @@
 namespace SprykerEco\Zed\Econda\Communication\Plugin;
 
 use Generated\Shared\Transfer\LocaleTransfer;
+use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface;
-use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**

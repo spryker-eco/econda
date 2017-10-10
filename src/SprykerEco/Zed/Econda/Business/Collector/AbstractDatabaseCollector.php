@@ -11,10 +11,10 @@ use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\PdoBatchIterator;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
+use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
-use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 

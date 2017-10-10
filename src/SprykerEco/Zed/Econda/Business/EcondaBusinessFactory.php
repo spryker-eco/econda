@@ -11,6 +11,7 @@ use Exception;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
+use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaCategoryCollector;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector;
 use SprykerEco\Zed\Econda\Business\Exporter\FileExporter;
@@ -25,7 +26,6 @@ use SprykerEco\Zed\Econda\Business\Model\FailedResult;
 use SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
 use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer;
-use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
@@ -35,8 +35,8 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
 {
 
     /**
-     * @param string $locale
      * @param string $type
+     * @param string $locale
      *
      * @return string
      */
@@ -88,6 +88,9 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
         return new BatchResult();
     }
 
+    /**
+     * @return \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper
+     */
     protected function createProgressBarHelper()
     {
         return new ProgressBarHelper();
@@ -167,6 +170,9 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_LOCALE);
     }
 
+    /**
+     * @return \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer
+     */
     protected function getEcondaQueryContainer()
     {
         return new EcondaQueryContainer();

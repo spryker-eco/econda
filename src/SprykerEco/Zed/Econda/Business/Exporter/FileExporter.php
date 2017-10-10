@@ -33,11 +33,14 @@ class FileExporter extends AbstractExporter
     protected $exportPath;
 
     /**
+     * FileExporter constructor.
+     *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
      * @param \SprykerEco\Zed\Econda\Business\Model\FailedResultInterface $failedResultPrototype
      * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $batchResultPrototype
-     * @param \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[] $collectorPlugins
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator $csvNameGenerator
+     * @param string $exportPath
+     * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,

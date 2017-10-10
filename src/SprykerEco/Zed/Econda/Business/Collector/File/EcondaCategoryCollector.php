@@ -109,7 +109,6 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     /**
      * @param array $node
      * @param array $data
-     * @param bool $nested
      *
      * @return string
      */

@@ -11,6 +11,8 @@ class CsvNameGenerator implements NameGeneratorInterface
 {
 
     /**
+     * @param string $type
+     * @param string $localeName
      * @param string $number
      *
      * @return string
