@@ -19,6 +19,7 @@ function runTests {
         newMessage=$'\nTests are failing'
         message="$message$newMessage"
     fi
+    cd "$shopPath"
     echo "Done tests"
 }
 
