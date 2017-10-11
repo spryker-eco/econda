@@ -3,7 +3,7 @@ moduleName='econda'
 moduleNiceName='Econda'
 cpath=`pwd`
 modulePath="$cpath/module"
-shopPath="$cpath/project"
+shopPath="$cpath/current"
 globalResult=1
 message=""
 

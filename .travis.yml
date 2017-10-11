@@ -38,8 +38,8 @@ install:
   - chmod +x move-module.sh
   - ./move-module.sh
   - echo "Cloning demoshop..."
-  - git clone https://github.com/spryker/demoshop.git demoshop
-  - cd demoshop/
+  - git clone https://github.com/spryker/demoshop.git current
+  - cd current/
   - chmod -R a+x config/Shared/ci/travis/
   - composer self-update && composer --version
   - composer install --no-interaction
