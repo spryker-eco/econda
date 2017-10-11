@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 moduleName=$MODULE_NAME
-modulePath="$HOME/$MODULE_FOLDER"
-shopPath="$HOME/$SHOP_FOLDER"
+modulePath="$TRAVIS_BUILD_DIR/$MODULE_FOLDER"
+shopPath="$TRAVIS_BUILD_DIR/$SHOP_FOLDER"
 globalResult=1
 message=""
 
@@ -67,7 +67,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd "$SHOP_FOLDER/"
+cd $SHOP_FOLDER
 pwd
 checkWithLatestDemoShop
 echo "$message"
