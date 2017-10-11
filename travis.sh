@@ -8,13 +8,6 @@ globalResult=1
 message=""
 
 function runTests {
-    echo "Copy configuration..."
-    if [ -f "vendor/spryker-eco/$moduleName/config/Shared/config.dist.php" ]; then
-        tail -n +2 "vendor/spryker-eco/$moduleName/config/Shared/config.dist.php" >> config/Shared/config_default-devtest.php
-        php "$modulePath/fix-config.php" config/Shared/config_default-devtest.php
-    fi
-    echo "Building transfer objects..."
-    "$shopPath/vendor/bin/console" transfer:generate
     echo "Running tests..."
     cd "vendor/spryker-eco/$moduleName/"
     "$shopPath/vendor/bin/codecept" run
@@ -66,9 +59,6 @@ function checkModuleWithLatestVersionOfDemoShop {
 }
 
 cd current/
-composer install
-
 checkWithLatestDemoShop
-
 echo "$message"
 exit $globalResult
