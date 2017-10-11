@@ -15,12 +15,15 @@ function runTests {
     if [ "$?" = 0 ]; then
         newMessage=$'\nTests are green'
         message="$message$newMessage"
+        testResult=0
     else
         newMessage=$'\nTests are failing'
         message="$message$newMessage"
+        testResult=1
     fi
     cd "$shopPath"
     echo "Done tests"
+    return $testResult
 }
 
 function checkWithLatestDemoShop {
@@ -45,8 +48,11 @@ function checkWithLatestDemoShop {
 function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
     updates=`php "$modulePath/merge-composer.php" "$modulePath/composer.json" composer.json "$modulePath/composer.json"`
-    cat "$modulePath/composer.json"
-    cat composer.json
+    if [ "$updates" = "" ]; then
+        newMessage=$'\nModule is COMPATIBLE with latest versions of modules used in DemoShop'
+        message="$message$newMessage"
+        return
+    fi
     newMessage=$'\nUpdated dependencies in module to match DemoShop\n'
     message="$message$newMessage$updates"
     echo "Installing module with updated dependencies..."
