@@ -5,6 +5,8 @@ env:
     - APPLICATION_ENV=devtest
     - APPLICATION_STORE=DE
     - APPLICATION_=DE
+    - BUILD_MODULE_FOLDER=module
+    - BUILD_SHOP_FOLDER=current
 
 matrix:
   fast_finish: true
@@ -34,10 +36,10 @@ install:
   - chmod +x move-module.sh
   - ./move-module.sh
   - echo "Cloning demoshop..."
-  - git clone https://github.com/spryker/demoshop.git current
-  - cd current/
-  - composer self-update && composer --version
-  - composer install --no-interaction
+  - git clone https://github.com/spryker/demoshop.git $BUILD_SHOP_FOLDER
+  - cd $BUILD_SHOP_FOLDER
+#  - composer self-update && composer --version
+#  - composer install --no-interaction
 
 before_script:
   - nvm install 6
@@ -46,10 +48,10 @@ before_script:
   - mkdir -p data/DE/logs
   - chmod -R 777 data/
   - cd ..
-  - chmod a+x ./module/travis.sh
+  - chmod a+x ./$BUILD_MODULE_FOLDER/travis.sh
 
 script:
-  - ./module/travis.sh
+#  - ./$BUILD_MODULE_FOLDER/travis.sh
 
 notifications:
   email: false
