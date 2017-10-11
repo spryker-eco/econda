@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-RED='\e[101m'
-GREEN='\e[102m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
 buildResult=1
 buildMessage=""
 
@@ -28,13 +28,13 @@ function checkWithLatestDemoShop {
     composer require "spryker-eco/$MODULE_NAME @dev"
     result=$?
     if [ "$result" = 0 ]; then
-        buildMessage="${buildMessage}\n${GREEN}Current version of module is compatible with latest Demo Shop modules versions"
+        buildMessage="${buildMessage}\n${GREEN}$MODULE_NAME is compatible with the modules used in Demo Shop"
         if runTests; then
             buildResult=0
             checkModuleWithLatestVersionOfDemoShop
         fi
     else
-        buildMessage="${buildMessage}\n${RED}Current version of module is not compatible with latest Demo Shop due to modules versions"
+        buildMessage="${buildMessage}\n${RED}$MODULE_NAME is not compatible with the modules used in Demo Shop"
         checkModuleWithLatestVersionOfDemoShop
     fi
 }
@@ -43,7 +43,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
     updates=`php "$TRAVIS_BUILD_DIR/$MODULE_DIR/build/merge-composer.php" "$TRAVIS_BUILD_DIR/$MODULE_DIR/composer.json" composer.json "$TRAVIS_BUILD_DIR/$MODULE_DIR/composer.json"`
     if [ "$updates" = "" ]; then
-        buildMessage="${buildMessage}\n${GREEN}Module is compatible with latest versions of modules used in Demo Shop"
+        buildMessage="${buildMessage}\n${GREEN}$MODULE_NAME is compatible with the latest version of modules used in Demo Shop"
         return
     fi
     buildMessage="${buildMessage}\nUpdated dependencies in module to match Demo Shop\n"
@@ -51,10 +51,10 @@ function checkModuleWithLatestVersionOfDemoShop {
     composer require "spryker-eco/$MODULE_NAME @dev"
     result=$?
     if [ "$result" = 0 ]; then
-        buildMessage="${buildMessage}\n${GREEN}Module is compatible with latest versions of modules used in Demo Shop"
+        buildMessage="${buildMessage}\n${GREEN}$MODULE_NAME is compatible with the latest version of modules used in Demo Shop"
         runTests
     else
-        buildMessage="${buildMessage}\n${RED}Module is not compatible with latest versions of modules used in Demo Shop"
+        buildMessage="${buildMessage}\n${RED}$MODULE_NAME is not compatible with the latest version of modules used in Demo Shop"
     fi
 }
 
