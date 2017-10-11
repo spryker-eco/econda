@@ -37,8 +37,10 @@ install:
   - echo "Moving module to subfolder..."
   - if [[ *$TRAVIS_EVENT_TYPE* = 'cron' ]]; then git checkout $(git tag | tail -n 1); fi
   - mkdir $MODULE_FOLDER && ls -1 | grep -v ^$MODULE_FOLDER | xargs -I{} mv {} $MODULE_FOLDER
+  - ls -la
   - echo "Cloning demoshop..."
   - git clone https://github.com/spryker/demoshop.git $SHOP_FOLDER
+  - ls -la
   - cd $SHOP_FOLDER
   - composer self-update && composer --version
   - composer install --no-interaction
@@ -51,6 +53,7 @@ before_script:
   - chmod a+x ./$MODULE_FOLDER/build/travis.sh
 
 script:
+  - ls -la
   - ./$MODULE_FOLDER/build/travis.sh
 
 notifications:

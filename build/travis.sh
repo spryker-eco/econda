@@ -5,10 +5,6 @@ shopPath="$HOME/$SHOP_FOLDER"
 globalResult=1
 message=""
 
-echo "$HOME"
-echo "$modulePath"
-echo "$shopPath"
-
 function runTests {
     echo "define('APPLICATION_ROOT_DIR', '$shopPath');" >> "$shopPath/vendor/composer/autoload_real.php"
     echo "Running tests..."
