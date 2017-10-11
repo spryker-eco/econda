@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-moduleName='econda'
-moduleNiceName='Econda'
-cpath=`pwd`
-modulePath="$cpath/module"
-shopPath="$cpath/current"
+moduleName=$MODULE_NAME
+modulePath="$HOME/$BUILD_MODULE_FOLDER"
+shopPath="$HOME/$BUILD_SHOP_FOLDER"
 globalResult=1
 message=""
 
@@ -47,7 +45,7 @@ function checkWithLatestDemoShop {
 
 function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
-    updates=`php "$modulePath/merge-composer.php" "$modulePath/composer.json" composer.json "$modulePath/composer.json"`
+    updates=`php "$modulePath/build/merge-composer.php" "$modulePath/composer.json" composer.json "$modulePath/composer.json"`
     if [ "$updates" = "" ]; then
         newMessage=$'\nModule is COMPATIBLE with latest versions of modules used in DemoShop'
         message="$message$newMessage"
@@ -68,7 +66,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd current/
+cd $BUILD_SHOP_FOLDER
 checkWithLatestDemoShop
 echo "$message"
 exit $globalResult

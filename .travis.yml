@@ -7,6 +7,7 @@ env:
     - APPLICATION_=DE
     - BUILD_MODULE_FOLDER=module
     - BUILD_SHOP_FOLDER=current
+    - MODULE_NAME=econda
 
 matrix:
   fast_finish: true
@@ -33,25 +34,24 @@ before_install:
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 install:
-  - chmod +x move-module.sh
-  - ./move-module.sh
+  - echo "Moving module to subfolder..."
+  - if [[ *$TRAVIS_EVENT_TYPE* = 'cron' ]]; then git checkout $(git tag | tail -n 1); fi
+  - mkdir $BUILD_MODULE_FOLDER && ls -1 | grep -v ^$BUILD_MODULE_FOLDER | xargs -I{} mv {} $BUILD_MODULE_FOLDER
   - echo "Cloning demoshop..."
   - git clone https://github.com/spryker/demoshop.git $BUILD_SHOP_FOLDER
   - cd $BUILD_SHOP_FOLDER
   - composer self-update && composer --version
   - composer install --no-interaction
-
-before_script:
-  - nvm install 6
-  - mkdir -p data/DE/cache/Yves/twig
-  - mkdir -p data/DE/cache/Zed/twig
   - mkdir -p data/DE/logs
   - chmod -R 777 data/
   - cd ..
-  - chmod a+x ./$BUILD_MODULE_FOLDER/travis.sh
+
+before_script:
+  - nvm install 6
+  - chmod a+x ./$BUILD_MODULE_FOLDER/build/travis.sh
 
 script:
-  - ./$BUILD_MODULE_FOLDER/travis.sh
+  - ./$BUILD_MODULE_FOLDER/build/travis.sh
 
 notifications:
   email: false
