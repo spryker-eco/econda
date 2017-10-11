@@ -65,7 +65,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd demoshop/
+cd current/
 composer install
 
 checkWithLatestDemoShop
