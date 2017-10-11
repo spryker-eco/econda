@@ -9,34 +9,30 @@ function runTests {
     cd "vendor/spryker-eco/$MODULE_NAME/"
     "$TRAVIS_BUILD_DIR/$SHOP_FOLDER/vendor/bin/codecept" run
     if [ "$?" = 0 ]; then
-        newMessage=$'\nTests are green'
-        buildMessage="$buildMessage$newMessage"
-        testResult=0
+        buildMessage="${buildMessage}\nTests are green"
+        result=0
     else
-        newMessage=$'\nTests are failing'
-        buildMessage="$buildMessage$newMessage"
-        testResult=1
+        buildMessage="${buildMessage}\nTests are failing"
+        result=1
     fi
     cd "$TRAVIS_BUILD_DIR/$SHOP_FOLDER"
     echo "Done tests"
-    return $testResult
+    return $result
 }
 
 function checkWithLatestDemoShop {
-    echo "Checking module with latest DemoShop"
+    echo "Checking module with latest Demo Shop..."
     composer config repositories.ecomodule path "$TRAVIS_BUILD_DIR/$MODULE_FOLDER"
     composer require "spryker-eco/$MODULE_NAME @dev"
     result=$?
     if [ "$result" = 0 ]; then
-        newMessage=$'\nCurrent version of module is COMPATIBLE with latest DemoShop modules\' versions'
-        buildMessage="$buildMessage$newMessage"
+        buildMessage="${buildMessage}\nCurrent version of module is compatible with latest DemoShop modules\' versions"
         if runTests; then
             buildResult=0
             checkModuleWithLatestVersionOfDemoShop
         fi
     else
-        newMessage=$'\nCurrent version of module is NOT COMPATIBLE with latest DemoShop due to modules\' versions'
-        buildMessage="$buildMessage$newMessage"
+        buildMessage="${buildMessage}\nCurrent version of module is not compatible with latest DemoShop due to modules\' versions"
         checkModuleWithLatestVersionOfDemoShop
     fi
 }
@@ -45,22 +41,18 @@ function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
     updates=`php "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/build/merge-composer.php" "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/composer.json" composer.json "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/composer.json"`
     if [ "$updates" = "" ]; then
-        newMessage=$'\nModule is COMPATIBLE with latest versions of modules used in DemoShop'
-        buildMessage="$buildMessage$newMessage"
+        buildMessage="${buildMessage}\nModule is compatible with latest versions of modules used in Demo Shop"
         return
     fi
-    newMessage=$'\nUpdated dependencies in module to match DemoShop\n'
-    buildMessage="$buildMessage$newMessage$updates"
+    buildMessage="${buildMessage}\nUpdated dependencies in module to match Demo Shop\n"
     echo "Installing module with updated dependencies..."
     composer require "spryker-eco/$MODULE_NAME @dev"
     result=$?
     if [ "$result" = 0 ]; then
-        newMessage=$'\nModule is COMPATIBLE with latest versions of modules used in DemoShop'
-        buildMessage="$buildMessage$newMessage"
+        buildMessage="${buildMessage}\nModule is compatible with latest versions of modules used in Demo Shop"
         runTests
     else
-        newMessage=$'\nModule is NOT COMPATIBLE with latest versions of modules used in DemoShop'
-        buildMessage="$buildMessage$newMessage"
+        buildMessage="${buildMessage}\nModule is not compatible with latest versions of modules used in Demo Shop"
     fi
 }
 
