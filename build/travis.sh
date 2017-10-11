@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
+RED='\e[101m'
+GREEN='\e[102m'
 buildResult=1
 buildMessage=""
 
 function runTests {
-    echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_FOLDER');" >> "$TRAVIS_BUILD_DIR/$SHOP_FOLDER/vendor/composer/autoload_real.php"
+    echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
     echo "Running tests..."
     cd "vendor/spryker-eco/$MODULE_NAME/"
-    "$TRAVIS_BUILD_DIR/$SHOP_FOLDER/vendor/bin/codecept" run
+    "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/codecept" run
     if [ "$?" = 0 ]; then
         buildMessage="${buildMessage}\n${GREEN}Tests are passing"
         result=0
@@ -17,14 +17,14 @@ function runTests {
         buildMessage="${buildMessage}\n${RED}Tests are failing"
         result=1
     fi
-    cd "$TRAVIS_BUILD_DIR/$SHOP_FOLDER"
+    cd "$TRAVIS_BUILD_DIR/$SHOP_DIR"
     echo "Tests finished"
     return $result
 }
 
 function checkWithLatestDemoShop {
     echo "Checking module with latest Demo Shop..."
-    composer config repositories.ecomodule path "$TRAVIS_BUILD_DIR/$MODULE_FOLDER"
+    composer config repositories.ecomodule path "$TRAVIS_BUILD_DIR/$MODULE_DIR"
     composer require "spryker-eco/$MODULE_NAME @dev"
     result=$?
     if [ "$result" = 0 ]; then
@@ -41,7 +41,7 @@ function checkWithLatestDemoShop {
 
 function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
-    updates=`php "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/build/merge-composer.php" "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/composer.json" composer.json "$TRAVIS_BUILD_DIR/$MODULE_FOLDER/composer.json"`
+    updates=`php "$TRAVIS_BUILD_DIR/$MODULE_DIR/build/merge-composer.php" "$TRAVIS_BUILD_DIR/$MODULE_DIR/composer.json" composer.json "$TRAVIS_BUILD_DIR/$MODULE_DIR/composer.json"`
     if [ "$updates" = "" ]; then
         buildMessage="${buildMessage}\n${GREEN}Module is compatible with latest versions of modules used in Demo Shop"
         return
@@ -58,7 +58,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd $SHOP_FOLDER
+cd $SHOP_DIR
 checkWithLatestDemoShop
 echo -e "$buildMessage"
 exit $buildResult

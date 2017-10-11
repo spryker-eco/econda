@@ -5,8 +5,8 @@ env:
     - APPLICATION_ENV=devtest
     - APPLICATION_STORE=DE
     - APPLICATION_=DE
-    - MODULE_FOLDER=module
-    - SHOP_FOLDER=current
+    - MODULE_DIR=module
+    - SHOP_DIR=current
     - MODULE_NAME=econda
 
 matrix:
@@ -35,10 +35,10 @@ before_install:
 install:
   - echo "Moving module to subfolder..."
   - if [[ *$TRAVIS_EVENT_TYPE* = 'cron' ]]; then git checkout $(git tag | tail -n 1); fi
-  - mkdir $MODULE_FOLDER && ls -1 | grep -v ^$MODULE_FOLDER | xargs -I{} mv {} $MODULE_FOLDER
+  - mkdir $MODULE_DIR && ls -1 | grep -v ^$MODULE_DIR | xargs -I{} mv {} $MODULE_DIR
   - echo "Cloning Demo Shop..."
-  - git clone https://github.com/spryker/demoshop.git $SHOP_FOLDER
-  - cd $SHOP_FOLDER
+  - git clone https://github.com/spryker/demoshop.git $SHOP_DIR
+  - cd $SHOP_DIR
   - composer self-update && composer --version
   - composer install --no-interaction
   - mkdir -p data/DE/logs
@@ -46,10 +46,10 @@ install:
   - cd ..
 
 before_script:
-  - chmod a+x ./$MODULE_FOLDER/build/travis.sh
+  - chmod a+x ./$MODULE_DIR/build/travis.sh
 
 script:
-  - ./$MODULE_FOLDER/build/travis.sh
+  - ./$MODULE_DIR/build/travis.sh
 
 notifications:
   email: false
