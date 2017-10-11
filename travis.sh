@@ -7,11 +7,6 @@ globalResult=1
 message=""
 
 function runTests {
-    echo "Preparing environment..."
-    echo "Copying test files to DemoShop folder "
-    cp -r "vendor/spryker-eco/$moduleName/tests/SprykerTest/Zed" tests/PyzTest/Zed/
-    echo "Fix namespace of tests..."
-    grep -rl 'SprykerTest' "tests/PyzTest/Zed/$moduleNiceName/" | xargs sed -i -e 's/ SprykerTest/ PyzTest/g'
     echo "Copy configuration..."
     if [ -f "vendor/spryker-eco/$moduleName/config/Shared/config.dist.php" ]; then
         tail -n +2 "vendor/spryker-eco/$moduleName/config/Shared/config.dist.php" >> config/Shared/config_default-devtest.php
@@ -20,7 +15,8 @@ function runTests {
     echo "Setup test environment..."
     ./setup_test -f
     echo "Running tests..."
-    vendor/bin/codecept run -c "tests/PyzTest/Zed/$moduleNiceName" Business
+    cd "vendor/spryker-eco/$moduleName/"
+    codecept run
     if [ "$?" = 0 ]; then
         newMessage=$'\nTests are green'
         message="$message$newMessage"
