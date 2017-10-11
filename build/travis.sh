@@ -16,7 +16,7 @@ function runTests {
         result=1
     fi
     cd "$TRAVIS_BUILD_DIR/$SHOP_FOLDER"
-    echo "Done tests"
+    echo "Tests finished"
     return $result
 }
 
@@ -58,5 +58,5 @@ function checkModuleWithLatestVersionOfDemoShop {
 
 cd $SHOP_FOLDER
 checkWithLatestDemoShop
-echo "$buildMessage"
+echo -e "$buildMessage"
 exit $buildResult
