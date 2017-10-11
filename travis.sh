@@ -44,6 +44,8 @@ function checkWithLatestDemoShop {
 function checkModuleWithLatestVersionOfDemoShop {
     echo "Merging composer.json dependencies..."
     updates=`php "$modulePath/merge-composer.php" "$modulePath/composer.json" composer.json "$modulePath/composer.json"`
+    cat "$modulePath/composer.json"
+    cat composer.json
     newMessage=$'\nUpdated dependencies in module to match DemoShop\n'
     message="$message$newMessage$updates"
     echo "Installing module with updated dependencies..."

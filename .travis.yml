@@ -38,8 +38,8 @@ install:
   - echo "Cloning demoshop..."
   - git clone https://github.com/spryker/demoshop.git $BUILD_SHOP_FOLDER
   - cd $BUILD_SHOP_FOLDER
-#  - composer self-update && composer --version
-#  - composer install --no-interaction
+  - composer self-update && composer --version
+  - composer install --no-interaction
 
 before_script:
   - nvm install 6
@@ -51,7 +51,7 @@ before_script:
   - chmod a+x ./$BUILD_MODULE_FOLDER/travis.sh
 
 script:
-#  - ./$BUILD_MODULE_FOLDER/travis.sh
+  - ./$BUILD_MODULE_FOLDER/travis.sh
 
 notifications:
   email: false
