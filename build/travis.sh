@@ -67,7 +67,7 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd $SHOP_FOLDER
+cd "$SHOP_FOLDER/"
 pwd
 checkWithLatestDemoShop
 echo "$message"

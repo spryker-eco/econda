@@ -49,7 +49,6 @@ install:
   - cd ..
 
 before_script:
-  - nvm install 6
   - chmod a+x ./$MODULE_FOLDER/build/travis.sh
 
 script:
