@@ -3,6 +3,7 @@ moduleName='econda'
 moduleNiceName='Econda'
 cpath=`pwd`
 modulePath="$cpath/module"
+shopPath="$cpath/project"
 globalResult=1
 message=""
 
@@ -12,11 +13,11 @@ function runTests {
         tail -n +2 "vendor/spryker-eco/$moduleName/config/Shared/config.dist.php" >> config/Shared/config_default-devtest.php
         php "$modulePath/fix-config.php" config/Shared/config_default-devtest.php
     fi
-    echo "Setup test environment..."
-    ./setup_test -f
+    echo "Building transfer objects..."
+    "$shopPath/vendor/bin/console" transfer:generate
     echo "Running tests..."
     cd "vendor/spryker-eco/$moduleName/"
-    codecept run
+    "$shopPath/vendor/bin/codecept" run
     if [ "$?" = 0 ]; then
         newMessage=$'\nTests are green'
         message="$message$newMessage"
