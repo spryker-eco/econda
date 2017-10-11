@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 moduleName=$MODULE_NAME
-modulePath="$HOME/$BUILD_MODULE_FOLDER"
-shopPath="$HOME/$BUILD_SHOP_FOLDER"
+modulePath="$HOME/$MODULE_FOLDER"
+shopPath="$HOME/$SHOP_FOLDER"
 globalResult=1
 message=""
 
 echo "$HOME"
 echo "$modulePath"
-echo "shopPath"
+echo "$shopPath"
 
 function runTests {
     echo "define('APPLICATION_ROOT_DIR', '$shopPath');" >> "$shopPath/vendor/composer/autoload_real.php"
@@ -31,6 +31,7 @@ function runTests {
 function checkWithLatestDemoShop {
     echo "Checking module with latest DemoShop"
     composer config repositories.ecomodule path $modulePath
+    cat composer.json
     composer require "spryker-eco/$moduleName @dev"
     result=$?
     if [ "$result" = 0 ]; then
@@ -70,7 +71,8 @@ function checkModuleWithLatestVersionOfDemoShop {
     fi
 }
 
-cd $BUILD_SHOP_FOLDER
+cd $SHOP_FOLDER
+pwd
 checkWithLatestDemoShop
 echo "$message"
 exit $globalResult
