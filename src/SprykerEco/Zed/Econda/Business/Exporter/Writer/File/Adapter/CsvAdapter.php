@@ -13,10 +13,14 @@ use SprykerEco\Zed\Econda\Business\Exporter\Exception\FileWriterException;
 class CsvAdapter implements AdapterInterface
 {
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $folderPath;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $fileName;
 
     /**
@@ -58,15 +62,14 @@ class CsvAdapter implements AdapterInterface
      * @param array $data
      * @param string $type
      *
-     * @return int
+     * @return bool
      */
     public function write(array $data, $type = '')
     {
-        $result = 0;
+        $result = false;
         $csvFile = $this->getCsvFile($data);
-
         foreach ($data as $key => $row) {
-            $result = $csvFile->fputcsv($row);
+            $result = $csvFile->fputcsv($row) !== false ? true : false;
         }
 
         return $result;

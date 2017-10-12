@@ -58,7 +58,7 @@ class FileWriter implements WriterInterface
      */
     public function write(array $dataSet, $type = '')
     {
-        return (bool)$this->fileWriterAdapter->write($dataSet, $type);
+        return $this->fileWriterAdapter->write($dataSet, $type);
     }
 
 }
