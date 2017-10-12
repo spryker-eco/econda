@@ -2,7 +2,7 @@ build:
   dependencies:
     before:
       - cat composer.json
-      - sed -i -e 's/"Spryker"\:/""\:/g' composer.json
+      - sed -i -e 's/"spryker"\:/""\:/g' composer.json
       - cat composer.json
   environment:
     php:
