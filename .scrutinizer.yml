@@ -1,7 +1,7 @@
 build:
   dependencies:
     override:
-      - cat config/Shared/stores.php
+      - true
   environment:
     php:
       version: 7.1
