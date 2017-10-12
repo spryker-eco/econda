@@ -63,7 +63,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected $priceFacade;
 
     /**
-     * @var Collection
+     * @var \Propel\Runtime\Collection\Collection
      */
     protected $categoryCacheCollection;
 

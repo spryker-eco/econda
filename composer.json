@@ -4,6 +4,7 @@
   "license": "MIT",
   "require": {
     "spryker/application": "^3.0.0",
+    "spryker/category": "^4.0.0",
     "spryker/kernel": "^3.0.0",
     "spryker/price":"^4.0.0",
     "spryker/product-category":"^4.0.0",

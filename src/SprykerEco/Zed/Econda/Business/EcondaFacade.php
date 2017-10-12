@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Econda\Business;
 
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
+use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -64,18 +65,14 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {
-        $collector = $this->getFactory()
-            ->createFileCategoryCollector();
-
-        $this->getFactory()
-            ->createCollectorManager()
-            ->runCollector(
-                $collector,
-                $localeTransfer,
-                $result,
-                $dataWriter,
-                $output
-            );
+        $collector = $this->getFactory()->createFileCategoryCollector();
+        $this->export(
+            $collector,
+            $localeTransfer,
+            $result,
+            $dataWriter,
+            $output
+        );
     }
 
     /**
@@ -94,9 +91,32 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {
-        $collector = $this->getFactory()
-            ->createFileProductCollector();
+        $collector = $this->getFactory()->createFileProductCollector();
+        $this->export(
+            $collector,
+            $localeTransfer,
+            $result,
+            $dataWriter,
+            $output
+        );
+    }
 
+    /**
+     * @param \SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector $collector
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     *
+     * @return void
+     */
+    private function export(
+        AbstractDatabaseCollector $collector,
+        LocaleTransfer $localeTransfer,
+        BatchResultInterface $result,
+        WriterInterface $dataWriter,
+        OutputInterface $output
+    ) {
         $this->getFactory()
             ->createCollectorManager()
             ->runCollector(

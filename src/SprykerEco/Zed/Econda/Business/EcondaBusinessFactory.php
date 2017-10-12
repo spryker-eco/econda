@@ -240,7 +240,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Spryker\Zed\Price\Business\PriceFacadeInterface
+     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface
      */
     protected function getPriceFacade()
     {
