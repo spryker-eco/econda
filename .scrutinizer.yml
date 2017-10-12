@@ -12,6 +12,7 @@ filter:
     - config/*
     - tests/*
     - src/Pyz/*
+    - vendor/*
 checks:
   php:
     code_rating: true

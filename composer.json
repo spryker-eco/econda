@@ -9,6 +9,7 @@
     "spryker/price":"^4.0.0",
     "spryker/product-category":"^4.0.0",
     "spryker/product-image":"^3.0.0",
+    "spryker/product-set-collector": "^1.0.0",
     "spryker/sql-criteria-builder": "^1.0.0",
     "spryker/transfer": "^3.0.0",
     "spryker/util-data-reader": "^1.0.0",
