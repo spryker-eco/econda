@@ -10,8 +10,6 @@ namespace SprykerEco\Zed\Econda;
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Econda\EcondaConstants;
-use SprykerEco\Zed\Econda\Persistence\Storage\Pdo\PostgreSql\CategoryNodeEcondaQuery;
-use SprykerEco\Zed\Econda\Persistence\Storage\Pdo\PostgreSql\ProductConcreteEcondaQuery;
 
 class EcondaConfig extends AbstractBundleConfig
 {
@@ -47,8 +45,7 @@ class EcondaConfig extends AbstractBundleConfig
 
             ],
             'PostgreSql' => [
-                'CategoryNodeEcondaQuery' => CategoryNodeEcondaQuery::class,
-                'ProductConcreteEcondaQuery' => ProductConcreteEcondaQuery::class,
+
             ],
         ];
 
