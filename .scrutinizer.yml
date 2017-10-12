@@ -1,7 +1,7 @@
 build:
   dependencies:
     override:
-      - echo 'Override'
+      - echo 'Override -'
   environment:
     php:
       version: 7.1
