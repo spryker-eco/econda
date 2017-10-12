@@ -1,19 +1,18 @@
 build:
   dependencies:
     override:
-      - ls -la config/Shared
-      - ls -la src/Generated/Shared/Transfer
-      - la -ls
+      - la -ls src
   environment:
     php:
       version: 7.1
 filter:
   excluded_paths:
     - build/*
-    - config/*
     - tests/*
-    - src/Pyz/*
     - vendor/*
+    - config/Shared/*
+    - src/Generated/*
+    - src/Pyz/*
 checks:
   php:
     code_rating: true
