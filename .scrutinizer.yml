@@ -1,9 +1,7 @@
 build:
-  dependencies:
-    before:
-      - cat composer.json
-      - sed -i -e 's/"spryker"\:/""\:/g' composer.json
-      - cat composer.json
+  tests:
+    override:
+      - true
   environment:
     php:
       version: 7.1
