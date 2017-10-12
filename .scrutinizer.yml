@@ -1,7 +1,6 @@
 build:
   dependencies:
     override:
-#      - composer config repositories.spryker git git@github.com:spryker/spryker.git
       - composer config repositories.spryker-private composer https://code.spryker.com/repo/private
       - composer install
   environment:

@@ -7,11 +7,11 @@
 
 namespace SprykerEco\Zed\Econda\Business\Collector\File;
 
-use Everon\Component\Collection\Collection;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Generated\Shared\Transfer\StorageProductImageTransfer;
 use Orm\Zed\Category\Persistence\Map\SpyCategoryTableMap;
 use Propel\Runtime\ActiveQuery\Criteria;
+use Propel\Runtime\Collection\Collection;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
@@ -63,7 +63,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected $priceFacade;
 
     /**
-     * @var \Everon\Component\Collection\CollectionInterface
+     * @var Collection
      */
     protected $categoryCacheCollection;
 
@@ -166,7 +166,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function generateCategories($idProductAbstract)
     {
-        if ($this->categoryCacheCollection->has($idProductAbstract)) {
+        if ($this->categoryCacheCollection->offsetExists($idProductAbstract)) {
             return $this->categoryCacheCollection->get($idProductAbstract);
         }
 
