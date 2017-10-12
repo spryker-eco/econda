@@ -10,6 +10,7 @@ filter:
     - build/*
     - config/*
     - tests/*
+    - src/Pyz/*
 checks:
   php:
     code_rating: true
