@@ -3,7 +3,7 @@ build:
     override:
       - composer config repositories.spryker-private composer https://code.spryker.com/repo/private
       - composer install
-      - echo "Finished Project Level Build"
+      - echo "Project Level Build"
   environment:
     php:
       version: 7.1
