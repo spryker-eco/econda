@@ -1,7 +1,9 @@
 build:
   dependencies:
     before:
+      - cat composer.json
       - sed -i -e 's/"Spryker"\:/""\:/g' composer.json
+      - cat composer.json
   environment:
     php:
       version: 7.1
