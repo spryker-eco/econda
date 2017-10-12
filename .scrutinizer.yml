@@ -2,6 +2,7 @@ build:
   dependencies:
     override:
       - ls -la config/Shared
+      - ls -la src/Generated/Shared/Transfer
   environment:
     php:
       version: 7.1
