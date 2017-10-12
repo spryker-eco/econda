@@ -56,7 +56,7 @@ class EcondaFileExportConsole extends Console
     }
 
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface[] $resultData
+     * @param array $resultData
      *
      * @return string
      */
