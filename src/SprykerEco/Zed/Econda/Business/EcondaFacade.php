@@ -34,14 +34,9 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
-     * Specification:
-     * - Initiates export into a file
-     *
-     * @api
-     *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface[]
+     * @return array
      */
     public function exportFile(OutputInterface $output)
     {

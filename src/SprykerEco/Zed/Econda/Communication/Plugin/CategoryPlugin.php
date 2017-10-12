@@ -17,6 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @method \SprykerEco\Zed\Econda\Business\EcondaFacade getFacade()
  * @method \Spryker\Zed\Collector\CollectorConfig getConfig()
+ * @method \SprykerEco\Zed\Econda\Communication\EcondaCommunicationFactory getFactory()
  */
 class CategoryPlugin extends AbstractPlugin implements EcondaPluginInterface
 {
