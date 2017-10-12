@@ -1,7 +1,7 @@
 build:
   dependencies:
     override:
-      - la -ls src
+      - true
   environment:
     php:
       version: 7.1
