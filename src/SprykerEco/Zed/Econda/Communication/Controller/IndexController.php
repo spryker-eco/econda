@@ -26,15 +26,7 @@ class IndexController extends AbstractController
      */
     public function categoryAction(Request $request)
     {
-        $response = $this->getFacade()->getFileContent(self::CATEGORIES, $this->getLocale($request));
-
-        return $this->streamedResponse(
-            function () use ($response) {
-                echo $response;
-            },
-            200,
-            ["Content-type" => "text/csv", 'Content-Disposition' => 'attachment; filename="categories.csv"']
-        );
+        return $this->getResponse($request, self::CATEGORIES);
     }
 
     /**
@@ -44,14 +36,25 @@ class IndexController extends AbstractController
      */
     public function productAction(Request $request)
     {
-        $response = $this->getFacade()->getFileContent(self::PRODUCTS, $this->getLocale($request));
+        return $this->getResponse($request, self::PRODUCTS);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string $type
+     *
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    private function getResponse(Request $request, $type)
+    {
+        $fileContent = $this->getFacade()->getFileContent($type, $this->getLocale($request));
 
         return $this->streamedResponse(
-            function () use ($response) {
-                echo $response;
+            function () use ($fileContent) {
+                echo $fileContent;
             },
             200,
-            ["Content-type" => "text/csv", 'Content-Disposition' => 'attachment; filename="products.csv"']
+            ["Content-type" => "text/csv", 'Content-Disposition' => 'attachment; filename="$type.csv"']
         );
     }
 

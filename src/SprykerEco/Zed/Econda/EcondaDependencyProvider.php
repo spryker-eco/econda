@@ -52,7 +52,7 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
             return $container->getLocator()->productCategory()->queryContainer();
         };
 
-        $container[self::FILE_PLUGINS] = function (Container $container) {
+        $container[self::FILE_PLUGINS] = function () {
             return [
                 'products' => new ProductsPlugin(),
                 'categories' => new CategoryPlugin(),

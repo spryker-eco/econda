@@ -55,7 +55,7 @@ interface EcondaFacadeInterface
      * @param string $type
      * @param string $locale
      *
-     * @return mixed
+     * @return string
      */
     public function getFileContent($type, $locale);
 

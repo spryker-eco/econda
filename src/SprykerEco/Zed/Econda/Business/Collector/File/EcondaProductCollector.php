@@ -58,7 +58,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected $productCategoryQueryContainer;
 
     /**
-     * @var \Spryker\Zed\Price\Business\PriceFacadeInterface
+     * @var \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface
      */
     protected $priceFacade;
 
@@ -82,7 +82,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $query
      * @param \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface $productCategoryQueryContainer
      * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageQueryContainer
-     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface|\Spryker\Zed\Price\Business\PriceFacadeInterface $priceFacade
+     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface $priceFacade
      * @param \SprykerEco\Zed\Econda\EcondaConfig $config
      */
     public function __construct(
