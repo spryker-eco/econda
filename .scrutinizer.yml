@@ -1,7 +1,7 @@
 build:
   dependencies:
     override:
-      - echo 'Override -'
+      - cat config/Shared/stores.php
   environment:
     php:
       version: 7.1
