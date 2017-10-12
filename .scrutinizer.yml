@@ -3,6 +3,7 @@ build:
     override:
       - ls -la config/Shared
       - ls -la src/Generated/Shared/Transfer
+      - la -ls
   environment:
     php:
       version: 7.1
