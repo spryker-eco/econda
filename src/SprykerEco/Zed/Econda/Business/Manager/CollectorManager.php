@@ -7,12 +7,12 @@
 
 namespace SprykerEco\Zed\Econda\Business\Manager;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -52,7 +52,7 @@ class CollectorManager implements CollectorManagerInterface
     /**
      * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
@@ -61,7 +61,7 @@ class CollectorManager implements CollectorManagerInterface
     public function runCollector(
         DatabaseCollectorInterface $collector,
         LocaleTransfer $locale,
-        BatchResultInterface $result,
+        BatchResultTransfer $result,
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {

@@ -18,7 +18,7 @@ interface ExporterInterface
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface
+     * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
     public function exportByType($type, LocaleTransfer $locale, OutputInterface $output);
 

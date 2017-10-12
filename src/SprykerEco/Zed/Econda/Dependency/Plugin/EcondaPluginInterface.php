@@ -7,27 +7,25 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Plugin;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface EcondaPluginInterface
 {
 
     /**
-     * @api
-     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return void
+     * @return mixed
      */
     public function run(
         LocaleTransfer $locale,
-        BatchResultInterface $result,
+        BatchResultTransfer $result,
         WriterInterface $dataWriter,
         OutputInterface $output
     );

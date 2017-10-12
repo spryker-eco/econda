@@ -8,6 +8,8 @@
 namespace SprykerEco\Zed\Econda\Business;
 
 use Exception;
+use Generated\Shared\Transfer\BatchResultTransfer;
+use Generated\Shared\Transfer\FailedResultTransfer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
@@ -21,8 +23,6 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
 use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
 use SprykerEco\Zed\Econda\Business\Manager\CollectorManager;
-use SprykerEco\Zed\Econda\Business\Model\BatchResult;
-use SprykerEco\Zed\Econda\Business\Model\FailedResult;
 use SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
 use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer;
@@ -81,11 +81,11 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Model\BatchResult
+     * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
     protected function createBatchResultModel()
     {
-        return new BatchResult();
+        return new BatchResultTransfer();
     }
 
     /**
@@ -187,11 +187,11 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Model\FailedResult
+     * @return \Generated\Shared\Transfer\FailedResultTransfer
      */
     protected function createFailedResultModel()
     {
-        return new FailedResult();
+        return new FailedResultTransfer();
     }
 
     /**

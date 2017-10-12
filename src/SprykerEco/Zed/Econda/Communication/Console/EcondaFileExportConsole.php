@@ -70,6 +70,7 @@ class EcondaFileExportConsole extends Console
 
         ksort($resultData);
         foreach ($resultData as $type => $result) {
+            $successCount = $result->getTotalCount() - $result->getFailedCount();
             $summary .= sprintf(
                 ' <fg=green>%s</fg=green><fg=yellow> </fg=yellow><fg=yellow></fg=yellow>' . PHP_EOL .
                 ' <fg=white>Total: %d</fg=white>' . PHP_EOL .
@@ -80,9 +81,9 @@ class EcondaFileExportConsole extends Console
                 mb_strtoupper($type),
                 $result->getTotalCount(),
                 $result->getProcessedCount(),
-                $result->getSuccessCount() > 0 ? '<fg=green>' . $result->getSuccessCount() . '</fg=green>' : $result->getSuccessCount(),
+                $successCount > 0 ? '<fg=green>' . $successCount . '</fg=green>' : $successCount,
                 $result->getDeletedCount() > 0 ? '<fg=yellow>' . $result->getDeletedCount() . '</fg=yellow>' : $result->getDeletedCount(),
-                $result->isFailed() ? '<fg=red>' . $result->getFailedCount() . '</fg=red>' : $result->getFailedCount()
+                $result->getFailedCount() ? '<fg=red>' . $result->getFailedCount() . '</fg=red>' : $result->getFailedCount()
             );
 
             $summary .= PHP_EOL;

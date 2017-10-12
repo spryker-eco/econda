@@ -7,9 +7,9 @@
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
+use Generated\Shared\Transfer\FailedResultTransfer;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
-use SprykerEco\Zed\Econda\Business\Model\FailedResultInterface;
 
 abstract class AbstractExporter implements ExporterInterface
 {
@@ -20,14 +20,14 @@ abstract class AbstractExporter implements ExporterInterface
     protected $collectorPlugins = [];
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Model\FailedResultInterface
+     * @var \Generated\Shared\Transfer\FailedResultTransfer
      */
     protected $failedResultPrototype;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface
+     * @var \Generated\Shared\Transfer\BatchResultTransfer
      */
-    protected $batchResultPrototype;
+    protected $batchResultTransferPrototype;
 
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
@@ -40,20 +40,22 @@ abstract class AbstractExporter implements ExporterInterface
     protected $queryContainer;
 
     /**
+     * AbstractExporter constructor.
+     *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \SprykerEco\Zed\Econda\Business\Model\FailedResultInterface $failedResultPrototype
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $batchResultPrototype
-     * @param \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[] $collectorPlugins
+     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultPrototype
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransferPrototype
+     * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultInterface $failedResultPrototype,
-        BatchResultInterface $batchResultPrototype,
+        FailedResultTransfer $failedResultPrototype,
+        BatchResultTransfer $batchResultTransferPrototype,
         array $collectorPlugins = []
     ) {
         $this->writer = $writer;
         $this->failedResultPrototype = $failedResultPrototype;
-        $this->batchResultPrototype = $batchResultPrototype;
+        $this->batchResultTransferPrototype = $batchResultTransferPrototype;
         $this->collectorPlugins = $collectorPlugins;
     }
 
@@ -76,16 +78,28 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      *
      * @return void
      */
-    protected function resetResult(BatchResultInterface $result)
+    protected function resetResult(BatchResultTransfer $result)
     {
         $result->setProcessedCount(0);
         $result->setIsFailed(false);
         $result->setTotalCount(0);
         $result->setDeletedCount(0);
+    }
+
+    /**
+     * @return \Generated\Shared\Transfer\BatchResultTransfer
+     */
+    protected function getBatchResultTransfer()
+    {
+        $resultBatchTransfer = clone $this->batchResultTransferPrototype;
+        $resultBatchTransfer->setDeletedCount(0);
+        $resultBatchTransfer->setFailedCount(0);
+
+        return $resultBatchTransfer;
     }
 
 }

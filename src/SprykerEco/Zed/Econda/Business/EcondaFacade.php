@@ -7,11 +7,11 @@
 
 namespace SprykerEco\Zed\Econda\Business;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -45,15 +45,12 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      */
     public function exportFile(OutputInterface $output)
     {
-        $exporter = $this->getFactory()->createRunner();
-        return $exporter->runExport($output);
+        return $this->getFactory()->createRunner()->runExport($output);
     }
 
     /**
-     * @api
-     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
@@ -61,7 +58,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      */
     public function exportCategories(
         LocaleTransfer $localeTransfer,
-        BatchResultInterface $result,
+        BatchResultTransfer $result,
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {
@@ -76,10 +73,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
-     * @api
-     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
@@ -87,7 +82,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      */
     public function exportProducts(
         LocaleTransfer $localeTransfer,
-        BatchResultInterface $result,
+        BatchResultTransfer $result,
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {
@@ -104,7 +99,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     /**
      * @param \SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
@@ -113,7 +108,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     private function export(
         AbstractDatabaseCollector $collector,
         LocaleTransfer $localeTransfer,
-        BatchResultInterface $result,
+        BatchResultTransfer $result,
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {

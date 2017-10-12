@@ -7,11 +7,11 @@
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
+use Generated\Shared\Transfer\FailedResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
-use SprykerEco\Zed\Econda\Business\Model\FailedResultInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FileExporter extends AbstractExporter
@@ -36,16 +36,16 @@ class FileExporter extends AbstractExporter
      * FileExporter constructor.
      *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \SprykerEco\Zed\Econda\Business\Model\FailedResultInterface $failedResultPrototype
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $batchResultPrototype
+     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultPrototype
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransferPrototype
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator $csvNameGenerator
      * @param string $exportPath
      * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultInterface $failedResultPrototype,
-        BatchResultInterface $batchResultPrototype,
+        FailedResultTransfer $failedResultPrototype,
+        BatchResultTransfer $batchResultTransferPrototype,
         CsvNameGenerator $csvNameGenerator,
         $exportPath,
         array $collectorPlugins = []
@@ -53,7 +53,7 @@ class FileExporter extends AbstractExporter
         parent::__construct(
             $writer,
             $failedResultPrototype,
-            $batchResultPrototype,
+            $batchResultTransferPrototype,
             $collectorPlugins
         );
 
@@ -66,11 +66,11 @@ class FileExporter extends AbstractExporter
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface
+     * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
     public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output)
     {
-        $result = clone $this->batchResultPrototype;
+        $result = $this->getBatchResultTransfer();
         $result->setProcessedLocale($localeTransfer);
 
         if (!$this->isCollectorRegistered($type)) {

@@ -9,4 +9,25 @@
         <property name="contents" type="string" />
     </transfer>
 
+    <transfer name="BatchResult">
+        <property name="totalCount" type="integer" />
+        <property name="processedCount" type="integer" />
+        <property name="fetchedCount" type="integer" />
+        <property name="successCount" type="integer" />
+        <property name="failed" type="FailedResult[]" />
+        <property name="failedCount" type="integer" />
+        <property name="deletedCount" type="integer" />
+        <property name="isFailed" type="bool" />
+        <property name="processedLocale" type="Locale" />
+    </transfer>
+
+    <transfer name="FailedResult">
+        <property name="reason" type="string" />
+        <property name="firstId" type="integer" />
+        <property name="lastId" type="integer" />
+        <property name="itemType" type="string" />
+        <property name="processor" type="string" />
+        <property name="failedCount" type="integer" />
+    </transfer>
+
 </transfers>

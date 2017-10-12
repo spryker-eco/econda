@@ -7,10 +7,10 @@
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Shared\Kernel\Store;
 use SprykerEco\Zed\Econda\Business\Exporter\Exception\BatchResultException;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -85,12 +85,11 @@ class Runner
         $output->writeln('<fg=yellow>-------------</fg=yellow>');
 
         foreach ($types as $type) {
-
             $result = $this->exporter->exportByType($type, $locale, $output);
 
             $this->handleResult($result);
 
-            if ($result instanceof BatchResultInterface) {
+            if ($result instanceof BatchResultTransfer) {
                 if ($this->nothingWasProcessed($result)) {
                     continue;
                 }
@@ -102,31 +101,31 @@ class Runner
     }
 
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      *
      * @return bool
      */
-    protected function nothingWasProcessed(BatchResultInterface $result)
+    protected function nothingWasProcessed(BatchResultTransfer $result)
     {
         return $result->getProcessedCount() === 0;
     }
 
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $result
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      *
      * @throws \SprykerEco\Zed\Econda\Business\Exporter\Exception\BatchResultException
      *
      * @return void
      */
-    protected function handleResult(BatchResultInterface $result)
+    protected function handleResult(BatchResultTransfer $result)
     {
-        if ($result->isFailed()) {
+        if ($result->getFailedCount()) {
             throw new BatchResultException(
                 sprintf(
                     'Processed %d from %d for locale %s, where %d were deleted and %d failed.',
                     $result->getProcessedCount(),
                     $result->getTotalCount(),
-                    $result->getProcessedLocale(),
+                    $result->getProcessedLocale()->getLocaleName(),
                     $result->getDeletedCount(),
                     $result->getFailedCount()
                 )

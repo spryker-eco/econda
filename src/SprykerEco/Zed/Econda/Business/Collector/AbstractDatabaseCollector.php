@@ -7,13 +7,13 @@
 
 namespace SprykerEco\Zed\Econda\Business\Collector;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\PdoBatchIterator;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Model\BatchResultInterface;
 use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -67,7 +67,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
     /**
      * @param \Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface $batchCollection
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $batchResult
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResult
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Symfony\Component\Console\Output\OutputInterface $output
@@ -77,7 +77,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
      */
     public function exportDataToStore(
         CountableIteratorInterface $batchCollection,
-        BatchResultInterface $batchResult,
+        BatchResultTransfer $batchResult,
         WriterInterface $storeWriter,
         LocaleTransfer $locale,
         OutputInterface $output,
@@ -107,7 +107,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
      * @param array $batch
      * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \SprykerEco\Zed\Econda\Business\Model\BatchResultInterface $batchResult
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResult
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
      *
      * @return void
@@ -116,7 +116,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         array $batch,
         ProgressBar $progressBar,
         LocaleTransfer $locale,
-        BatchResultInterface $batchResult,
+        BatchResultTransfer $batchResult,
         WriterInterface $storeWriter
     ) {
         $batchSize = count($batch);
@@ -127,7 +127,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
         $storeWriter->write($collectedData);
 
-        $batchResult->increaseProcessedCount($collectedDataCount);
+        $batchResult->setProcessedCount($batchResult->getProcessedCount() + $collectedDataCount);
     }
 
 }
