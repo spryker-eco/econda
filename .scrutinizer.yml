@@ -1,0 +1,12 @@
+build:
+  environment:
+    php:
+      version: 7.1
+filter:
+  excluded_paths:
+    - build/*
+    - config/*
+    - tests/*
+checks:
+  php:
+    code_rating: true
