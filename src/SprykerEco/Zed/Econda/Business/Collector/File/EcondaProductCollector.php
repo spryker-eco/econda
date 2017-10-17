@@ -73,11 +73,6 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected $productImageQueryContainer;
 
     /**
-     * @var array
-     */
-    protected $superAttributes;
-
-    /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteria
      * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $query
      * @param \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface $productCategoryQueryContainer
