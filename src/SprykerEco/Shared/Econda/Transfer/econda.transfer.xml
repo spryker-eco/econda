@@ -10,24 +10,24 @@
     </transfer>
 
     <transfer name="BatchResult">
-        <property name="totalCount" type="integer" />
-        <property name="processedCount" type="integer" />
-        <property name="fetchedCount" type="integer" />
-        <property name="successCount" type="integer" />
+        <property name="totalCount" type="int" />
+        <property name="processedCount" type="int" />
+        <property name="fetchedCount" type="int" />
+        <property name="successCount" type="int" />
         <property name="failed" type="FailedResult[]" />
-        <property name="failedCount" type="integer" />
-        <property name="deletedCount" type="integer" />
+        <property name="failedCount" type="int" />
+        <property name="deletedCount" type="int" />
         <property name="isFailed" type="bool" />
         <property name="processedLocale" type="Locale" />
     </transfer>
 
     <transfer name="FailedResult">
         <property name="reason" type="string" />
-        <property name="firstId" type="integer" />
-        <property name="lastId" type="integer" />
+        <property name="firstId" type="int" />
+        <property name="lastId" type="int" />
         <property name="itemType" type="string" />
         <property name="processor" type="string" />
-        <property name="failedCount" type="integer" />
+        <property name="failedCount" type="int" />
     </transfer>
 
 </transfers>
