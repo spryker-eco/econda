@@ -116,12 +116,9 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector
      */
-    public function createFileProductCollector()
+    public function createEcondaProductCollector()
     {
-        /**
-         * @var \SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector $storageProductCollector
-         */
-        $storageProductCollector = new EcondaProductCollector(
+        return new EcondaProductCollector(
             $this->createCriteriaBuilder(),
             $this->createStoragePdoQueryAdapterByName('ProductConcreteEcondaQuery'),
             $this->getProductCategoryQueryContainer(),
@@ -129,8 +126,6 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
             $this->getPriceFacade(),
             $this->getConfig()
         );
-
-        return $storageProductCollector;
     }
 
     /**

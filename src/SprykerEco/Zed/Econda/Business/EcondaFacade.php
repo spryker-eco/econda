@@ -80,7 +80,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         WriterInterface $dataWriter,
         OutputInterface $output
     ) {
-        $collector = $this->getFactory()->createFileProductCollector();
+        $collector = $this->getFactory()->createEcondaProductCollector();
         $this->export(
             $collector,
             $localeTransfer,
