@@ -28,6 +28,6 @@ class EcondaToPriceBridge implements EcondaToPriceBridgeInterface
      */
     public function getPriceBySku($sku, $priceTypeName = null)
     {
-        $this->facade->getPriceBySku($sku, $priceTypeName);
+        return $this->facade->getPriceBySku($sku, $priceTypeName);
     }
 }
