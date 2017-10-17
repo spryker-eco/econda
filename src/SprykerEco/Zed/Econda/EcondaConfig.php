@@ -14,7 +14,6 @@ use SprykerEco\Shared\Econda\EcondaConstants;
 class EcondaConfig extends AbstractBundleConfig
 {
 
-    const ECONDA_CSV_DELIMITER = "|";
     const ECONDA_CSV_CATEGORY_DELIMITER = "^^";
 
     /**
