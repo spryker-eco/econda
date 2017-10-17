@@ -17,12 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class FileExporter extends AbstractExporter
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
      */
     protected $writer;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
      */
     protected $csvNameGenerator;
 
