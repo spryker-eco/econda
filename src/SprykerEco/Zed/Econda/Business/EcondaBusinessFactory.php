@@ -131,16 +131,14 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
      */
     protected function createFileExporter()
     {
-        $fileExporter = new FileExporter(
+        return new FileExporter(
             $this->createFileWriter(),
-            $this->createFailedResultModel(),
+            new FailedResultTransfer(),
             $this->createBatchResultModel(),
             $this->createCsvNameGenerator(),
             $this->getConfig()->getFileExportPath(),
             $this->getCollectorFileExporterPlugins()
         );
-
-        return $fileExporter;
     }
 
     /**
@@ -165,14 +163,6 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     protected function createCsvFileWriterAdapter()
     {
         return new CsvAdapter($this->getConfig()->getFileExportPath());
-    }
-
-    /**
-     * @return \Generated\Shared\Transfer\FailedResultTransfer
-     */
-    protected function createFailedResultModel()
-    {
-        return new FailedResultTransfer();
     }
 
     /**
