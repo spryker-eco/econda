@@ -247,9 +247,9 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     }
 
     /**
-     * @param array $imageSet
+     * @param $imageSet
      *
-     * @return string
+     * @return null|string
      */
     protected function getSmallPictureUrlFromDefaultImageSet($imageSet)
     {
@@ -259,7 +259,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
             return $this->getSmallImageUrl($defaultImageSet[0]);
         }
 
-        return '';
+        return null;
     }
 
     /**
