@@ -12,12 +12,12 @@ use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 
 class EcondaCategoryCollector extends AbstractDatabaseCollector
 {
-    //CSV file columns
+    // CSV file columns
     const ID_COLUMN = 'ID';
     const PARENT_COLUMN = 'ParentID';
-    const NAME_COLUMN = self::NAME_QUERY_FIELD;
+    const NAME_COLUMN = 'Name';
 
-    //internal query fields
+    // Internal Query Fields
     const ID_CATEGORY_NODE_QUERY_FIELD = 'id_category_node';
     const PARENTS_QUERY_FIELD = 'parents';
     const NAME_QUERY_FIELD = 'name';

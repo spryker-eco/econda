@@ -26,7 +26,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     const ID_COLUMN = 'ID';
     const NAME_COLUMN = 'Name';
     const DESCRIPTION_COLUMN = 'Description';
-    const PRODUCTURL_COLUMN = 'PRODUCTURL';
+    const PRODUCTURL_COLUMN = 'ProductURL';
     const IMAGE_URL_COLUMN = 'ImageURL';
     const PRICE_COLUMN = 'Price';
     const STOCK_COLUMN = 'Stock';

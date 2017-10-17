@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter;
 
 use SplFileObject;
 use SprykerEco\Zed\Econda\Business\Exporter\Exception\FileWriterException;
+use SprykerEco\Zed\Econda\EcondaConfig;
 
 class CsvAdapter implements AdapterInterface
 {
@@ -68,7 +69,7 @@ class CsvAdapter implements AdapterInterface
         $result = false;
         $csvFile = $this->getCsvFile($data);
         foreach ($data as $key => $row) {
-            $result = $csvFile->fputcsv($row) !== false ? true : false;
+            $result = $csvFile->fputcsv($row, EcondaConfig::ECONDA_CSV_DELIMITER) !== false ? true : false;
         }
 
         return $result;
