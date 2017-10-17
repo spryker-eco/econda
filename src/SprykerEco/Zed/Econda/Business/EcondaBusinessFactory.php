@@ -33,6 +33,8 @@ use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer;
  */
 class EcondaBusinessFactory extends AbstractBusinessFactory
 {
+    const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
+
     /**
      * @return \SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader
      */
@@ -227,12 +229,12 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
             $this->createCriteriaBuilderContainer()
         );
 
-        $factory->registerWorkerCallback('CriteriaBuilderFactoryWorker', function () use ($factory) {
+        $factory->registerWorkerCallback(self::CRITERIA_BUILDER_FACTORY_WORKER, function () use ($factory) {
             return $factory->buildWorker(CriteriaBuilderFactoryWorker::class);
         });
 
         /** @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker $factoryWorker */
-        $factoryWorker = $factory->getWorkerByName('CriteriaBuilderFactoryWorker');
+        $factoryWorker = $factory->getWorkerByName(self::CRITERIA_BUILDER_FACTORY_WORKER);
 
         return $factoryWorker->buildCriteriaBuilder();
     }
