@@ -25,7 +25,6 @@ use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
 use SprykerEco\Zed\Econda\Business\Manager\CollectorManager;
 use SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
-use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
