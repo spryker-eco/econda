@@ -60,7 +60,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     public function createCollectorManager()
     {
         $criteriaBuilder = $this->createCriteriaBuilder();
-        $queryContainer = $this->getEcondaQueryContainer();
+        $queryContainer = $this->getQueryContainer();
         $progressBarHelper = $this->createProgressBarHelper();
         return new CollectorManager($criteriaBuilder, $queryContainer, $progressBarHelper);
     }
@@ -157,14 +157,6 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     protected function getLocaleFacade()
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_LOCALE);
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer
-     */
-    protected function getEcondaQueryContainer()
-    {
-        return new EcondaQueryContainer();
     }
 
     /**
