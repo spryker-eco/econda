@@ -21,12 +21,12 @@ abstract class AbstractExporter implements ExporterInterface
     /**
      * @var \Generated\Shared\Transfer\FailedResultTransfer
      */
-    protected $failedResultPrototype;
+    protected $failedResultTransfer;
 
     /**
      * @var \Generated\Shared\Transfer\BatchResultTransfer
      */
-    protected $batchResultTransferPrototype;
+    protected $batchResultTransfer;
 
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
@@ -42,19 +42,19 @@ abstract class AbstractExporter implements ExporterInterface
      * AbstractExporter constructor.
      *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultPrototype
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransferPrototype
+     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultTransfer
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultTransfer $failedResultPrototype,
-        BatchResultTransfer $batchResultTransferPrototype,
+        FailedResultTransfer $failedResultTransfer,
+        BatchResultTransfer $batchResultTransfer,
         array $collectorPlugins = []
     ) {
         $this->writer = $writer;
-        $this->failedResultPrototype = $failedResultPrototype;
-        $this->batchResultTransferPrototype = $batchResultTransferPrototype;
+        $this->failedResultTransfer = $failedResultTransfer;
+        $this->batchResultTransfer = $batchResultTransfer;
         $this->collectorPlugins = $collectorPlugins;
     }
 
@@ -94,7 +94,7 @@ abstract class AbstractExporter implements ExporterInterface
      */
     protected function getBatchResultTransfer()
     {
-        $resultBatchTransfer = clone $this->batchResultTransferPrototype;
+        $resultBatchTransfer = clone $this->batchResultTransfer;
         $resultBatchTransfer->setDeletedCount(0);
         $resultBatchTransfer->setFailedCount(0);
 

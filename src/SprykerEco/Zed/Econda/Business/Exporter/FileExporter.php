@@ -35,24 +35,24 @@ class FileExporter extends AbstractExporter
      * FileExporter constructor.
      *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultPrototype
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransferPrototype
+     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultTransfer
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator $csvNameGenerator
      * @param string $exportPath
      * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultTransfer $failedResultPrototype,
-        BatchResultTransfer $batchResultTransferPrototype,
+        FailedResultTransfer $failedResultTransfer,
+        BatchResultTransfer $batchResultTransfer,
         CsvNameGenerator $csvNameGenerator,
         $exportPath,
         array $collectorPlugins = []
     ) {
         parent::__construct(
             $writer,
-            $failedResultPrototype,
-            $batchResultTransferPrototype,
+            $failedResultTransfer,
+            $batchResultTransfer,
             $collectorPlugins
         );
 
