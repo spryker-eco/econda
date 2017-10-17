@@ -11,7 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface ProgressBarHelperInterface
 {
-
     /**
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @param string $resourceType
@@ -24,5 +23,4 @@ interface ProgressBarHelperInterface
         $resourceType,
         $totalCount
     );
-
 }

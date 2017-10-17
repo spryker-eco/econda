@@ -12,7 +12,6 @@ use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 
 class EcondaCategoryCollector extends AbstractDatabaseCollector
 {
-
     //CSV file columns
     const ID_COLUMN = 'ID';
     const PARENT_COLUMN = 'ParentID';
@@ -38,7 +37,6 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
         $setToExport = [];
 
         foreach ($collectedSet as $collectedItemData) {
-
             $collectedItemData[self::CHILDREN_QUERY_FIELD] = $this->getChildren($collectedItemData, $collectedSet);
             $collectedItemData[self::PARENTS_QUERY_FIELD] = $this->getParents($collectedItemData, $collectedSet);
 
@@ -125,5 +123,4 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
 
         return $result;
     }
-
 }

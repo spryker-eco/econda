@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Reader;
 
 interface EcondaCsvFileReaderInterface
 {
-
     /**
      * @param string $type
      * @param string $locale
@@ -17,5 +16,4 @@ interface EcondaCsvFileReaderInterface
      * @return string
      */
     public function readFile($type, $locale);
-
 }

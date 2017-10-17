@@ -18,7 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CollectorManager implements CollectorManagerInterface
 {
-
     /**
      * @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
      */
@@ -70,5 +69,4 @@ class CollectorManager implements CollectorManagerInterface
 
         $collector->exportDataToStore($batchCollection, $result, $dataWriter, $locale, $output, $progressBar);
     }
-
 }

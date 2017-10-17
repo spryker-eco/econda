@@ -16,7 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Runner
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface
      */
@@ -140,5 +139,4 @@ class Runner
     {
         return array_keys($this->exporter->getCollectorPlugins());
     }
-
 }

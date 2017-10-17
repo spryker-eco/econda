@@ -21,11 +21,9 @@ use Codeception\Actor;
  */
 class EcondaBusinessTester extends Actor
 {
-
     use _generated\EcondaBusinessTesterActions;
 
    /**
     * Define custom actions here
     */
-
 }

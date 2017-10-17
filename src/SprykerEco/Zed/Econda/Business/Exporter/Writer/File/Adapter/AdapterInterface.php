@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter;
 
 interface AdapterInterface
 {
-
     /**
      * @param string $fileName
      *
@@ -31,5 +30,4 @@ interface AdapterInterface
      * @return $this
      */
     public function setFolderPath($directory);
-
 }

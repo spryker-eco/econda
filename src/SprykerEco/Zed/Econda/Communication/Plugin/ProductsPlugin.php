@@ -21,7 +21,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ProductsPlugin extends AbstractPlugin implements EcondaPluginInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
@@ -49,5 +48,4 @@ class ProductsPlugin extends AbstractPlugin implements EcondaPluginInterface
                 $output
             );
     }
-
 }

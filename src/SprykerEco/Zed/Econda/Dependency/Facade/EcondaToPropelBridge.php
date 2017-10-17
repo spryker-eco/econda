@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
 class EcondaToPropelBridge implements EcondaToPropelBridgeInterface
 {
-
     /** @var \Spryker\Zed\Propel\Business\PropelFacadeInterface */
     protected $propelFacade;
 
@@ -28,5 +27,4 @@ class EcondaToPropelBridge implements EcondaToPropelBridgeInterface
     {
         return $this->propelFacade->getCurrentDatabaseEngineName();
     }
-
 }

@@ -17,7 +17,6 @@ use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelBridge;
 
 class EcondaDependencyProvider extends AbstractBundleDependencyProvider
 {
-
     const FACADE_LOCALE = 'facade_locale';
     const FACADE_PROPEL = 'facade_propel';
     const FACADE_PRICE = 'facade_price';
@@ -61,5 +60,4 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
 
         return $container;
     }
-
 }

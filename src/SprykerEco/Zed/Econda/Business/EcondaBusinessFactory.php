@@ -33,18 +33,14 @@ use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer;
  */
 class EcondaBusinessFactory extends AbstractBusinessFactory
 {
-
     /**
-     * @param string $type
-     * @param string $locale
-     *
-     * @return string
+     * @return \SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader
      */
-    public function getEcondaCsvFileContent($type, $locale)
+    public function createEcondaCsvFileReader()
     {
         $nameGenerator = $this->createCsvNameGenerator();
-        $reader = new EcondaCsvFileReader($this->getConfig(), $nameGenerator);
-        return $reader->readFile($type, $locale);
+
+        return new EcondaCsvFileReader($this->getConfig(), $nameGenerator);
     }
 
     /**
@@ -281,5 +277,4 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::QUERY_CONTAINER_PRODUCT_CATEGORY);
     }
-
 }

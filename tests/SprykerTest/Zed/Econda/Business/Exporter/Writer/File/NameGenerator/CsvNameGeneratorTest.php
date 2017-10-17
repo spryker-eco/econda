@@ -25,7 +25,6 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGen
  */
 class CsvNameGeneratorTest extends Unit
 {
-
     /**
      * @return void
      */
@@ -36,5 +35,4 @@ class CsvNameGeneratorTest extends Unit
 
         $this->assertSame('products_en_US.csv', $fileName); //only thing we can check if it is a valid folder
     }
-
 }

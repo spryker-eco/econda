@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
 class EcondaToPriceBridge implements EcondaToPriceBridgeInterface
 {
-
     /** @var \Spryker\Zed\Price\Business\PriceFacadeInterface */
     protected $facade;
 
@@ -31,5 +30,4 @@ class EcondaToPriceBridge implements EcondaToPriceBridgeInterface
     {
         $this->facade->getPriceBySku($sku, $priceTypeName);
     }
-
 }

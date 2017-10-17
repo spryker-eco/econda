@@ -20,7 +20,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractDatabaseCollector extends AbstractCollector implements DatabaseCollectorInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
@@ -129,5 +128,4 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
         $batchResult->setProcessedCount($batchResult->getProcessedCount() + $collectedDataCount);
     }
-
 }

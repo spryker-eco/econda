@@ -16,7 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class FileExporter extends AbstractExporter
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter
      */
@@ -88,5 +87,4 @@ class FileExporter extends AbstractExporter
 
         return $result;
     }
-
 }

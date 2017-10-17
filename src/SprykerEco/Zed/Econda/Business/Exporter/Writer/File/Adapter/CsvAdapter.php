@@ -12,7 +12,6 @@ use SprykerEco\Zed\Econda\Business\Exporter\Exception\FileWriterException;
 
 class CsvAdapter implements AdapterInterface
 {
-
     /**
      * @var string
      */
@@ -147,5 +146,4 @@ class CsvAdapter implements AdapterInterface
 
         return $absolutePath;
     }
-
 }

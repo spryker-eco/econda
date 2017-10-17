@@ -13,7 +13,6 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 
 abstract class AbstractExporter implements ExporterInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
@@ -101,5 +100,4 @@ abstract class AbstractExporter implements ExporterInterface
 
         return $resultBatchTransfer;
     }
-
 }

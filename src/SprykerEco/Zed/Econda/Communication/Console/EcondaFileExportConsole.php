@@ -17,7 +17,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class EcondaFileExportConsole extends Console
 {
-
     const COMMAND_NAME = 'econda:file:export';
     const COMMAND_DESCRIPTION = 'Export data to files';
 
@@ -113,5 +112,4 @@ class EcondaFileExportConsole extends Console
 
         return $summary;
     }
-
 }

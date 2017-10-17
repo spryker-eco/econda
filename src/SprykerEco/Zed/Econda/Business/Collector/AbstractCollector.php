@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\LocaleTransfer;
 
 abstract class AbstractCollector
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaQuery
      */
@@ -41,5 +40,4 @@ abstract class AbstractCollector
      * @return string
      */
     abstract protected function collectResourceType();
-
 }

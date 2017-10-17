@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\LocaleTransfer;
 
 abstract class AbstractEcondaQuery
 {
-
     /**
      * @var \Generated\Shared\Transfer\LocaleTransfer
      */
@@ -51,5 +50,4 @@ abstract class AbstractEcondaQuery
 
         return $this;
     }
-
 }

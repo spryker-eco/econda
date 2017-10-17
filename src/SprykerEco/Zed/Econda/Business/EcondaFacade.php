@@ -19,7 +19,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
 {
-
     /**
      * @api
      *
@@ -30,7 +29,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      */
     public function getFileContent($type, $locale)
     {
-        return $this->getFactory()->getEcondaCsvFileContent($type, $locale);
+        return $this->getFactory()->createEcondaCsvFileReader()->readFile($type, $locale);
     }
 
     /**
@@ -117,5 +116,4 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
                 $output
             );
     }
-
 }

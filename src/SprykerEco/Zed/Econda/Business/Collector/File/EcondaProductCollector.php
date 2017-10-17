@@ -22,7 +22,6 @@ use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 
 class EcondaProductCollector extends AbstractDatabaseCollector
 {
-
     //CSV file columns
     const ID_COLUMN = 'ID';
     const NAME_COLUMN = 'Name';
@@ -247,7 +246,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     }
 
     /**
-     * @param $imageSet
+     * @param array $imageSet
      *
      * @return null|string
      */
@@ -288,5 +287,4 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         }
         return '';
     }
-
 }

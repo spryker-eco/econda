@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends AbstractController
 {
-
     const CATEGORIES = 'categories';
     const PRODUCTS = 'products';
 
@@ -70,5 +69,4 @@ class IndexController extends AbstractController
         }
         return $this->getApplication()['locale'];
     }
-
 }

@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer;
 
 interface WriterInterface
 {
-
     /**
      * @param array $dataSet
      * @param string $type
@@ -31,5 +30,4 @@ interface WriterInterface
      * @return $this
      */
     public function setFileName($fileName);
-
 }

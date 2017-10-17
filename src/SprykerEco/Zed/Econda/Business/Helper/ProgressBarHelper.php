@@ -12,7 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ProgressBarHelper implements ProgressBarHelperInterface
 {
-
     /** @var \Symfony\Component\Console\Helper\ProgressBar */
     protected $progressBar;
 
@@ -47,5 +46,4 @@ class ProgressBarHelper implements ProgressBarHelperInterface
         $builder = new ProgressBarBuilder($output, $count, $resourceType);
         return $builder->build();
     }
-
 }

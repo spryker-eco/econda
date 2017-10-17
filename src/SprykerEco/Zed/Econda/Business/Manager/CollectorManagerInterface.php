@@ -15,7 +15,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface CollectorManagerInterface
 {
-
     /**
      * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
@@ -32,5 +31,4 @@ interface CollectorManagerInterface
         WriterInterface $dataWriter,
         OutputInterface $output
     );
-
 }

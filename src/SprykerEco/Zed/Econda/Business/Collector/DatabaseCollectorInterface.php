@@ -18,7 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface DatabaseCollectorInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
@@ -52,5 +51,4 @@ interface DatabaseCollectorInterface
         OutputInterface $output,
         ProgressBar $progressBar
     );
-
 }

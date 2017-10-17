@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface EcondaPluginInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
@@ -29,5 +28,4 @@ interface EcondaPluginInterface
         WriterInterface $dataWriter,
         OutputInterface $output
     );
-
 }

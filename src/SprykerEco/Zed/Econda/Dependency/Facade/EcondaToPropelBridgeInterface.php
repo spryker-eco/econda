@@ -9,10 +9,8 @@ namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
 interface EcondaToPropelBridgeInterface
 {
-
     /**
      * @return string
      */
     public function getCurrentDatabaseEngineName();
-
 }

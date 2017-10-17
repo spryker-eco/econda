@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator;
 
 interface NameGeneratorInterface
 {
-
     /**
      * @param string $type
      * @param string $localeName
@@ -18,5 +17,4 @@ interface NameGeneratorInterface
      * @return string
      */
     public function generateFileName($type, $localeName, $number = '');
-
 }

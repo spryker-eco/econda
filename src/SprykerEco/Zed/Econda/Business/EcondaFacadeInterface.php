@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface EcondaFacadeInterface
 {
-
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
@@ -61,5 +60,4 @@ interface EcondaFacadeInterface
      * @return array
      */
     public function exportFile(OutputInterface $output);
-
 }

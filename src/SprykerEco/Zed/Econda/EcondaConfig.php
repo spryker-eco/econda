@@ -13,7 +13,6 @@ use SprykerEco\Shared\Econda\EcondaConstants;
 
 class EcondaConfig extends AbstractBundleConfig
 {
-
     const ECONDA_CSV_CATEGORY_DELIMITER = "^^";
 
     /**
@@ -50,5 +49,4 @@ class EcondaConfig extends AbstractBundleConfig
 
         return $data[$dbEngineName];
     }
-
 }

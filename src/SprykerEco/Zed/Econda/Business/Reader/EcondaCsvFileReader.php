@@ -12,7 +12,6 @@ use SprykerEco\Zed\Econda\EcondaConfig;
 
 class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
 {
-
     /** @var \SprykerEco\Zed\Econda\EcondaConfig */
     protected $config;
 
@@ -44,5 +43,4 @@ class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
             $directory . DIRECTORY_SEPARATOR . $fileName
         );
     }
-
 }

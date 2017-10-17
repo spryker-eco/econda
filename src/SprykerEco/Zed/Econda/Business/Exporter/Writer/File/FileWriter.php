@@ -12,7 +12,6 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 
 class FileWriter implements WriterInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface
      */
@@ -60,5 +59,4 @@ class FileWriter implements WriterInterface
     {
         return $this->fileWriterAdapter->write($dataSet, $type);
     }
-
 }

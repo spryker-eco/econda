@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator;
 
 class CsvNameGenerator implements NameGeneratorInterface
 {
-
     /**
      * @param string $type
      * @param string $localeName
@@ -21,5 +20,4 @@ class CsvNameGenerator implements NameGeneratorInterface
     {
         return $type . '_' . $localeName . $number . '.csv';
     }
-
 }

@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
 class EcondaToLocaleBridge implements EcondaToLocaleInterface
 {
-
     /**
      * @var \Spryker\Zed\Locale\Business\LocaleFacadeInterface
      */
@@ -40,5 +39,4 @@ class EcondaToLocaleBridge implements EcondaToLocaleInterface
     {
         return $this->localeFacade->getLocale($localeName);
     }
-
 }
