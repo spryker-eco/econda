@@ -105,11 +105,11 @@ class EcondaProductCollector extends AbstractDatabaseCollector
 
     /**
      * @param array $collectedSet
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      *
      * @return array
      */
-    protected function collectData(array $collectedSet, LocaleTransfer $locale)
+    protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer)
     {
         $setToExport = [];
 

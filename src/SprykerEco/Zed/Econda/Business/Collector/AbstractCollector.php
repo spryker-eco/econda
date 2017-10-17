@@ -31,11 +31,11 @@ abstract class AbstractCollector
 
     /**
      * @param array $collectedSet
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      *
      * @return array
      */
-    abstract protected function collectData(array $collectedSet, LocaleTransfer $locale);
+    abstract protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer);
 
     /**
      * @return string

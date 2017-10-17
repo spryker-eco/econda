@@ -46,10 +46,10 @@ install:
 
 before_script:
   - chmod a+x ./$MODULE_DIR/build/travis.sh
-  - $TRAVIS_BUILD_DIR/SHOP_DIR/console transfer:generate
+  - $TRAVIS_BUILD_DIR/$SHOP_DIR/console transfer:generate
 
 script:
-  - $TRAVIS_BUILD_DIR//SHOP_DIR/console transfer:validate
+  - $TRAVIS_BUILD_DIR/$SHOP_DIR/console transfer:validate
   - ./$MODULE_DIR/build/travis.sh
 
 notifications:
