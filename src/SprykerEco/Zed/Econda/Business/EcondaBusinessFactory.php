@@ -103,14 +103,12 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\File\EcondaCategoryCollector
      */
-    public function createFileCategoryCollector()
+    public function createEcondaCategoryCollector()
     {
-        $storageCategoryNodeCollector = new EcondaCategoryCollector(
+        return new EcondaCategoryCollector(
             $this->createCriteriaBuilder(),
             $this->createStoragePdoQueryAdapterByName('CategoryNodeEcondaQuery')
         );
-
-        return $storageCategoryNodeCollector;
     }
 
     /**
