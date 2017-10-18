@@ -73,7 +73,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
 
     /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteria
-     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $query
+     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
      * @param \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface $productCategoryQueryContainer
      * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageQueryContainer
      * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface $priceFacade
@@ -81,14 +81,14 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     public function __construct(
         CriteriaBuilderInterface $criteria,
-        AbstractPdoEcondaQuery $query,
+        AbstractPdoEcondaQuery $pdoEcondaQuery,
         ProductCategoryQueryContainerInterface $productCategoryQueryContainer,
         ProductImageQueryContainerInterface $productImageQueryContainer,
         EcondaToPriceBridgeInterface $priceFacade,
         EcondaConfig $config
     ) {
 
-        parent::__construct($criteria, $query);
+        parent::__construct($criteria, $pdoEcondaQuery);
 
         $this->productCategoryQueryContainer = $productCategoryQueryContainer;
         $this->productImageQueryContainer = $productImageQueryContainer;

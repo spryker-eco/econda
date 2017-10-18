@@ -14,7 +14,7 @@ abstract class AbstractCollector
     /**
      * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaQuery
      */
-    protected $queryBuilder;
+    protected $pdoEcondaQuery;
 
     /**
      * @var \Generated\Shared\Transfer\LocaleTransfer

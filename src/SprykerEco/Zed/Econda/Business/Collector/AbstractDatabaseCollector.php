@@ -23,7 +23,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
     /**
      * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
-    protected $queryBuilder;
+    protected $pdoEcondaQuery;
 
     /**
      * @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
@@ -32,14 +32,14 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
     /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteria
-     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $query
+     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
      */
     public function __construct(
         CriteriaBuilderInterface $criteria,
-        AbstractPdoEcondaQuery $query
+        AbstractPdoEcondaQuery $pdoEcondaQuery
     ) {
         $this->criteriaBuilder = $criteria;
-        $this->queryBuilder = $query;
+        $this->pdoEcondaQuery = $pdoEcondaQuery;
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         QueryContainerInterface $queryContainer,
         $chunkSize = 100
     ) {
-        $this->queryBuilder
+        $this->pdoEcondaQuery
             ->setCriteriaBuilder($criteriaBuilder)
             ->setLocale($locale)
             ->prepare();
