@@ -7,7 +7,6 @@
 
 namespace SprykerEco\Zed\Econda\Business;
 
-use Exception;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
@@ -98,7 +97,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new EcondaCategoryCollector(
             $this->createCriteriaBuilder(),
-            $this->createStoragePdoQueryAdapterByName('CategoryNodeEcondaQuery')
+            $this->createPdoEcondaQuery('CategoryNodeEcondaQuery')
         );
     }
 
@@ -109,7 +108,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new EcondaProductCollector(
             $this->createCriteriaBuilder(),
-            $this->createStoragePdoQueryAdapterByName('ProductConcreteEcondaQuery'),
+            $this->createPdoEcondaQuery('ProductConcreteEcondaQuery'),
             $this->getProductCategoryQueryContainer(),
             $this->getProductImageQueryContainer(),
             $this->getPriceFacade(),
@@ -155,14 +154,6 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return string
-     */
-    protected function getCurrentDatabaseEngineName()
-    {
-        return $this->getPropelFacade()->getCurrentDatabaseEngineName();
-    }
-
-    /**
      * @return \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface
      */
     protected function getProductImageQueryContainer()
@@ -171,24 +162,18 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @param string $name
+     * @param string $pdoEcondaQueryName
      *
-     * @throws \Exception
-     *
-     * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
+     * @return mixed
      */
-    protected function createStoragePdoQueryAdapterByName($name)
+    protected function createPdoEcondaQuery($pdoEcondaQueryName)
     {
-        $classList = $this->getConfig()->getStoragePdoQueryAdapterClassNames(
-            $this->getCurrentDatabaseEngineName()
+        $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQuery(
+            $pdoEcondaQueryName,
+            $this->getPropelFacade()->getCurrentDatabaseEngineName()
         );
-        if (!array_key_exists($name, $classList)) {
-            throw new Exception('Invalid StoragePdoQueryAdapter name: ' . $name);
-        }
 
-        $queryBuilderClassName = $classList[$name];
-
-        return new $queryBuilderClassName();
+        return new $pdoEcondaQuery();
     }
 
     /**

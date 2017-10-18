@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Econda;
 
+use Exception;
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Econda\EcondaConstants;
@@ -33,11 +34,14 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @param string $pdoEcondaQueryName
      * @param string $dbEngineName
      *
-     * @return array
+     * @throws \Exception
+     *
+     * @return mixed
      */
-    public function getStoragePdoQueryAdapterClassNames($dbEngineName)
+    public function getPdoEcondaQuery($pdoEcondaQueryName, $dbEngineName)
     {
         $data = [
             'MySql' => [
@@ -48,6 +52,10 @@ class EcondaConfig extends AbstractBundleConfig
             ],
         ];
 
-        return $data[$dbEngineName];
+        if (!isset($data[$dbEngineName][$pdoEcondaQueryName])) {
+            throw new Exception('Invalid PdoEcondaQueryName name: ' . $pdoEcondaQueryName);
+        }
+
+        return $data[$dbEngineName][$pdoEcondaQueryName];
     }
 }

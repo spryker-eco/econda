@@ -7,7 +7,7 @@
 
 namespace  SprykerEco\Zed\Econda\Business\Reader;
 
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use SprykerEco\Zed\Econda\EcondaConfig;
 
 class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
@@ -22,9 +22,9 @@ class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
      * EcondaCsvFileReader constructor.
      *
      * @param \SprykerEco\Zed\Econda\EcondaConfig $config
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator $csvNameGenerator
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface $csvNameGenerator
      */
-    public function __construct(EcondaConfig $config, CsvNameGenerator $csvNameGenerator)
+    public function __construct(EcondaConfig $config, NameGeneratorInterface $csvNameGenerator)
     {
         $this->config = $config;
         $this->csvNameGenerator = $csvNameGenerator;

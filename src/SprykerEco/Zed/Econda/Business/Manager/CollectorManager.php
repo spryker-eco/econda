@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
-use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
+use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface;
 use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -28,7 +28,9 @@ class CollectorManager implements CollectorManagerInterface
      */
     protected $queryContainer;
 
-    /** @var \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper */
+    /**
+     * @var \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper
+     */
     protected $progressBarHelper;
 
     /**
@@ -36,12 +38,12 @@ class CollectorManager implements CollectorManagerInterface
      *
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
      * @param \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface $queryContainer
-     * @param \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper $progressBarHelper
+     * @param \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface $progressBarHelper
      */
     public function __construct(
         CriteriaBuilderInterface $criteriaBuilder,
         EcondaQueryContainerInterface $queryContainer,
-        ProgressBarHelper $progressBarHelper
+        ProgressBarHelperInterface $progressBarHelper
     ) {
         $this->criteriaBuilder = $criteriaBuilder;
         $this->queryContainer = $queryContainer;
