@@ -42,19 +42,15 @@ abstract class AbstractExporter implements ExporterInterface
      * AbstractExporter constructor.
      *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultTransfer
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultTransfer $failedResultTransfer,
-        BatchResultTransfer $batchResultTransfer,
         array $collectorPlugins = []
     ) {
         $this->writer = $writer;
-        $this->failedResultTransfer = $failedResultTransfer;
-        $this->batchResultTransfer = $batchResultTransfer;
+        $this->failedResultTransfer = new FailedResultTransfer();
+        $this->batchResultTransfer = new BatchResultTransfer();
         $this->collectorPlugins = $collectorPlugins;
     }
 

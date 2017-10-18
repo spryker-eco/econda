@@ -7,10 +7,8 @@
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
-use Generated\Shared\Transfer\BatchResultTransfer;
-use Generated\Shared\Transfer\FailedResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -33,26 +31,19 @@ class FileExporter extends AbstractExporter
 
     /**
      * FileExporter constructor.
-     *
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
-     * @param \Generated\Shared\Transfer\FailedResultTransfer $failedResultTransfer
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator $csvNameGenerator
-     * @param string $exportPath
+     * @param WriterInterface $writer
+     * @param NameGeneratorInterface $csvNameGenerator
+     * @param $exportPath
      * @param array $collectorPlugins
      */
     public function __construct(
         WriterInterface $writer,
-        FailedResultTransfer $failedResultTransfer,
-        BatchResultTransfer $batchResultTransfer,
-        CsvNameGenerator $csvNameGenerator,
+        NameGeneratorInterface $csvNameGenerator,
         $exportPath,
         array $collectorPlugins = []
     ) {
         parent::__construct(
             $writer,
-            $failedResultTransfer,
-            $batchResultTransfer,
             $collectorPlugins
         );
 

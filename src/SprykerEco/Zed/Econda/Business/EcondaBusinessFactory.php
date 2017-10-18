@@ -8,8 +8,6 @@
 namespace SprykerEco\Zed\Econda\Business;
 
 use Exception;
-use Generated\Shared\Transfer\BatchResultTransfer;
-use Generated\Shared\Transfer\FailedResultTransfer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
@@ -126,8 +124,6 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new FileExporter(
             $this->createFileWriter(),
-            new FailedResultTransfer(),
-            new BatchResultTransfer(),
             $this->createCsvNameGenerator(),
             $this->getConfig()->getFileExportPath(),
             $this->getCollectorFileExporterPlugins()
