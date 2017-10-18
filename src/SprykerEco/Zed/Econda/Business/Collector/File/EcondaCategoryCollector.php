@@ -37,8 +37,8 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
         $setToExport = [];
 
         foreach ($collectedSet as $collectedItemData) {
-            $collectedItemData[self::CHILDREN_QUERY_FIELD] = $this->getChildren($collectedItemData, $collectedSet);
-            $collectedItemData[self::PARENTS_QUERY_FIELD] = $this->getParents($collectedItemData, $collectedSet);
+            $collectedItemData[static::CHILDREN_QUERY_FIELD] = $this->getChildren($collectedItemData, $collectedSet);
+            $collectedItemData[static::PARENTS_QUERY_FIELD] = $this->getParents($collectedItemData, $collectedSet);
 
             $setToExport[] = $this->collectItem($collectedItemData);
         }
@@ -68,12 +68,12 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     protected function getChildren(array $node, array $data, $nested = true)
     {
         $children = array_filter($data, function ($item) use ($node) {
-            return ((int)$item[self::FK_PARENT_CATEGORY_NODE] === (int)$node[self::ID_CATEGORY_NODE_QUERY_FIELD]);
+            return ((int)$item[static::FK_PARENT_CATEGORY_NODE] === (int)$node[static::ID_CATEGORY_NODE_QUERY_FIELD]);
         });
 
         foreach ($children as $index => $child) {
             if ($nested) {
-                $children[$index][self::CHILDREN_QUERY_FIELD] = $this->getChildren($children[$index], $data);
+                $children[$index][static::CHILDREN_QUERY_FIELD] = $this->getChildren($children[$index], $data);
             }
 
             $children[$index] = $this->formatCategoryNode($children[$index]);
@@ -87,7 +87,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      */
     protected function collectResourceType()
     {
-        return self::RESOURCE_TYPE;
+        return static::RESOURCE_TYPE;
     }
 
     /**
@@ -98,9 +98,9 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     protected function formatCategoryNode(array $collectItemData)
     {
         return [
-            static::ID_COLUMN => $collectItemData[self::ID_CATEGORY_NODE_QUERY_FIELD],
-            static::PARENT_COLUMN => $collectItemData[self::PARENTS_QUERY_FIELD],
-            static::NAME_COLUMN => $collectItemData[self::NAME_QUERY_FIELD],
+            static::ID_COLUMN => $collectItemData[static::ID_CATEGORY_NODE_QUERY_FIELD],
+            static::PARENT_COLUMN => $collectItemData[static::PARENTS_QUERY_FIELD],
+            static::NAME_COLUMN => $collectItemData[static::NAME_QUERY_FIELD],
         ];
     }
 
@@ -113,12 +113,12 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     protected function getParents(array $node, array $data)
     {
         $parents = array_filter($data, function ($item) use ($node) {
-            return ((int)$item[self::ID_CATEGORY_NODE_QUERY_FIELD] === (int)$node[self::FK_PARENT_CATEGORY_NODE]);
+            return ((int)$item[static::ID_CATEGORY_NODE_QUERY_FIELD] === (int)$node[static::FK_PARENT_CATEGORY_NODE]);
         });
 
         $result = 'ROOT';
         foreach ($parents as $parent) {
-            $result = $parent[self::ID_CATEGORY_NODE_QUERY_FIELD];
+            $result = $parent[static::ID_CATEGORY_NODE_QUERY_FIELD];
         }
 
         return $result;

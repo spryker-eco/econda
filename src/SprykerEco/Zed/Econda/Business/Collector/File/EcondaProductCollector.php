@@ -124,14 +124,14 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         $imageUrl = $this->getImageUrlFromItemData($collectItemData);
 
         return [
-            self::ID_COLUMN => $collectItemData[self::SKU],
-            self::NAME_COLUMN => $collectItemData[self::NAME],
-            self::DESCRIPTION_COLUMN => $collectItemData[self::META_DESCRIPTION],
-            self::PRODUCTURL_COLUMN => $this->config->getHostYves() . $collectItemData[self::URL],
-            self::IMAGE_URL_COLUMN => $imageUrl,
-            self::PRICE_COLUMN => $this->getPriceBySku($collectItemData[self::SKU]),
-            self::STOCK_COLUMN => (int)$collectItemData[self::QUANTITY],
-            self::PRODUCT_CATEGORY_COLUMN => implode(EcondaConfig::ECONDA_CSV_CATEGORY_DELIMITER, $this->generateCategories($collectItemData[self::ID_PRODUCT_ABSTRACT])),
+            static::ID_COLUMN => $collectItemData[static::SKU],
+            static::NAME_COLUMN => $collectItemData[static::NAME],
+            static::DESCRIPTION_COLUMN => $collectItemData[static::META_DESCRIPTION],
+            static::PRODUCTURL_COLUMN => $this->config->getHostYves() . $collectItemData[static::URL],
+            static::IMAGE_URL_COLUMN => $imageUrl,
+            static::PRICE_COLUMN => $this->getPriceBySku($collectItemData[static::SKU]),
+            static::STOCK_COLUMN => (int)$collectItemData[static::QUANTITY],
+            static::PRODUCT_CATEGORY_COLUMN => implode(EcondaConfig::ECONDA_CSV_CATEGORY_DELIMITER, $this->generateCategories($collectItemData[static::ID_PRODUCT_ABSTRACT])),
         ];
     }
 
@@ -140,7 +140,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function collectResourceType()
     {
-        return self::RESOURCE_TYPE;
+        return static::RESOURCE_TYPE;
     }
 
     /**
@@ -238,8 +238,8 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected function getImageUrlFromItemData(array $collectItemData)
     {
         $imageSet = $this->generateProductConcreteImageSets(
-            $collectItemData[self::ID_PRODUCT_ABSTRACT],
-            $collectItemData[self::ID_PRODUCT_CONCRETE]
+            $collectItemData[static::ID_PRODUCT_ABSTRACT],
+            $collectItemData[static::ID_PRODUCT_CONCRETE]
         );
 
         return $this->getSmallPictureUrlFromDefaultImageSet($imageSet);
@@ -268,8 +268,8 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function getDefaultImageSet($imageSet)
     {
-        if (array_key_exists(self::DEFAULT_QUERY_FIELD, $imageSet) && is_array($imageSet[self::DEFAULT_QUERY_FIELD])) {
-            return $imageSet[self::DEFAULT_QUERY_FIELD];
+        if (array_key_exists(static::DEFAULT_QUERY_FIELD, $imageSet) && is_array($imageSet[static::DEFAULT_QUERY_FIELD])) {
+            return $imageSet[static::DEFAULT_QUERY_FIELD];
         }
 
         return [];
@@ -282,8 +282,8 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function getSmallImageUrl($imageArray)
     {
-        if (array_key_exists(self::EXTERNAL_URL_SMALL_QUERY_FIELD, $imageArray)) {
-            return $imageArray[self::EXTERNAL_URL_SMALL_QUERY_FIELD];
+        if (array_key_exists(static::EXTERNAL_URL_SMALL_QUERY_FIELD, $imageArray)) {
+            return $imageArray[static::EXTERNAL_URL_SMALL_QUERY_FIELD];
         }
         return '';
     }
