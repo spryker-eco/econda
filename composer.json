@@ -5,6 +5,7 @@
   "require": {
     "spryker/application": "^3.0.0",
     "spryker/category": "^4.0.0",
+    "spryker/gui": "^3.0.0",
     "spryker/kernel": "^3.0.0",
     "spryker/price":"^4.0.0",
     "spryker/product-category":"^4.0.0",
@@ -12,21 +13,20 @@
     "spryker/product-set-collector": "^1.0.0",
     "spryker/sql-criteria-builder": "^1.0.0",
     "spryker/transfer": "^3.0.0",
-    "spryker/util-data-reader": "^1.0.0",
-    "spryker/gui": "^3.0.0"
+    "spryker/util-data-reader": "^1.0.0"
   },
   "require-dev": {
     "spryker/code-sniffer": "*",
     "spryker/testify": "*"
   },
   "autoload": {
-    "psr-0": {
-      "SprykerEco": "src/"
+    "psr-4": {
+      "SprykerEco\\": "src/"
     }
   },
   "autoload-dev": {
-    "psr-0": {
-      "Unit": "tests/"
+    "psr-4": {
+      "SprykerTest\\": "tests/"
     }
   },
   "minimum-stability": "dev",
