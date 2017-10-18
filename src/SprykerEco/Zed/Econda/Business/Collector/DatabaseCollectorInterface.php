@@ -21,7 +21,7 @@ interface DatabaseCollectorInterface
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
-     * @param \Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface $connection
+     * @param \Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface $queryContainer
      * @param int $chunkSize
      *
      * @return \Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface
@@ -29,7 +29,7 @@ interface DatabaseCollectorInterface
     public function createIteratorAndPrepareQuery(
         LocaleTransfer $locale,
         CriteriaBuilderInterface $criteriaBuilder,
-        QueryContainerInterface $connection,
+        QueryContainerInterface $queryContainer,
         $chunkSize = 100
     );
 
