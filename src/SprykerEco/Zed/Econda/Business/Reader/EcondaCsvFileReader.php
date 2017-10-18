@@ -12,10 +12,14 @@ use SprykerEco\Zed\Econda\EcondaConfig;
 
 class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
 {
-    /** @var \SprykerEco\Zed\Econda\EcondaConfig */
+    /**
+     * @var \SprykerEco\Zed\Econda\EcondaConfig
+     */
     protected $config;
 
-    /** @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator */
+    /**
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator
+     */
     protected $csvNameGenerator;
 
     /**

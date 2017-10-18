@@ -12,7 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ProgressBarHelper implements ProgressBarHelperInterface
 {
-    /** @var \Symfony\Component\Console\Helper\ProgressBar */
+    /**
+     * @var \Symfony\Component\Console\Helper\ProgressBar
+     */
     protected $progressBar;
 
     /**
