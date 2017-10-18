@@ -35,7 +35,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader
+     * @return \SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReaderInterface
      */
     public function createEcondaCsvFileReader()
     {
@@ -45,7 +45,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Runner
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\RunnerInterface
      */
     public function createRunner()
     {
@@ -56,37 +56,29 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManager
+     * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
      */
     public function createCollectorManager()
     {
         $criteriaBuilder = $this->createCriteriaBuilder();
         $queryContainer = $this->getQueryContainer();
         $progressBarHelper = $this->createProgressBarHelper();
+
         return new CollectorManager($criteriaBuilder, $queryContainer, $progressBarHelper);
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
      */
     protected function createFileWriter()
     {
         $csvFileWriterAdapter = $this->createCsvFileWriterAdapter();
-        $fileWriter = new FileWriter($csvFileWriterAdapter);
 
-        return $fileWriter;
+        return new FileWriter($csvFileWriterAdapter);
     }
 
     /**
-     * @return \Generated\Shared\Transfer\BatchResultTransfer
-     */
-    protected function createBatchResultModel()
-    {
-        return new BatchResultTransfer();
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper
+     * @return \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface
      */
     protected function createProgressBarHelper()
     {
@@ -94,7 +86,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
      */
     protected function createCsvNameGenerator()
     {
@@ -102,7 +94,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Collector\File\EcondaCategoryCollector
+     * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
     public function createEcondaCategoryCollector()
     {
@@ -113,7 +105,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector
+     * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
     public function createEcondaProductCollector()
     {
@@ -135,7 +127,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
         return new FileExporter(
             $this->createFileWriter(),
             new FailedResultTransfer(),
-            $this->createBatchResultModel(),
+            new BatchResultTransfer(),
             $this->createCsvNameGenerator(),
             $this->getConfig()->getFileExportPath(),
             $this->getCollectorFileExporterPlugins()
@@ -159,7 +151,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\CsvAdapter
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface
      */
     protected function createCsvFileWriterAdapter()
     {

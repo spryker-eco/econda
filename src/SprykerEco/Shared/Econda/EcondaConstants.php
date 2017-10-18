@@ -9,5 +9,5 @@ namespace SprykerEco\Shared\Econda;
 
 interface EcondaConstants
 {
-    const ECONDA_CSV_FOLDER_PATH = 'ECONDA_CSV_FOLDER_PATH';
+    const ECONDA_CSV_FOLDER_PATH = 'ECONDA:ECONDA_CSV_FOLDER_PATH';
 }

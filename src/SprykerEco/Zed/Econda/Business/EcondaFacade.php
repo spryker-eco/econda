@@ -10,7 +10,6 @@ namespace SprykerEco\Zed\Econda\Business;
 use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
-use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -57,13 +56,15 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         OutputInterface $output
     ) {
         $collector = $this->getFactory()->createEcondaCategoryCollector();
-        $this->export(
-            $collector,
-            $localeTransfer,
-            $result,
-            $dataWriter,
-            $output
-        );
+        $this->getFactory()
+            ->createCollectorManager()
+            ->runCollector(
+                $collector,
+                $localeTransfer,
+                $result,
+                $dataWriter,
+                $output
+            );
     }
 
     /**
@@ -81,31 +82,6 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         OutputInterface $output
     ) {
         $collector = $this->getFactory()->createEcondaProductCollector();
-        $this->export(
-            $collector,
-            $localeTransfer,
-            $result,
-            $dataWriter,
-            $output
-        );
-    }
-
-    /**
-     * @param \SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector $collector
-     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
-     * @return void
-     */
-    private function export(
-        AbstractDatabaseCollector $collector,
-        LocaleTransfer $localeTransfer,
-        BatchResultTransfer $result,
-        WriterInterface $dataWriter,
-        OutputInterface $output
-    ) {
         $this->getFactory()
             ->createCollectorManager()
             ->runCollector(

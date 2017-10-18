@@ -14,7 +14,7 @@ use SprykerEco\Zed\Econda\Business\Exporter\Exception\BatchResultException;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Runner
+class Runner implements RunnerInterface
 {
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface
