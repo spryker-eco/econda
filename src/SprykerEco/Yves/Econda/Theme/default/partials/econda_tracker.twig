@@ -39,7 +39,6 @@
     {%  if items is defined %}
         {% for item in items %}
             <input type="hidden" name="econda_bought_product_name[]" value="{{ item.name }}">
-            {#<input type="hidden" name="econda_bought_product_sku[]" value="{{ item.abstractSku }}">#}
             <input type="hidden" name="econda_bought_product_sku[]" value="{{ item.sku }}">
             <input type="hidden" name="econda_bought_product_price[]" value="{{ item.unitGrossPrice / 100 }}">
             <input type="hidden" name="econda_bought_product_count[]" value="{{ item.quantity }}">
