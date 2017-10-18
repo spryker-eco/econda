@@ -22,7 +22,7 @@ use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 
 class EcondaProductCollector extends AbstractDatabaseCollector
 {
-    //CSV file columns
+    // CSV File Columns
     const ID_COLUMN = 'ID';
     const NAME_COLUMN = 'Name';
     const DESCRIPTION_COLUMN = 'Description';
@@ -32,7 +32,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     const STOCK_COLUMN = 'Stock';
     const PRODUCT_CATEGORY_COLUMN = 'ProductCategory';
 
-    //internal query fields
+    // Internal Query Fields
     const ID_PRODUCT_ABSTRACT = 'id_product_abstract';
     const SKU = 'sku';
     const URL = 'url';
@@ -44,7 +44,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     const DEFAULT_QUERY_FIELD = 'default';
     const EXTERNAL_URL_SMALL_QUERY_FIELD = 'externalUrlSmall';
 
-    const PRODUCTS = 'products';
+    const RESOURCE_TYPE = 'products';
 
     /**
      * @var \SprykerEco\Zed\Econda\EcondaConfig
@@ -140,7 +140,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function collectResourceType()
     {
-        return self::PRODUCTS;
+        return self::RESOURCE_TYPE;
     }
 
     /**

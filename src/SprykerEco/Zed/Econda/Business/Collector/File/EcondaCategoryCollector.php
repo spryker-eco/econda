@@ -12,7 +12,7 @@ use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 
 class EcondaCategoryCollector extends AbstractDatabaseCollector
 {
-    // CSV file columns
+    // CSV File Columns
     const ID_COLUMN = 'ID';
     const PARENT_COLUMN = 'ParentID';
     const NAME_COLUMN = 'Name';
@@ -24,7 +24,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     const CHILDREN_QUERY_FIELD = 'children';
     const FK_PARENT_CATEGORY_NODE = 'fk_parent_category_node';
 
-    const CATEGORIES = 'categories';
+    const RESOURCE_TYPE = 'categories';
 
     /**
      * @param array $collectedSet
@@ -87,7 +87,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      */
     protected function collectResourceType()
     {
-        return self::CATEGORIES;
+        return self::RESOURCE_TYPE;
     }
 
     /**
