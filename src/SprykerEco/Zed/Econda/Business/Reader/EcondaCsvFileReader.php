@@ -18,7 +18,7 @@ class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
     protected $config;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
      */
     protected $csvNameGenerator;
 

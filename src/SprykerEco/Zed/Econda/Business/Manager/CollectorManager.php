@@ -29,7 +29,7 @@ class CollectorManager implements CollectorManagerInterface
     protected $queryContainer;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper
+     * @var \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface
      */
     protected $progressBarHelper;
 

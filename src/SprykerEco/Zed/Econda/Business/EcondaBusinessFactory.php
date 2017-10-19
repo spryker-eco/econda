@@ -164,11 +164,11 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @param string $pdoEcondaQueryName
      *
-     * @return mixed
+     * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
     protected function createPdoEcondaQuery($pdoEcondaQueryName)
     {
-        $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQuery(
+        $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQueryClassName(
             $pdoEcondaQueryName,
             $this->getPropelFacade()->getCurrentDatabaseEngineName()
         );

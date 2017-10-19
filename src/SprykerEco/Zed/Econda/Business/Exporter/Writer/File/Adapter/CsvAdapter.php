@@ -39,7 +39,7 @@ class CsvAdapter implements AdapterInterface
     protected $escape;
 
     /**
-     * @var \SplFileObject
+     * @var \SplFileObject|null
      */
     protected $csvFile;
 
@@ -109,7 +109,7 @@ class CsvAdapter implements AdapterInterface
      */
     protected function initializeHeaderColumns(SplFileObject $csvFile, array $dataRow)
     {
-        $csvFile->fputcsv(array_keys($dataRow));
+        $csvFile->fputcsv(array_keys($dataRow), EcondaConfig::ECONDA_CSV_DELIMITER);
     }
 
     /**

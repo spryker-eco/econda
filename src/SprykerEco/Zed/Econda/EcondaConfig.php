@@ -39,9 +39,9 @@ class EcondaConfig extends AbstractBundleConfig
      *
      * @throws \Exception
      *
-     * @return mixed
+     * @return string
      */
-    public function getPdoEcondaQuery($pdoEcondaQueryName, $dbEngineName)
+    public function getPdoEcondaQueryClassName($pdoEcondaQueryName, $dbEngineName)
     {
         $data = [
             'MySql' => [

@@ -129,7 +129,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
             static::DESCRIPTION_COLUMN => $collectItemData[static::META_DESCRIPTION],
             static::PRODUCTURL_COLUMN => $this->config->getHostYves() . $collectItemData[static::URL],
             static::IMAGE_URL_COLUMN => $imageUrl,
-            static::PRICE_COLUMN => number_format($this->getPriceBySku($collectItemData[static::SKU])/100, 2),
+            static::PRICE_COLUMN => number_format($this->getPriceBySku($collectItemData[static::SKU]) / 100, 2),
             static::STOCK_COLUMN => (int)$collectItemData[static::QUANTITY],
             static::PRODUCT_CATEGORY_COLUMN => implode(EcondaConfig::ECONDA_CSV_CATEGORY_DELIMITER, $this->generateCategories($collectItemData[static::ID_PRODUCT_ABSTRACT])),
         ];
