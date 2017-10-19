@@ -53,7 +53,7 @@ class IndexController extends AbstractController
                 echo $fileContent;
             },
             200,
-            ["Content-type" => "text/csv", 'Content-Disposition' => "attachment; filename='{$type}.csv'"]
+            ["Content-type" => "text/csv", 'Content-Disposition' => sprintf("attachment; filename='%s.csv'", $type)]
         );
     }
 
