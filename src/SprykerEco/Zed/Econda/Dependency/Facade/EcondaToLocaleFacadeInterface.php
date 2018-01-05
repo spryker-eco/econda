@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
-interface EcondaToLocaleInterface
+interface EcondaToLocaleFacadeInterface
 {
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer

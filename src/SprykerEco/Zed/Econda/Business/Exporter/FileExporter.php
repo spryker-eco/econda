@@ -9,13 +9,13 @@ namespace SprykerEco\Zed\Econda\Business\Exporter;
 
 use Generated\Shared\Transfer\LocaleTransfer;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FileExporter extends AbstractExporter
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
     protected $writer;
 
@@ -32,13 +32,13 @@ class FileExporter extends AbstractExporter
     /**
      * FileExporter constructor.
      *
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $writer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface $csvNameGenerator
      * @param string $exportPath
      * @param array $collectorPlugins
      */
     public function __construct(
-        WriterInterface $writer,
+        FileWriterInterface $writer,
         NameGeneratorInterface $csvNameGenerator,
         $exportPath,
         array $collectorPlugins = []

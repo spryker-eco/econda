@@ -7,15 +7,15 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
-class EcondaToPriceBridge implements EcondaToPriceBridgeInterface
+class EcondaToPriceProductFacadeBridge implements EcondaToPriceProductFacadeInterface
 {
     /**
-     * @var \Spryker\Zed\Price\Business\PriceFacadeInterface
+     * @var \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
      */
     protected $facade;
 
     /**
-     * @param \Spryker\Zed\Price\Business\PriceFacadeInterface $facade
+     * @param \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface $facade
      */
     public function __construct($facade)
     {
@@ -26,10 +26,10 @@ class EcondaToPriceBridge implements EcondaToPriceBridgeInterface
      * @param string $sku
      * @param string|null $priceTypeName
      *
-     * @return int
+     * @return int|null
      */
-    public function getPriceBySku($sku, $priceTypeName = null)
+    public function findPriceBySku($sku, $priceTypeName = null)
     {
-        return $this->facade->getPriceBySku($sku, $priceTypeName);
+        return $this->facade->findPriceBySku($sku, $priceTypeName);
     }
 }

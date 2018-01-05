@@ -20,25 +20,25 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
 use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
 use SprykerEco\Zed\Econda\Business\Manager\CollectorManager;
-use SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReader;
+use SprykerEco\Zed\Econda\Business\Reader\File\CsvFileReader;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
- * @method \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainer getQueryContainer()
+ * @method \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface getQueryContainer()
  */
 class EcondaBusinessFactory extends AbstractBusinessFactory
 {
     const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Reader\EcondaCsvFileReaderInterface
+     * @return \SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface
      */
     public function createEcondaCsvFileReader()
     {
         $nameGenerator = $this->createCsvNameGenerator();
 
-        return new EcondaCsvFileReader($this->getConfig(), $nameGenerator);
+        return new CsvFileReader($this->getConfig(), $nameGenerator);
     }
 
     /**
@@ -65,7 +65,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
     protected function createFileWriter()
     {
@@ -111,7 +111,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
             $this->createPdoEcondaQuery('ProductConcreteEcondaQuery'),
             $this->getProductCategoryQueryContainer(),
             $this->getProductImageQueryContainer(),
-            $this->getPriceFacade(),
+            $this->getPriceProductFacade(),
             $this->getConfig()
         );
     }
@@ -138,7 +138,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface
+     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface
      */
     protected function getLocaleFacade()
     {
@@ -185,11 +185,11 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface
+     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface
      */
-    protected function getPriceFacade()
+    protected function getPriceProductFacade()
     {
-        return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PRICE);
+        return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PRICE_PRODUCT);
     }
 
     /**

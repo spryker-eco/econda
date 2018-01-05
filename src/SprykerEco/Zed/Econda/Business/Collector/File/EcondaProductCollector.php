@@ -16,7 +16,7 @@ use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
-use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface;
+use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface;
 use SprykerEco\Zed\Econda\EcondaConfig;
 use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 
@@ -26,7 +26,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     const ID_COLUMN = 'ID';
     const NAME_COLUMN = 'Name';
     const DESCRIPTION_COLUMN = 'Description';
-    const PRODUCTURL_COLUMN = 'ProductURL';
+    const PRODUCT_URL_COLUMN = 'ProductURL';
     const IMAGE_URL_COLUMN = 'ImageURL';
     const PRICE_COLUMN = 'Price';
     const STOCK_COLUMN = 'Stock';
@@ -57,9 +57,9 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     protected $productCategoryQueryContainer;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface
+     * @var \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface
      */
-    protected $priceFacade;
+    protected $priceProductFacade;
 
     /**
      * @var \Propel\Runtime\Collection\Collection
@@ -76,7 +76,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
      * @param \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface $productCategoryQueryContainer
      * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageQueryContainer
-     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceBridgeInterface $priceFacade
+     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface $priceProductFacade
      * @param \SprykerEco\Zed\Econda\EcondaConfig $config
      */
     public function __construct(
@@ -84,7 +84,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         AbstractPdoEcondaQuery $pdoEcondaQuery,
         ProductCategoryQueryContainerInterface $productCategoryQueryContainer,
         ProductImageQueryContainerInterface $productImageQueryContainer,
-        EcondaToPriceBridgeInterface $priceFacade,
+        EcondaToPriceProductFacadeInterface $priceProductFacade,
         EcondaConfig $config
     ) {
 
@@ -92,7 +92,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
 
         $this->productCategoryQueryContainer = $productCategoryQueryContainer;
         $this->productImageQueryContainer = $productImageQueryContainer;
-        $this->priceFacade = $priceFacade;
+        $this->priceProductFacade = $priceProductFacade;
         $this->categoryCacheCollection = new Collection([]);
         $this->config = $config;
     }
@@ -107,7 +107,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     {
         $setToExport = [];
 
-        foreach ($collectedSet as $index => $collectedItemData) {
+        foreach ($collectedSet as $collectedItemData) {
             $setToExport[] = $this->collectItem($collectedItemData);
         }
 
@@ -127,9 +127,9 @@ class EcondaProductCollector extends AbstractDatabaseCollector
             static::ID_COLUMN => $collectItemData[static::SKU],
             static::NAME_COLUMN => $collectItemData[static::NAME],
             static::DESCRIPTION_COLUMN => $collectItemData[static::META_DESCRIPTION],
-            static::PRODUCTURL_COLUMN => $this->config->getHostYves() . $collectItemData[static::URL],
+            static::PRODUCT_URL_COLUMN => $this->config->getHostYves() . $collectItemData[static::URL],
             static::IMAGE_URL_COLUMN => $imageUrl,
-            static::PRICE_COLUMN => number_format($this->getPriceBySku($collectItemData[static::SKU]) / 100, 2),
+            static::PRICE_COLUMN => number_format($this->findPriceBySku($collectItemData[static::SKU]) / 100, 2),
             static::STOCK_COLUMN => (int)$collectItemData[static::QUANTITY],
             static::PRODUCT_CATEGORY_COLUMN => implode(EcondaConfig::ECONDA_CSV_CATEGORY_DELIMITER, $this->generateCategories($collectItemData[static::ID_PRODUCT_ABSTRACT])),
         ];
@@ -148,9 +148,9 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return int
      */
-    protected function getPriceBySku($sku)
+    protected function findPriceBySku($sku)
     {
-        return $this->priceFacade->getPriceBySku($sku);
+        return $this->priceProductFacade->findPriceBySku($sku);
     }
 
     /**

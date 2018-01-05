@@ -5,9 +5,9 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Zed\Econda\Business\Reader;
+namespace SprykerEco\Zed\Econda\Business\Reader\File;
 
-interface EcondaCsvFileReaderInterface
+interface FileReaderInterface
 {
     /**
      * @param string $type

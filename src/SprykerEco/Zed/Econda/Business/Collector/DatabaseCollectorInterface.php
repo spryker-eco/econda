@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -36,7 +36,7 @@ interface DatabaseCollectorInterface
     /**
      * @param \Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface $batchCollection
      * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResult
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $storeWriter
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
@@ -46,7 +46,7 @@ interface DatabaseCollectorInterface
     public function exportDataToStore(
         CountableIteratorInterface $batchCollection,
         BatchResultTransfer $batchResult,
-        WriterInterface $storeWriter,
+        FileWriterInterface $storeWriter,
         LocaleTransfer $locale,
         OutputInterface $output,
         ProgressBar $progressBar

@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Shared\Kernel\Store;
 use SprykerEco\Zed\Econda\Business\Exporter\Exception\BatchResultException;
-use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface;
+use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Runner implements RunnerInterface
@@ -22,16 +22,16 @@ class Runner implements RunnerInterface
     protected $exporter;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface
+     * @var \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface
      */
     protected $localeFacade;
 
     /**
-     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleInterface $localeFacade
+     * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface $localeFacade
      * @param \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface $exporter
      */
     public function __construct(
-        EcondaToLocaleInterface $localeFacade,
+        EcondaToLocaleFacadeInterface $localeFacade,
         ExporterInterface $exporter
     ) {
         $this->localeFacade = $localeFacade;
@@ -59,7 +59,7 @@ class Runner implements RunnerInterface
             $output->writeln('');
 
             $localeCollection = Store::getInstance()->getLocalesPerStore($storeName);
-            foreach ($localeCollection as $locale => $localeCode) {
+            foreach ($localeCollection as $localeCode) {
                 $localeTransfer = $this->localeFacade->getLocale($localeCode);
                 $results[$storeName . '@' . $localeCode] = $this->exportStoreByLocale($localeTransfer, $output);
             }

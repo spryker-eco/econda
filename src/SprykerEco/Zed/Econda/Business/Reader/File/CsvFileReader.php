@@ -5,12 +5,12 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace  SprykerEco\Zed\Econda\Business\Reader;
+namespace  SprykerEco\Zed\Econda\Business\Reader\File;
 
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use SprykerEco\Zed\Econda\EcondaConfig;
 
-class EcondaCsvFileReader implements EcondaCsvFileReaderInterface
+class CsvFileReader implements FileReaderInterface
 {
     /**
      * @var \SprykerEco\Zed\Econda\EcondaConfig

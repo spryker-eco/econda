@@ -13,7 +13,7 @@ use Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterfac
 use Spryker\Service\UtilDataReader\Model\BatchIterator\PdoBatchIterator;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -67,7 +67,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
     /**
      * @param \Spryker\Service\UtilDataReader\Model\BatchIterator\CountableIteratorInterface $batchCollection
      * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResult
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $storeWriter
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
@@ -77,7 +77,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
     public function exportDataToStore(
         CountableIteratorInterface $batchCollection,
         BatchResultTransfer $batchResult,
-        WriterInterface $storeWriter,
+        FileWriterInterface $storeWriter,
         LocaleTransfer $locale,
         OutputInterface $output,
         ProgressBar $progressBar
@@ -107,7 +107,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
      * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResult
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $storeWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $storeWriter
      *
      * @return void
      */
@@ -116,7 +116,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         ProgressBar $progressBar,
         LocaleTransfer $locale,
         BatchResultTransfer $batchResult,
-        WriterInterface $storeWriter
+        FileWriterInterface $storeWriter
     ) {
         $batchSize = count($batch);
         $progressBar->advance($batchSize);
