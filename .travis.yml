@@ -12,6 +12,10 @@ matrix:
   fast_finish: true
   include:
      - php: 7.1
+services:
+  - postgresql
+  - redis
+  - rabbitmq
 
 cache:
   directories:
