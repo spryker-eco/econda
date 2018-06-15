@@ -69,7 +69,7 @@ class CsvAdapter implements AdapterInterface
         $result = false;
         $csvFile = $this->getCsvFile($data);
         foreach ($data as $key => $row) {
-            $result = $csvFile->fputcsv($row, EcondaConfig::ECONDA_CSV_DELIMITER) !== false ? true : false;
+            $result = $csvFile->fputcsv($row, $this->delimiter) !== false ? true : false;
         }
 
         return $result;
@@ -109,7 +109,7 @@ class CsvAdapter implements AdapterInterface
      */
     protected function initializeHeaderColumns(SplFileObject $csvFile, array $dataRow)
     {
-        $csvFile->fputcsv(array_keys($dataRow), EcondaConfig::ECONDA_CSV_DELIMITER);
+        $csvFile->fputcsv(array_keys($dataRow), $this->delimiter);
     }
 
     /**

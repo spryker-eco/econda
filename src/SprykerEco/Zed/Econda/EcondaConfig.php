@@ -34,6 +34,14 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @return string
+     */
+    public function getFileExportDelimiter()
+    {
+        return $this->get(EcondaConstants::ECONDA_CSV_DELIMITER);
+    }
+
+    /**
      * @param string $pdoEcondaQueryName
      * @param string $dbEngineName
      *

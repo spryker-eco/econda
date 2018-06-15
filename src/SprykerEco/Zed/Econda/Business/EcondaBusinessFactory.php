@@ -150,7 +150,10 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
      */
     protected function createCsvFileWriterAdapter()
     {
-        return new CsvAdapter($this->getConfig()->getFileExportPath());
+        return new CsvAdapter(
+            $this->getConfig()->getFileExportPath(),
+            $this->getConfig()->getFileDelimiter()
+        );
     }
 
     /**
