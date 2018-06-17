@@ -152,7 +152,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new CsvAdapter(
             $this->getConfig()->getFileExportPath(),
-            $this->getConfig()->getFileDelimiter()
+            $this->getConfig()->getFileExportDelimiter()
         );
     }
 
