@@ -10,7 +10,7 @@ namespace SprykerEco\Zed\Econda\Business;
 use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -44,7 +44,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
@@ -52,7 +52,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     public function exportCategories(
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $result,
-        WriterInterface $dataWriter,
+        FileWriterInterface $dataWriter,
         OutputInterface $output
     ) {
         $collector = $this->getFactory()->createEcondaCategoryCollector();
@@ -70,7 +70,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
@@ -78,7 +78,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     public function exportProducts(
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $result,
-        WriterInterface $dataWriter,
+        FileWriterInterface $dataWriter,
         OutputInterface $output
     ) {
         $collector = $this->getFactory()->createEcondaProductCollector();

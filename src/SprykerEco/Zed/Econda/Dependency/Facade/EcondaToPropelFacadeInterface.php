@@ -7,13 +7,10 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
-interface EcondaToPriceBridgeInterface
+interface EcondaToPropelFacadeInterface
 {
     /**
-     * @param string $sku
-     * @param string|null $priceTypeName
-     *
-     * @return int
+     * @return string
      */
-    public function getPriceBySku($sku, $priceTypeName = null);
+    public function getCurrentDatabaseEngineName();
 }

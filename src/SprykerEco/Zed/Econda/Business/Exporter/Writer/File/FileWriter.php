@@ -8,9 +8,8 @@
 namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File;
 
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
 
-class FileWriter implements WriterInterface
+class FileWriter implements FileWriterInterface
 {
     /**
      * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface

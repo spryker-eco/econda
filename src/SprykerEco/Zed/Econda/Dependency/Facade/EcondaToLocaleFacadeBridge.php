@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
-class EcondaToLocaleBridge implements EcondaToLocaleInterface
+class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
 {
     /**
      * @var \Spryker\Zed\Locale\Business\LocaleFacadeInterface

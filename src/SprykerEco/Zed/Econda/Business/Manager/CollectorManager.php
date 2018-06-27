@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface;
 use SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -54,7 +54,7 @@ class CollectorManager implements CollectorManagerInterface
      * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
@@ -63,7 +63,7 @@ class CollectorManager implements CollectorManagerInterface
         DatabaseCollectorInterface $collector,
         LocaleTransfer $locale,
         BatchResultTransfer $result,
-        WriterInterface $dataWriter,
+        FileWriterInterface $dataWriter,
         OutputInterface $output
     ) {
         $batchCollection = $collector->createIteratorAndPrepareQuery($locale, $this->criteriaBuilder, $this->queryContainer);

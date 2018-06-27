@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Econda\Business;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface EcondaFacadeInterface
@@ -17,7 +17,7 @@ interface EcondaFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
@@ -25,14 +25,14 @@ interface EcondaFacadeInterface
     public function exportCategories(
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $result,
-        WriterInterface $dataWriter,
+        FileWriterInterface $dataWriter,
         OutputInterface $output
     );
 
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $dataWriter
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
@@ -40,7 +40,7 @@ interface EcondaFacadeInterface
     public function exportProducts(
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $result,
-        WriterInterface $dataWriter,
+        FileWriterInterface $dataWriter,
         OutputInterface $output
     );
 

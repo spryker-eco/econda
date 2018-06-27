@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Econda\Business\Exporter;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\FailedResultTransfer;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 
 abstract class AbstractExporter implements ExporterInterface
 {
@@ -29,7 +29,7 @@ abstract class AbstractExporter implements ExporterInterface
     protected $batchResultTransfer;
 
     /**
-     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
+     * @var \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
     protected $writer;
 
@@ -41,11 +41,11 @@ abstract class AbstractExporter implements ExporterInterface
     /**
      * AbstractExporter constructor.
      *
-     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface $writer
+     * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $writer
      * @param array $collectorPlugins
      */
     public function __construct(
-        WriterInterface $writer,
+        FileWriterInterface $writer,
         array $collectorPlugins = []
     ) {
         $this->writer = $writer;

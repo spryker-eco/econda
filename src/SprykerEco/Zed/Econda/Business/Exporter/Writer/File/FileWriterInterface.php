@@ -5,9 +5,9 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Zed\Econda\Business\Exporter\Writer;
+namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File;
 
-interface WriterInterface
+interface FileWriterInterface
 {
     /**
      * @param array $dataSet
@@ -20,7 +20,7 @@ interface WriterInterface
     /**
      * @param string $directory
      *
-     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\WriterInterface
+     * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
     public function setFolderPath($directory);
 

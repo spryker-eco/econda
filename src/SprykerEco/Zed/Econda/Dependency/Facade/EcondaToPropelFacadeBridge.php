@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
-class EcondaToPropelBridge implements EcondaToPropelBridgeInterface
+class EcondaToPropelFacadeBridge implements EcondaToPropelFacadeInterface
 {
     /**
      * @var \Spryker\Zed\Propel\Business\PropelFacadeInterface
