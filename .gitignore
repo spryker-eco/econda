@@ -12,5 +12,5 @@
 
 # Tests
 /tests/_output/*
-/tests/SprykerTest/Zed/Econda/_support/_generated/*
+/tests/SprykerEcoTest/Zed/Econda/_support/_generated/*
 !/tests/_output/.gitkeep
