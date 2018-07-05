@@ -35,10 +35,10 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
      * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
      */
     public function __construct(
-        CriteriaBuilderInterface $criteria,
+        CriteriaBuilderInterface $criteriaBuilder,
         AbstractPdoEcondaQuery $pdoEcondaQuery
     ) {
-        $this->criteriaBuilder = $criteria;
+        $this->criteriaBuilder = $criteriaBuilder;
         $this->pdoEcondaQuery = $pdoEcondaQuery;
     }
 
@@ -55,7 +55,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         CriteriaBuilderInterface $criteriaBuilder,
         QueryContainerInterface $queryContainer,
         $chunkSize = 100
-    ) {
+    ): CountableIteratorInterface {
         $this->pdoEcondaQuery
             ->setCriteriaBuilder($criteriaBuilder)
             ->setLocale($locale)
@@ -81,7 +81,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         LocaleTransfer $locale,
         OutputInterface $output,
         ProgressBar $progressBar
-    ) {
+    ): void {
 
         $totalCount = $batchCollection->count();
         $batchResult->setTotalCount($totalCount);
@@ -117,7 +117,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         LocaleTransfer $locale,
         BatchResultTransfer $batchResult,
         FileWriterInterface $storeWriter
-    ) {
+    ): void {
         $batchSize = count($batch);
         $progressBar->advance($batchSize);
 
@@ -125,7 +125,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         $collectedDataCount = count($collectedData);
 
         $storeWriter->write($collectedData);
-
-        $batchResult->setProcessedCount($batchResult->getProcessedCount() + $collectedDataCount);
+        
+        $batchResult->increaseProcessedCount($collectedDataCount);
     }
 }

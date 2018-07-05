@@ -1,5 +1,5 @@
 <?php
-namespace SprykerTest\Zed\Econda;
+namespace SprykerEcoTest\Zed\Econda;
 
 use Codeception\Actor;
 

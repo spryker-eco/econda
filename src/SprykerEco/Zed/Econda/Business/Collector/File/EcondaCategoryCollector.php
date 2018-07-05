@@ -12,19 +12,21 @@ use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 
 class EcondaCategoryCollector extends AbstractDatabaseCollector
 {
+    protected const ROOT_CATEGORY = 'ROOT';
+
     // CSV File Columns
-    const ID_COLUMN = 'ID';
-    const PARENT_COLUMN = 'ParentID';
-    const NAME_COLUMN = 'Name';
+    protected const ID_COLUMN = 'ID';
+    protected const PARENT_COLUMN = 'ParentID';
+    protected const NAME_COLUMN = 'Name';
 
     // Internal Query Fields
-    const ID_CATEGORY_NODE_QUERY_FIELD = 'id_category_node';
-    const PARENTS_QUERY_FIELD = 'parents';
-    const NAME_QUERY_FIELD = 'name';
-    const CHILDREN_QUERY_FIELD = 'children';
-    const FK_PARENT_CATEGORY_NODE = 'fk_parent_category_node';
+    protected const ID_CATEGORY_NODE_QUERY_FIELD = 'id_category_node';
+    protected const PARENTS_QUERY_FIELD = 'parents';
+    protected const NAME_QUERY_FIELD = 'name';
+    protected const CHILDREN_QUERY_FIELD = 'children';
+    protected const FK_PARENT_CATEGORY_NODE = 'fk_parent_category_node';
 
-    const RESOURCE_TYPE = 'categories';
+    protected const RESOURCE_TYPE = 'categories';
 
     /**
      * @param array $collectedSet
@@ -32,7 +34,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer)
+    protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer): array
     {
         $setToExport = [];
 
@@ -51,7 +53,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function collectItem(array $collectItemData)
+    protected function collectItem(array $collectItemData): array
     {
         return $this->formatCategoryNode($collectItemData);
     }
@@ -65,7 +67,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function getChildren(array $node, array $data, $nested = true)
+    protected function getChildren(array $node, array $data, $nested = true): array
     {
         $children = array_filter($data, function ($item) use ($node) {
             return ((int)$item[static::FK_PARENT_CATEGORY_NODE] === (int)$node[static::ID_CATEGORY_NODE_QUERY_FIELD]);
@@ -85,7 +87,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
     /**
      * @return string
      */
-    protected function collectResourceType()
+    protected function collectResourceType(): string
     {
         return static::RESOURCE_TYPE;
     }
@@ -95,7 +97,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function formatCategoryNode(array $collectItemData)
+    protected function formatCategoryNode(array $collectItemData): array
     {
         return [
             static::ID_COLUMN => $collectItemData[static::ID_CATEGORY_NODE_QUERY_FIELD],
@@ -110,17 +112,17 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return string
      */
-    protected function getParents(array $node, array $data)
+    protected function getParents(array $node, array $data): string 
     {
         $parents = array_filter($data, function ($item) use ($node) {
             return ((int)$item[static::ID_CATEGORY_NODE_QUERY_FIELD] === (int)$node[static::FK_PARENT_CATEGORY_NODE]);
         });
 
-        $result = 'ROOT';
-        foreach ($parents as $parent) {
-            $result = $parent[static::ID_CATEGORY_NODE_QUERY_FIELD];
+        $lastParent = end($parents);
+        if ($lastParent === false) {
+            return static::ROOT_CATEGORY; // 'ROOT'
         }
 
-        return $result;
+        return $lastParent[static::ID_CATEGORY_NODE_QUERY_FIELD];
     }
 }

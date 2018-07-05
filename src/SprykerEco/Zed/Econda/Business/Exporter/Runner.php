@@ -43,7 +43,7 @@ class Runner implements RunnerInterface
      *
      * @return array
      */
-    public function runExport(OutputInterface $output)
+    public function runExport(OutputInterface $output): array
     {
         $storeCollection = Store::getInstance()->getAllowedStores();
 
@@ -74,7 +74,7 @@ class Runner implements RunnerInterface
      *
      * @return array
      */
-    protected function exportStoreByLocale(LocaleTransfer $locale, OutputInterface $output)
+    protected function exportStoreByLocale(LocaleTransfer $locale, OutputInterface $output): array
     {
         $results = [];
         $types = $this->getEnabledExports();
@@ -88,7 +88,7 @@ class Runner implements RunnerInterface
 
             $this->handleResult($result);
 
-            if ($result instanceof BatchResultTransfer) {
+            if ($result !== null) {
                 if ($this->nothingWasProcessed($result)) {
                     continue;
                 }
@@ -104,7 +104,7 @@ class Runner implements RunnerInterface
      *
      * @return bool
      */
-    protected function nothingWasProcessed(BatchResultTransfer $result)
+    protected function nothingWasProcessed(BatchResultTransfer $result): bool
     {
         return $result->getProcessedCount() === 0;
     }
@@ -116,7 +116,7 @@ class Runner implements RunnerInterface
      *
      * @return void
      */
-    protected function handleResult(BatchResultTransfer $result)
+    protected function handleResult(BatchResultTransfer $result): void
     {
         if ($result->getFailedCount()) {
             throw new BatchResultException(
@@ -135,7 +135,7 @@ class Runner implements RunnerInterface
     /**
      * @return array
      */
-    public function getEnabledExports()
+    public function getEnabledExports(): array
     {
         return array_keys($this->exporter->getCollectorPlugins());
     }

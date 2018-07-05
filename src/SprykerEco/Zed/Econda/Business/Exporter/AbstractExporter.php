@@ -39,8 +39,6 @@ abstract class AbstractExporter implements ExporterInterface
     protected $queryContainer;
 
     /**
-     * AbstractExporter constructor.
-     *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $writer
      * @param array $collectorPlugins
      */
@@ -49,15 +47,15 @@ abstract class AbstractExporter implements ExporterInterface
         array $collectorPlugins = []
     ) {
         $this->writer = $writer;
+        $this->collectorPlugins = $collectorPlugins;
         $this->failedResultTransfer = new FailedResultTransfer();
         $this->batchResultTransfer = new BatchResultTransfer();
-        $this->collectorPlugins = $collectorPlugins;
     }
 
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    public function getCollectorPlugins()
+    public function getCollectorPlugins(): EcondaPluginInterface
     {
         return $this->collectorPlugins;
     }
@@ -67,7 +65,7 @@ abstract class AbstractExporter implements ExporterInterface
      *
      * @return bool
      */
-    protected function isCollectorRegistered($type)
+    protected function isCollectorRegistered($type): bool
     {
         return array_key_exists($type, $this->collectorPlugins);
     }
@@ -77,7 +75,7 @@ abstract class AbstractExporter implements ExporterInterface
      *
      * @return void
      */
-    protected function resetResult(BatchResultTransfer $result)
+    protected function resetResult(BatchResultTransfer $result): void
     {
         $result->setProcessedCount(0);
         $result->setIsFailed(false);
@@ -88,7 +86,7 @@ abstract class AbstractExporter implements ExporterInterface
     /**
      * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
-    protected function getBatchResultTransfer()
+    protected function createDefaultBatchResultTransfer(): BatchResultTransfer
     {
         $resultBatchTransfer = clone $this->batchResultTransfer;
         $resultBatchTransfer->setDeletedCount(0);

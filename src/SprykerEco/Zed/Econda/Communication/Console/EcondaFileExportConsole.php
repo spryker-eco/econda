@@ -13,17 +13,18 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @method \SprykerEco\Zed\Econda\Business\EcondaFacade getFacade()
+ * @method \SprykerEco\Zed\Econda\Business\EcondaFacadeInterface getFacade()
  */
 class EcondaFileExportConsole extends Console
 {
-    const COMMAND_NAME = 'econda:file:export';
-    const COMMAND_DESCRIPTION = 'Export data to files';
+    protected const COMMAND_NAME = 'econda:file:export';
+
+    protected const COMMAND_DESCRIPTION = 'Export data to files';
 
     /**
      * @return \Symfony\Component\Console\Helper\HelperSet
      */
-    public function getHelperSet()
+    public function getHelperSet(): HelperSet
     {
         return new HelperSet();
     }
@@ -31,10 +32,10 @@ class EcondaFileExportConsole extends Console
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
-        $this->setName(self::COMMAND_NAME);
-        $this->setDescription(self::COMMAND_DESCRIPTION);
+        $this->setName(static::COMMAND_NAME);
+        $this->setDescription(static::COMMAND_DESCRIPTION);
 
         parent::configure();
     }
@@ -45,7 +46,7 @@ class EcondaFileExportConsole extends Console
      *
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $exportResults = $this->getFacade()->exportFile($output);
         $message = $this->buildNestedSummary($exportResults);
@@ -59,7 +60,7 @@ class EcondaFileExportConsole extends Console
      *
      * @return string
      */
-    protected function buildSummary(array $resultData)
+    protected function buildSummary(array $resultData): string
     {
         if (empty($resultData)) {
             return PHP_EOL . '<fg=yellow>Nothing exported.</fg=yellow>' . PHP_EOL;
@@ -96,7 +97,7 @@ class EcondaFileExportConsole extends Console
      *
      * @return string
      */
-    protected function buildNestedSummary(array $results)
+    protected function buildNestedSummary(array $results): string
     {
         $summary = '';
         foreach ($results as $localeName => $summaryData) {

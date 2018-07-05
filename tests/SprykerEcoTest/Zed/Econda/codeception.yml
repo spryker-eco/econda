@@ -1,4 +1,4 @@
-namespace: SprykerTest\Zed\Econda
+namespace: SprykerEcoTest\Zed\Econda
 paths:
     tests: .
     data: ../../../_data

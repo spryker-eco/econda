@@ -14,13 +14,13 @@ use SprykerEco\Shared\Econda\EcondaConstants;
 
 class EcondaConfig extends AbstractBundleConfig
 {
-    const ECONDA_CSV_DELIMITER = '|';
-    const ECONDA_CSV_CATEGORY_DELIMITER = '^^';
+    public const ECONDA_CSV_DELIMITER = '|';
+    public const ECONDA_CSV_CATEGORY_DELIMITER = '^^';
 
     /**
      * @return string
      */
-    public function getHostYves()
+    public function getHostYves(): string
     {
         return $this->get(ApplicationConstants::HOST_YVES);
     }
@@ -28,7 +28,7 @@ class EcondaConfig extends AbstractBundleConfig
     /**
      * @return string
      */
-    public function getFileExportPath()
+    public function getFileExportPath(): string
     {
         return $this->get(EcondaConstants::ECONDA_CSV_FOLDER_PATH);
     }
@@ -36,7 +36,7 @@ class EcondaConfig extends AbstractBundleConfig
     /**
      * @return string
      */
-    public function getFileExportDelimiter()
+    public function getFileExportDelimiter(): string
     {
         return $this->get(EcondaConstants::ECONDA_CSV_DELIMITER);
     }
@@ -49,7 +49,7 @@ class EcondaConfig extends AbstractBundleConfig
      *
      * @return string
      */
-    public function getPdoEcondaQueryClassName($pdoEcondaQueryName, $dbEngineName)
+    public function getPdoEcondaQueryClassName($pdoEcondaQueryName, $dbEngineName): string
     {
         $data = [
             'MySql' => [

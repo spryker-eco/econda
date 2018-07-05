@@ -15,17 +15,17 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends AbstractController
 {
-    const CATEGORIES = 'categories';
-    const PRODUCTS = 'products';
+    protected const CATEGORIES = 'categories';
+    protected const PRODUCTS = 'products';
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function categoryAction(Request $request)
+    public function categoryAction(Request $request): StreamedResponse
     {
-        return $this->getResponse($request, self::CATEGORIES);
+        return $this->getResponse($request, static::CATEGORIES);
     }
 
     /**
@@ -33,9 +33,9 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function productAction(Request $request)
+    public function productAction(Request $request): StreamedResponse
     {
-        return $this->getResponse($request, self::PRODUCTS);
+        return $this->getResponse($request, static::PRODUCTS);
     }
 
     /**
@@ -44,7 +44,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    private function getResponse(Request $request, $type)
+    private function getResponse(Request $request, $type): StreamedResponse
     {
         $fileContent = $this->getFacade()->getFileContent($type, $this->getLocale($request));
 
@@ -62,7 +62,7 @@ class IndexController extends AbstractController
      *
      * @return string
      */
-    protected function getLocale(Request $request)
+    protected function getLocale(Request $request): string
     {
         if ($request->query->get('locale') !== null) {
             return $request->query->get('locale');

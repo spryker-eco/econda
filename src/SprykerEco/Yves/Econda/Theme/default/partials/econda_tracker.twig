@@ -10,7 +10,7 @@
     {% if product is defined %}
         <input type="hidden" name="econda_product_name" value="{{ product.name }}">
         <input type="hidden" name="econda_product_sku" value="{{ product.sku }}">
-        <input type="hidden" name="econda_product_price" value="{{ product.price / 100 }}">
+        <input type="hidden" name="econda_product_price" value="{{ product.price | money }}">
     {% endif %}
     {% if category is defined %}
         <input type="hidden" name="econda_category_name" value="{{ category.name }}">
@@ -40,7 +40,7 @@
         {% for item in items %}
             <input type="hidden" name="econda_bought_product_name[]" value="{{ item.name }}">
             <input type="hidden" name="econda_bought_product_sku[]" value="{{ item.sku }}">
-            <input type="hidden" name="econda_bought_product_price[]" value="{{ item.unitGrossPrice / 100 }}">
+            <input type="hidden" name="econda_bought_product_price[]" value="{{ item.unitGrossPrice | money }}">
             <input type="hidden" name="econda_bought_product_count[]" value="{{ item.quantity }}">
         {% endfor %}
     {%  endif %}

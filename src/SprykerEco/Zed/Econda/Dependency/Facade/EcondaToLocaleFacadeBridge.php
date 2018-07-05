@@ -25,7 +25,7 @@ class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getCurrentLocale()
+    public function getCurrentLocale(): LocaleTransfer
     {
         return $this->localeFacade->getCurrentLocale();
     }
@@ -35,7 +35,7 @@ class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
      *
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getLocale($localeName)
+    public function getLocale($localeName): LocaleTransfer
     {
         return $this->localeFacade->getLocale($localeName);
     }

@@ -15,16 +15,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 interface EcondaPluginInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return mixed
      */
     public function run(
-        LocaleTransfer $locale,
-        BatchResultTransfer $result,
+        LocaleTransfer $localeTransfer,
+        BatchResultTransfer $batchResultTransfer,
         FileWriterInterface $dataWriter,
         OutputInterface $output
     );

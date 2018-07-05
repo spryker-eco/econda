@@ -34,8 +34,6 @@ class CollectorManager implements CollectorManagerInterface
     protected $progressBarHelper;
 
     /**
-     * CollectorManager constructor.
-     *
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
      * @param \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface $queryContainer
      * @param \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface $progressBarHelper
@@ -52,8 +50,8 @@ class CollectorManager implements CollectorManagerInterface
 
     /**
      * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
@@ -61,11 +59,11 @@ class CollectorManager implements CollectorManagerInterface
      */
     public function runCollector(
         DatabaseCollectorInterface $collector,
-        LocaleTransfer $locale,
-        BatchResultTransfer $result,
+        LocaleTransfer $localeTransfer,
+        BatchResultTransfer $batchResultTransfer,
         FileWriterInterface $dataWriter,
         OutputInterface $output
-    ) {
+    ): void {
         $batchCollection = $collector->createIteratorAndPrepareQuery($locale, $this->criteriaBuilder, $this->queryContainer);
         $progressBar = $this->progressBarHelper->startProgressBar($output, '', $batchCollection->count());
 

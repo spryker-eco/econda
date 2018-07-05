@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\LocaleTransfer;
 abstract class AbstractCollector
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaQuery
+     * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
     protected $pdoEcondaQuery;
 
@@ -26,7 +26,7 @@ abstract class AbstractCollector
      *
      * @return array
      */
-    abstract protected function collectItem(array $collectItemData);
+    abstract protected function collectItem(array $collectItemData): array;
 
     /**
      * @param array $collectedSet
@@ -34,7 +34,7 @@ abstract class AbstractCollector
      *
      * @return array
      */
-    abstract protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer);
+    abstract protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer): array;
 
     /**
      * @return string

@@ -25,7 +25,7 @@ class EcondaToPropelFacadeBridge implements EcondaToPropelFacadeInterface
     /**
      * @return string
      */
-    public function getCurrentDatabaseEngineName()
+    public function getCurrentDatabaseEngineName(): string
     {
         return $this->propelFacade->getCurrentDatabaseEngineName();
     }

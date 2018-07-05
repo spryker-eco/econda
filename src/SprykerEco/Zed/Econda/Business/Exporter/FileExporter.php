@@ -30,8 +30,6 @@ class FileExporter extends AbstractExporter
     protected $exportPath;
 
     /**
-     * FileExporter constructor.
-     *
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $writer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface $csvNameGenerator
      * @param string $exportPath
@@ -59,9 +57,9 @@ class FileExporter extends AbstractExporter
      *
      * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
-    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output)
+    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output): BatchResultTransfer
     {
-        $result = $this->getBatchResultTransfer();
+        $result = $this->createDefaultBatchResultTransfer();
         $result->setProcessedLocale($localeTransfer);
 
         if (!$this->isCollectorRegistered($type)) {

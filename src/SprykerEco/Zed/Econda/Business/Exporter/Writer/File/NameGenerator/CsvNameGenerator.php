@@ -16,7 +16,7 @@ class CsvNameGenerator implements NameGeneratorInterface
      *
      * @return string
      */
-    public function generateFileName($type, $localeName, $number = '')
+    public function generateFileName($type, $localeName, $number = ''): string
     {
         return $type . '_' . $localeName . $number . '.csv';
     }

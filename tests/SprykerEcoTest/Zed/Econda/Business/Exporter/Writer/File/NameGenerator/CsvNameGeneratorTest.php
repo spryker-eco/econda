@@ -5,14 +5,14 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\Econda\Business\Exporter\Writer\File\NameGenerator;
+namespace SprykerEcoTest\Zed\Econda\Business\Exporter\Writer\File\NameGenerator;
 
 use Codeception\Test\Unit;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
 
 /**
  * Auto-generated group annotations
- * @group SprykerTest
+ * @group SprykerEcoTest
  * @group Zed
  * @group Econda
  * @group Business
@@ -28,7 +28,7 @@ class CsvNameGeneratorTest extends Unit
     /**
      * @return void
      */
-    public function testGenerateFileName()
+    public function testGenerateFileName(): void
     {
         $generator = new CsvNameGenerator();
         $fileName = $generator->generateFileName('products', 'en_US');

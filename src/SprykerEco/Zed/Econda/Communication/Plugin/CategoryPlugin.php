@@ -15,29 +15,29 @@ use SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @method \SprykerEco\Zed\Econda\Business\EcondaFacade getFacade()
+ * @method \SprykerEco\Zed\Econda\Business\EcondaFacadeInterface getFacade()
  * @method \Spryker\Zed\Collector\CollectorConfig getConfig()
  */
 class CategoryPlugin extends AbstractPlugin implements EcondaPluginInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\LocaleTransfer $locale
-     * @param \Generated\Shared\Transfer\BatchResultTransfer $result
+     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
+     * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
      */
     public function run(
-        LocaleTransfer $locale,
-        BatchResultTransfer $result,
+        LocaleTransfer $localeTransfer,
+        BatchResultTransfer $batchResultTransfer,
         FileWriterInterface $dataWriter,
         OutputInterface $output
-    ) {
+    ): void {
         $this->getFacade()
             ->exportCategories(
-                $locale,
-                $result,
+                $localeTransfer,
+                $batchResultTransfer,
                 $dataWriter,
                 $output
             );

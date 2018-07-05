@@ -29,12 +29,13 @@ use SprykerEco\Zed\Econda\EcondaDependencyProvider;
  */
 class EcondaBusinessFactory extends AbstractBusinessFactory
 {
-    const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
+    protected const CATEGORY_NODE_ECONDA_QUERY      = 'CategoryNodeEcondaQuery';
+    protected const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
 
     /**
      * @return \SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface
      */
-    public function createEcondaCsvFileReader()
+    public function createEcondaCsvFileReader(): FileReaderInterface
     {
         $nameGenerator = $this->createCsvNameGenerator();
 
@@ -44,7 +45,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\RunnerInterface
      */
-    public function createRunner()
+    public function createRunner(): RunnerInterface
     {
         return new Runner(
             $this->getLocaleFacade(),
@@ -55,19 +56,19 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
      */
-    public function createCollectorManager()
+    public function createCollectorManager(): CollectorManagerInterface
     {
-        $criteriaBuilder = $this->createCriteriaBuilder();
-        $queryContainer = $this->getQueryContainer();
-        $progressBarHelper = $this->createProgressBarHelper();
-
-        return new CollectorManager($criteriaBuilder, $queryContainer, $progressBarHelper);
+        return new CollectorManager(
+            $this->createCriteriaBuilder(),
+            $this->getQueryContainer(),
+            $this->createProgressBarHelper()
+        );
     }
 
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
-    protected function createFileWriter()
+    protected function createFileWriter(): FileWriterInterface
     {
         $csvFileWriterAdapter = $this->createCsvFileWriterAdapter();
 
@@ -77,7 +78,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface
      */
-    protected function createProgressBarHelper()
+    protected function createProgressBarHelper(): ProgressBarHelperInterface
     {
         return new ProgressBarHelper();
     }
@@ -85,7 +86,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
      */
-    protected function createCsvNameGenerator()
+    protected function createCsvNameGenerator(): NameGeneratorInterface
     {
         return new CsvNameGenerator();
     }
@@ -93,18 +94,18 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
-    public function createEcondaCategoryCollector()
+    public function createEcondaCategoryCollector(): DatabaseCollectorInterface
     {
         return new EcondaCategoryCollector(
             $this->createCriteriaBuilder(),
-            $this->createPdoEcondaQuery('CategoryNodeEcondaQuery')
+            $this->createPdoEcondaQuery(static::CATEGORY_NODE_ECONDA_QUERY)
         );
     }
 
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
-    public function createEcondaProductCollector()
+    public function createEcondaProductCollector(): DatabaseCollectorInterface
     {
         return new EcondaProductCollector(
             $this->createCriteriaBuilder(),
@@ -119,7 +120,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface
      */
-    protected function createFileExporter()
+    protected function createFileExporter(): ExporterInterface
     {
         return new FileExporter(
             $this->createFileWriter(),
@@ -132,7 +133,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    protected function getCollectorFileExporterPlugins()
+    protected function getCollectorFileExporterPlugins(): EcondaPluginInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FILE_PLUGINS);
     }
@@ -140,7 +141,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface
      */
-    protected function getLocaleFacade()
+    protected function getLocaleFacade(): EcondaToLocaleFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_LOCALE);
     }
@@ -148,7 +149,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface
      */
-    protected function createCsvFileWriterAdapter()
+    protected function createCsvFileWriterAdapter(): AdapterInterface
     {
         return new CsvAdapter(
             $this->getConfig()->getFileExportPath(),
@@ -159,7 +160,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface
      */
-    protected function getProductImageQueryContainer()
+    protected function getProductImageQueryContainer(): ProductImageQueryContainerInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::QUERY_CONTAINER_PRODUCT_IMAGE);
     }
@@ -169,7 +170,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
      *
      * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
-    protected function createPdoEcondaQuery($pdoEcondaQueryName)
+    protected function createPdoEcondaQuery($pdoEcondaQueryName): AbstractPdoEcondaQuery
     {
         $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQueryClassName(
             $pdoEcondaQueryName,
@@ -182,7 +183,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\Propel\Business\PropelFacadeInterface
      */
-    protected function getPropelFacade()
+    protected function getPropelFacade(): PropelFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PROPEL);
     }
@@ -190,7 +191,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface
      */
-    protected function getPriceProductFacade()
+    protected function getPriceProductFacade(): EcondaToPriceProductFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PRICE_PRODUCT);
     }
@@ -198,18 +199,18 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
      */
-    protected function createCriteriaBuilder()
+    protected function createCriteriaBuilder(): CriteriaBuilderInterface
     {
         $factory = new CriteriaBuilderFactory(
             $this->createCriteriaBuilderContainer()
         );
 
-        $factory->registerWorkerCallback(self::CRITERIA_BUILDER_FACTORY_WORKER, function () use ($factory) {
+        $factory->registerWorkerCallback(static::CRITERIA_BUILDER_FACTORY_WORKER, function () use ($factory) {
             return $factory->buildWorker(CriteriaBuilderFactoryWorker::class);
         });
 
         /** @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker $factoryWorker */
-        $factoryWorker = $factory->getWorkerByName(self::CRITERIA_BUILDER_FACTORY_WORKER);
+        $factoryWorker = $factory->getWorkerByName(static::CRITERIA_BUILDER_FACTORY_WORKER);
 
         return $factoryWorker->buildCriteriaBuilder();
     }
@@ -217,7 +218,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer
      */
-    protected function createCriteriaBuilderContainer()
+    protected function createCriteriaBuilderContainer(): CriteriaBuilderDependencyContainer
     {
         return new CriteriaBuilderDependencyContainer();
     }
@@ -225,7 +226,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface
      */
-    protected function getProductCategoryQueryContainer()
+    protected function getProductCategoryQueryContainer(): ProductCategoryQueryContainerInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::QUERY_CONTAINER_PRODUCT_CATEGORY);
     }

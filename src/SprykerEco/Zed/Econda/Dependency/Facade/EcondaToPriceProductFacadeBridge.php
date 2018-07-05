@@ -28,7 +28,7 @@ class EcondaToPriceProductFacadeBridge implements EcondaToPriceProductFacadeInte
      *
      * @return int|null
      */
-    public function findPriceBySku($sku, $priceTypeName = null)
+    public function findPriceBySku($sku, $priceTypeName = null): ?int
     {
         return $this->facade->findPriceBySku($sku, $priceTypeName);
     }

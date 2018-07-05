@@ -17,44 +17,46 @@ use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge;
 
 class EcondaDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const FACADE_LOCALE = 'FACADE_LOCALE';
-    const FACADE_PROPEL = 'FACADE_PROPEL';
-    const FACADE_PRICE_PRODUCT = 'FACADE_PRICE_PRODUCT';
-    const QUERY_CONTAINER_PRODUCT_IMAGE = 'QUERY_CONTAINER_PRODUCT_IMAGE';
-    const QUERY_CONTAINER_PRODUCT_CATEGORY = 'QUERY_CONTAINER_PRODUCT_CATEGORY';
-    const FILE_PLUGINS = 'FILE_PLUGINS';
+    protected const FACADE_LOCALE = 'FACADE_LOCALE';
+    protected const FACADE_PROPEL = 'FACADE_PROPEL';
+    protected const FACADE_PRICE_PRODUCT = 'FACADE_PRICE_PRODUCT';
+    protected const QUERY_CONTAINER_PRODUCT_IMAGE = 'QUERY_CONTAINER_PRODUCT_IMAGE';
+    protected const QUERY_CONTAINER_PRODUCT_CATEGORY = 'QUERY_CONTAINER_PRODUCT_CATEGORY';
+    protected const FILE_PLUGINS = 'FILE_PLUGINS';
+    protected const PRODUCTS = 'products';
+    protected const CATEGORIES = 'categories';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container[static::FACADE_LOCALE] = function (Container $container) {
             return new EcondaToLocaleFacadeBridge($container->getLocator()->locale()->facade());
         };
 
-        $container[self::FACADE_PROPEL] = function (Container $container) {
+        $container[static::FACADE_PROPEL] = function (Container $container) {
             return new EcondaToPropelFacadeBridge($container->getLocator()->propel()->facade());
         };
 
-        $container[self::FACADE_PRICE_PRODUCT] = function (Container $container) {
+        $container[static::FACADE_PRICE_PRODUCT] = function (Container $container) {
             return new EcondaToPriceProductFacadeBridge($container->getLocator()->priceProduct()->facade());
         };
 
-        $container[self::QUERY_CONTAINER_PRODUCT_IMAGE] = function (Container $container) {
+        $container[static::QUERY_CONTAINER_PRODUCT_IMAGE] = function (Container $container) {
             return $container->getLocator()->productImage()->queryContainer();
         };
 
-        $container[self::QUERY_CONTAINER_PRODUCT_CATEGORY] = function (Container $container) {
+        $container[static::QUERY_CONTAINER_PRODUCT_CATEGORY] = function (Container $container) {
             return $container->getLocator()->productCategory()->queryContainer();
         };
 
-        $container[self::FILE_PLUGINS] = function () {
+        $container[static::FILE_PLUGINS] = function () {
             return [
-                'products' => new ProductsPlugin(),
-                'categories' => new CategoryPlugin(),
+                static::PRODUCTS => new ProductsPlugin(),
+                static::CATEGORIES => new CategoryPlugin(),
             ];
         };
 

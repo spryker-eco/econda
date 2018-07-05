@@ -26,7 +26,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      *
      * @return string
      */
-    public function getFileContent($type, $locale)
+    public function getFileContent($type, $locale): string
     {
         return $this->getFactory()->createEcondaCsvFileReader()->readFile($type, $locale);
     }
@@ -36,7 +36,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
      *
      * @return array
      */
-    public function exportFile(OutputInterface $output)
+    public function exportFile(OutputInterface $output): array
     {
         return $this->getFactory()->createRunner()->runExport($output);
     }
@@ -54,7 +54,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         BatchResultTransfer $result,
         FileWriterInterface $dataWriter,
         OutputInterface $output
-    ) {
+    ): void {
         $collector = $this->getFactory()->createEcondaCategoryCollector();
         $this->getFactory()
             ->createCollectorManager()
@@ -80,7 +80,7 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
         BatchResultTransfer $result,
         FileWriterInterface $dataWriter,
         OutputInterface $output
-    ) {
+    ): void {
         $collector = $this->getFactory()->createEcondaProductCollector();
         $this->getFactory()
             ->createCollectorManager()

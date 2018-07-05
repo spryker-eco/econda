@@ -29,7 +29,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName)
+    public function setFileName($fileName): FileWriter
     {
         $this->fileWriterAdapter->setFileName($fileName);
 
@@ -41,7 +41,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFolderPath($directory)
+    public function setFolderPath($directory): FileWriter
     {
         $this->fileWriterAdapter->setFolderPath($directory);
 
@@ -54,7 +54,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return bool
      */
-    public function write(array $dataSet, $type = '')
+    public function write(array $dataSet, $type = ''): bool
     {
         return $this->fileWriterAdapter->write($dataSet, $type);
     }

@@ -19,12 +19,12 @@ abstract class AbstractEcondaQuery
     /**
      * @return void
      */
-    abstract protected function prepareQuery();
+    abstract protected function prepareQuery(): void;
 
     /**
      * @return $this
      */
-    public function prepare()
+    public function prepare(): AbstractEcondaQuery
     {
         $this->prepareQuery();
 
@@ -34,7 +34,7 @@ abstract class AbstractEcondaQuery
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getLocale()
+    public function getLocale(): LocaleTransfer
     {
         return $this->locale;
     }
@@ -44,7 +44,7 @@ abstract class AbstractEcondaQuery
      *
      * @return $this
      */
-    public function setLocale(LocaleTransfer $locale)
+    public function setLocale(LocaleTransfer $locale): LocaleTransfer
     {
         $this->locale = $locale;
 

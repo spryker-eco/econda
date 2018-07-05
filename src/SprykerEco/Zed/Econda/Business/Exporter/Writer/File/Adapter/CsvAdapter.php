@@ -49,7 +49,7 @@ class CsvAdapter implements AdapterInterface
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct($directory, $delimiter = ",", $enclosure = "\"", $escape = "\\")
+    public function __construct($directory, $delimiter = ',', $enclosure = '""', $escape = '\\')
     {
         $this->folderPath = $directory;
 
@@ -64,7 +64,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return bool
      */
-    public function write(array $data, $type = '')
+    public function write(array $data, $type = ''): bool
     {
         $result = false;
         $csvFile = $this->getCsvFile($data);
@@ -80,7 +80,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFolderPath($folderPath)
+    public function setFolderPath($folderPath): CsvAdapter
     {
         $this->folderPath = $folderPath;
         $this->csvFile = null;
@@ -93,7 +93,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName)
+    public function setFileName($fileName): CsvAdapter
     {
         $this->fileName = $fileName;
         $this->csvFile = null;
@@ -107,7 +107,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return void
      */
-    protected function initializeHeaderColumns(SplFileObject $csvFile, array $dataRow)
+    protected function initializeHeaderColumns(SplFileObject $csvFile, array $dataRow): void
     {
         $csvFile->fputcsv(array_keys($dataRow), $this->delimiter);
     }
@@ -117,7 +117,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return \SplFileObject
      */
-    protected function getCsvFile(array $data)
+    protected function getCsvFile(array $data): SplFileObject
     {
         if (!$this->csvFile) {
             $this->csvFile = new SplFileObject($this->getAbsolutePath(), 'w');
@@ -134,7 +134,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return string
      */
-    protected function getAbsolutePath()
+    protected function getAbsolutePath(): string 
     {
         if (!$this->folderPath) {
             throw new FileWriterException('Path to export file to not set properly');

@@ -37,7 +37,7 @@ class CsvFileReader implements FileReaderInterface
     /**
      * {@inheritdoc}
      */
-    public function readFile($type, $locale)
+    public function readFile($type, $locale): string
     {
         $fileName = $this->csvNameGenerator->generateFileName($type, $locale);
 

@@ -23,28 +23,28 @@ use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
 class EcondaProductCollector extends AbstractDatabaseCollector
 {
     // CSV File Columns
-    const ID_COLUMN = 'ID';
-    const NAME_COLUMN = 'Name';
-    const DESCRIPTION_COLUMN = 'Description';
-    const PRODUCT_URL_COLUMN = 'ProductURL';
-    const IMAGE_URL_COLUMN = 'ImageURL';
-    const PRICE_COLUMN = 'Price';
-    const STOCK_COLUMN = 'Stock';
-    const PRODUCT_CATEGORY_COLUMN = 'ProductCategory';
+    private const ID_COLUMN = 'ID';
+    private const NAME_COLUMN = 'Name';
+    private const DESCRIPTION_COLUMN = 'Description';
+    private const PRODUCT_URL_COLUMN = 'ProductURL';
+    private const IMAGE_URL_COLUMN = 'ImageURL';
+    private const PRICE_COLUMN = 'Price';
+    private const STOCK_COLUMN = 'Stock';
+    private const PRODUCT_CATEGORY_COLUMN = 'ProductCategory';
 
     // Internal Query Fields
-    const ID_PRODUCT_ABSTRACT = 'id_product_abstract';
-    const SKU = 'sku';
-    const URL = 'url';
-    const NAME = 'name';
-    const DESCRIPTION = 'description';
-    const META_DESCRIPTION = 'meta_description';
-    const QUANTITY = 'quantity';
-    const ID_PRODUCT_CONCRETE = 'id_product';
-    const DEFAULT_QUERY_FIELD = 'default';
-    const EXTERNAL_URL_SMALL_QUERY_FIELD = 'externalUrlSmall';
+    private const ID_PRODUCT_ABSTRACT = 'id_product_abstract';
+    private const SKU = 'sku';
+    private const URL = 'url';
+    private const NAME = 'name';
+    private const DESCRIPTION = 'description';
+    private const META_DESCRIPTION = 'meta_description';
+    private const QUANTITY = 'quantity';
+    private const ID_PRODUCT_CONCRETE = 'id_product';
+    private const DEFAULT_QUERY_FIELD = 'default';
+    private const EXTERNAL_URL_SMALL_QUERY_FIELD = 'externalUrlSmall';
 
-    const RESOURCE_TYPE = 'products';
+    private const RESOURCE_TYPE = 'products';
 
     /**
      * @var \SprykerEco\Zed\Econda\EcondaConfig
@@ -103,7 +103,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer)
+    protected function collectData(array $collectedSet, LocaleTransfer $localeTransfer): array
     {
         $setToExport = [];
 
@@ -119,7 +119,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function collectItem(array $collectItemData)
+    protected function collectItem(array $collectItemData): array
     {
         $imageUrl = $this->getImageUrlFromItemData($collectItemData);
 
@@ -138,7 +138,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     /**
      * @return string
      */
-    protected function collectResourceType()
+    protected function collectResourceType(): string
     {
         return static::RESOURCE_TYPE;
     }
@@ -148,7 +148,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return int
      */
-    protected function findPriceBySku($sku)
+    protected function findPriceBySku($sku): int
     {
         return $this->priceProductFacade->findPriceBySku($sku);
     }
@@ -158,7 +158,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function generateCategories($idProductAbstract)
+    protected function generateCategories($idProductAbstract): array
     {
         if ($this->categoryCacheCollection->offsetExists($idProductAbstract)) {
             return $this->categoryCacheCollection->get($idProductAbstract);
@@ -181,7 +181,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return \Orm\Zed\ProductCategory\Persistence\SpyProductCategory[]|\Propel\Runtime\Collection\ObjectCollection
      */
-    protected function getProductCategoryMappings($idProductAbstract)
+    protected function getProductCategoryMappings($idProductAbstract): ObjectCollection
     {
         return $this->productCategoryQueryContainer
             ->queryLocalizedProductCategoryMappingByIdProduct($idProductAbstract)
@@ -201,7 +201,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function generateProductConcreteImageSets($idProductAbstract, $idProductConcrete)
+    protected function generateProductConcreteImageSets($idProductAbstract, $idProductConcrete): array
     {
         $imageSets = $this->productImageQueryContainer
             ->queryProductImageSet()
@@ -235,7 +235,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return string
      */
-    protected function getImageUrlFromItemData(array $collectItemData)
+    protected function getImageUrlFromItemData(array $collectItemData): array
     {
         $imageSet = $this->generateProductConcreteImageSets(
             $collectItemData[static::ID_PRODUCT_ABSTRACT],
@@ -248,9 +248,9 @@ class EcondaProductCollector extends AbstractDatabaseCollector
     /**
      * @param array $imageSet
      *
-     * @return null|string
+     * @return string|null
      */
-    protected function getSmallPictureUrlFromDefaultImageSet($imageSet)
+    protected function getSmallPictureUrlFromDefaultImageSet(array $imageSet): ?string
     {
         $defaultImageSet = $this->getDefaultImageSet($imageSet);
 
@@ -266,7 +266,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return array
      */
-    protected function getDefaultImageSet($imageSet)
+    protected function getDefaultImageSet(array $imageSet): array
     {
         if (array_key_exists(static::DEFAULT_QUERY_FIELD, $imageSet) && is_array($imageSet[static::DEFAULT_QUERY_FIELD])) {
             return $imageSet[static::DEFAULT_QUERY_FIELD];
@@ -280,7 +280,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return string
      */
-    protected function getSmallImageUrl($imageArray)
+    protected function getSmallImageUrl(array $imageArray): string
     {
         if (array_key_exists(static::EXTERNAL_URL_SMALL_QUERY_FIELD, $imageArray)) {
             return $imageArray[static::EXTERNAL_URL_SMALL_QUERY_FIELD];
