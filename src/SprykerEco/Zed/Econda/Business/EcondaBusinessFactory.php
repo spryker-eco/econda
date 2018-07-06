@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -29,7 +29,7 @@ use SprykerEco\Zed\Econda\EcondaDependencyProvider;
  */
 class EcondaBusinessFactory extends AbstractBusinessFactory
 {
-    protected const CATEGORY_NODE_ECONDA_QUERY      = 'CategoryNodeEcondaQuery';
+    protected const CATEGORY_NODE_ECONDA_QUERY = 'CategoryNodeEcondaQuery';
     protected const CRITERIA_BUILDER_FACTORY_WORKER = 'CriteriaBuilderFactoryWorker';
 
     /**

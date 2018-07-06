@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter;
 
 use SplFileObject;
 use SprykerEco\Zed\Econda\Business\Exporter\Exception\FileWriterException;
-use SprykerEco\Zed\Econda\EcondaConfig;
 
 class CsvAdapter implements AdapterInterface
 {
@@ -80,7 +79,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFolderPath($folderPath): CsvAdapter
+    public function setFolderPath($folderPath): self
     {
         $this->folderPath = $folderPath;
         $this->csvFile = null;
@@ -93,7 +92,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName): CsvAdapter
+    public function setFileName($fileName): self
     {
         $this->fileName = $fileName;
         $this->csvFile = null;
@@ -134,7 +133,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return string
      */
-    protected function getAbsolutePath(): string 
+    protected function getAbsolutePath(): string
     {
         if (!$this->folderPath) {
             throw new FileWriterException('Path to export file to not set properly');

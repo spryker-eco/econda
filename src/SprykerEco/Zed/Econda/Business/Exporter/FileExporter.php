@@ -1,15 +1,15 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
 use Generated\Shared\Transfer\LocaleTransfer;
-use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FileExporter extends AbstractExporter

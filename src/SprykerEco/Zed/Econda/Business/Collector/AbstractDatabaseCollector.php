@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -31,7 +31,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
     protected $criteriaBuilder;
 
     /**
-     * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteria
+     * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
      * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
      */
     public function __construct(
@@ -125,7 +125,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         $collectedDataCount = count($collectedData);
 
         $storeWriter->write($collectedData);
-        
+
         $batchResult->increaseProcessedCount($collectedDataCount);
     }
 }

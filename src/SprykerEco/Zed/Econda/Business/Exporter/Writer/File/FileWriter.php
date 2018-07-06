@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -29,7 +29,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName): FileWriter
+    public function setFileName($fileName): self
     {
         $this->fileWriterAdapter->setFileName($fileName);
 
@@ -41,7 +41,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFolderPath($directory): FileWriter
+    public function setFolderPath($directory): self
     {
         $this->fileWriterAdapter->setFolderPath($directory);
 

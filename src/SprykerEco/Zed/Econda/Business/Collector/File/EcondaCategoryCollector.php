@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MIT License
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
@@ -112,7 +112,7 @@ class EcondaCategoryCollector extends AbstractDatabaseCollector
      *
      * @return string
      */
-    protected function getParents(array $node, array $data): string 
+    protected function getParents(array $node, array $data): string
     {
         $parents = array_filter($data, function ($item) use ($node) {
             return ((int)$item[static::ID_CATEGORY_NODE_QUERY_FIELD] === (int)$node[static::FK_PARENT_CATEGORY_NODE]);
