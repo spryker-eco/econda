@@ -126,6 +126,6 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
         $storeWriter->write($collectedData);
 
-        $batchResult->increaseProcessedCount($collectedDataCount);
+        $batchResult->setProcessedCount($batchResult->getProcessedCount() + $collectedDataCount);
     }
 }

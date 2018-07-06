@@ -17,14 +17,14 @@ use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge;
 
 class EcondaDependencyProvider extends AbstractBundleDependencyProvider
 {
-    protected const FACADE_LOCALE = 'FACADE_LOCALE';
-    protected const FACADE_PROPEL = 'FACADE_PROPEL';
-    protected const FACADE_PRICE_PRODUCT = 'FACADE_PRICE_PRODUCT';
-    protected const QUERY_CONTAINER_PRODUCT_IMAGE = 'QUERY_CONTAINER_PRODUCT_IMAGE';
-    protected const QUERY_CONTAINER_PRODUCT_CATEGORY = 'QUERY_CONTAINER_PRODUCT_CATEGORY';
-    protected const FILE_PLUGINS = 'FILE_PLUGINS';
-    protected const PRODUCTS = 'products';
-    protected const CATEGORIES = 'categories';
+    public const FACADE_LOCALE = 'FACADE_LOCALE';
+    public const FACADE_PROPEL = 'FACADE_PROPEL';
+    public const FACADE_PRICE_PRODUCT = 'FACADE_PRICE_PRODUCT';
+    public const QUERY_CONTAINER_PRODUCT_IMAGE = 'QUERY_CONTAINER_PRODUCT_IMAGE';
+    public const QUERY_CONTAINER_PRODUCT_CATEGORY = 'QUERY_CONTAINER_PRODUCT_CATEGORY';
+    public const FILE_PLUGINS = 'FILE_PLUGINS';
+    public const PRODUCTS = 'products';
+    public const CATEGORIES = 'categories';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container

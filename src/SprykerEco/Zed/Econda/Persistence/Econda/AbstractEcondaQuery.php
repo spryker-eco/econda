@@ -42,7 +42,7 @@ abstract class AbstractEcondaQuery
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $locale
      *
-     * @return $this
+     * @return \Generated\Shared\Transfer\LocaleTransfer
      */
     public function setLocale(LocaleTransfer $locale): LocaleTransfer
     {

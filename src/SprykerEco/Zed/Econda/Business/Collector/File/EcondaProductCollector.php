@@ -235,7 +235,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return string
      */
-    protected function getImageUrlFromItemData(array $collectItemData): array
+    protected function getImageUrlFromItemData(array $collectItemData): string
     {
         $imageSet = $this->generateProductConcreteImageSets(
             $collectItemData[static::ID_PRODUCT_ABSTRACT],
