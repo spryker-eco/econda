@@ -55,7 +55,7 @@ abstract class AbstractExporter implements ExporterInterface
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    public function getCollectorPlugins(): EcondaPluginInterface
+    public function getCollectorPlugins(): array
     {
         return $this->collectorPlugins;
     }

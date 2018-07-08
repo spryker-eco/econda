@@ -57,7 +57,7 @@ class FileExporter extends AbstractExporter
      *
      * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
-    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output): BatchResultTransfer
+    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output): \Generated\Shared\Transfer\BatchResultTransfer
     {
         $result = $this->createDefaultBatchResultTransfer();
         $result->setProcessedLocale($localeTransfer);

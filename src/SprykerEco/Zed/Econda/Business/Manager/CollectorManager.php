@@ -64,9 +64,9 @@ class CollectorManager implements CollectorManagerInterface
         FileWriterInterface $dataWriter,
         OutputInterface $output
     ): void {
-        $batchCollection = $collector->createIteratorAndPrepareQuery($locale, $this->criteriaBuilder, $this->queryContainer);
+        $batchCollection = $collector->createIteratorAndPrepareQuery($localeTransfer, $this->criteriaBuilder, $this->queryContainer);
         $progressBar = $this->progressBarHelper->startProgressBar($output, '', $batchCollection->count());
 
-        $collector->exportDataToStore($batchCollection, $result, $dataWriter, $locale, $output, $progressBar);
+        $collector->exportDataToStore($batchCollection, $batchResultTransfer, $dataWriter, $localeTransfer, $output, $progressBar);
     }
 }

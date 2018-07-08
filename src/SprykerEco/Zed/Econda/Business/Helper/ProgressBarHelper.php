@@ -28,7 +28,7 @@ class ProgressBarHelper implements ProgressBarHelperInterface
         OutputInterface $output,
         $resourceType,
         $totalCount
-    ): ProgressBar {
+    ): \Symfony\Component\Console\Helper\ProgressBar {
         $this->progressBar = $this->generateProgressBar($output, $totalCount, $resourceType);
         $this->progressBar->start();
         $this->progressBar->advance(0);
@@ -43,7 +43,7 @@ class ProgressBarHelper implements ProgressBarHelperInterface
      *
      * @return \Symfony\Component\Console\Helper\ProgressBar
      */
-    protected function generateProgressBar(OutputInterface $output, $count, $resourceType): ProgressBar
+    protected function generateProgressBar(OutputInterface $output, $count, $resourceType): \Symfony\Component\Console\Helper\ProgressBar
     {
         $builder = new ProgressBarBuilder($output, $count, $resourceType);
         return $builder->build();

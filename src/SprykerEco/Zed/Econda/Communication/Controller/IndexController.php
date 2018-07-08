@@ -23,7 +23,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function categoryAction(Request $request): StreamedResponse
+    public function categoryAction(Request $request): \Symfony\Component\HttpFoundation\StreamedResponse
     {
         return $this->getResponse($request, static::CATEGORIES);
     }
@@ -33,7 +33,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function productAction(Request $request): StreamedResponse
+    public function productAction(Request $request): \Symfony\Component\HttpFoundation\StreamedResponse
     {
         return $this->getResponse($request, static::PRODUCTS);
     }
@@ -44,7 +44,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    private function getResponse(Request $request, $type): StreamedResponse
+    private function getResponse(Request $request, $type): \Symfony\Component\HttpFoundation\StreamedResponse
     {
         $fileContent = $this->getFacade()->getFileContent($type, $this->getLocale($request));
 
