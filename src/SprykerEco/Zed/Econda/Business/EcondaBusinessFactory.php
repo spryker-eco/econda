@@ -150,7 +150,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    protected function getCollectorFileExporterPlugins(): \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface
+    protected function getCollectorFileExporterPlugins(): EcondaPluginInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FILE_PLUGINS);
     }
@@ -177,7 +177,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface
      */
-    protected function getProductImageQueryContainer(): \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface
+    protected function getProductImageQueryContainer(): ProductImageQueryContainerInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::QUERY_CONTAINER_PRODUCT_IMAGE);
     }
@@ -187,7 +187,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
      *
      * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
      */
-    protected function createPdoEcondaQuery($pdoEcondaQueryName): \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
+    protected function createPdoEcondaQuery($pdoEcondaQueryName): AbstractPdoEcondaQuery
     {
         $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQueryClassName(
             $pdoEcondaQueryName,
@@ -200,7 +200,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\Propel\Business\PropelFacadeInterface
      */
-    protected function getPropelFacade(): \Spryker\Zed\Propel\Business\PropelFacadeInterface
+    protected function getPropelFacade(): PropelFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PROPEL);
     }
@@ -208,7 +208,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface
      */
-    protected function getPriceProductFacade(): \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface
+    protected function getPriceProductFacade(): EcondaToPriceProductFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PRICE_PRODUCT);
     }
@@ -216,7 +216,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
      */
-    protected function createCriteriaBuilder(): \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
+    protected function createCriteriaBuilder(): CriteriaBuilderInterface
     {
         $factory = new CriteriaBuilderFactory(
             $this->createCriteriaBuilderContainer()
@@ -243,7 +243,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface
      */
-    protected function getProductCategoryQueryContainer(): \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface
+    protected function getProductCategoryQueryContainer(): ProductCategoryQueryContainerInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::QUERY_CONTAINER_PRODUCT_CATEGORY);
     }
