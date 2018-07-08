@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Econda\Business\Exporter;
 
+use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
@@ -57,7 +58,7 @@ class FileExporter extends AbstractExporter
      *
      * @return \Generated\Shared\Transfer\BatchResultTransfer
      */
-    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output): \Generated\Shared\Transfer\BatchResultTransfer
+    public function exportByType($type, LocaleTransfer $localeTransfer, OutputInterface $output): BatchResultTransfer
     {
         $result = $this->createDefaultBatchResultTransfer();
         $result->setProcessedLocale($localeTransfer);

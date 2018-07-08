@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Zed\Econda\Dependency\Facade;
 
+use Generated\Shared\Transfer\LocaleTransfer;
+
 class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
 {
     /**
@@ -25,7 +27,7 @@ class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getCurrentLocale(): \Generated\Shared\Transfer\LocaleTransfer
+    public function getCurrentLocale(): LocaleTransfer
     {
         return $this->localeFacade->getCurrentLocale();
     }
@@ -35,7 +37,7 @@ class EcondaToLocaleFacadeBridge implements EcondaToLocaleFacadeInterface
      *
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getLocale($localeName): \Generated\Shared\Transfer\LocaleTransfer
+    public function getLocale($localeName): LocaleTransfer
     {
         return $this->localeFacade->getLocale($localeName);
     }

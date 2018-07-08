@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Econda\Business\Helper;
 
 use Spryker\Shared\Gui\ProgressBar\ProgressBarBuilder;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ProgressBarHelper implements ProgressBarHelperInterface
@@ -28,7 +29,7 @@ class ProgressBarHelper implements ProgressBarHelperInterface
         OutputInterface $output,
         $resourceType,
         $totalCount
-    ): \Symfony\Component\Console\Helper\ProgressBar {
+    ): ProgressBar {
         $this->progressBar = $this->generateProgressBar($output, $totalCount, $resourceType);
         $this->progressBar->start();
         $this->progressBar->advance(0);
@@ -43,7 +44,7 @@ class ProgressBarHelper implements ProgressBarHelperInterface
      *
      * @return \Symfony\Component\Console\Helper\ProgressBar
      */
-    protected function generateProgressBar(OutputInterface $output, $count, $resourceType): \Symfony\Component\Console\Helper\ProgressBar
+    protected function generateProgressBar(OutputInterface $output, $count, $resourceType): ProgressBar
     {
         $builder = new ProgressBarBuilder($output, $count, $resourceType);
         return $builder->build();

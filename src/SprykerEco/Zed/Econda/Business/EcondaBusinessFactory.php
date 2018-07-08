@@ -11,17 +11,28 @@ use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyC
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaCategoryCollector;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector;
+use SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\FileExporter;
 use SprykerEco\Zed\Econda\Business\Exporter\Runner;
+use SprykerEco\Zed\Econda\Business\Exporter\RunnerInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\CsvAdapter;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriter;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\CsvNameGenerator;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface;
 use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelper;
+use SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface;
 use SprykerEco\Zed\Econda\Business\Manager\CollectorManager;
+use SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface;
 use SprykerEco\Zed\Econda\Business\Reader\File\CsvFileReader;
+use SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface;
+use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface;
+use SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
+use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
@@ -35,7 +46,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface
      */
-    public function createEcondaCsvFileReader(): \SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface
+    public function createEcondaCsvFileReader(): FileReaderInterface
     {
         $nameGenerator = $this->createCsvNameGenerator();
 
@@ -45,7 +56,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\RunnerInterface
      */
-    public function createRunner(): \SprykerEco\Zed\Econda\Business\Exporter\RunnerInterface
+    public function createRunner(): RunnerInterface
     {
         return new Runner(
             $this->getLocaleFacade(),
@@ -56,7 +67,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
      */
-    public function createCollectorManager(): \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
+    public function createCollectorManager(): CollectorManagerInterface
     {
         return new CollectorManager(
             $this->createCriteriaBuilder(),
@@ -68,7 +79,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
      */
-    protected function createFileWriter(): \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface
+    protected function createFileWriter(): FileWriterInterface
     {
         $csvFileWriterAdapter = $this->createCsvFileWriterAdapter();
 
@@ -78,7 +89,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface
      */
-    protected function createProgressBarHelper(): \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface
+    protected function createProgressBarHelper(): ProgressBarHelperInterface
     {
         return new ProgressBarHelper();
     }
@@ -86,7 +97,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
      */
-    protected function createCsvNameGenerator(): \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\NameGenerator\NameGeneratorInterface
+    protected function createCsvNameGenerator(): NameGeneratorInterface
     {
         return new CsvNameGenerator();
     }
@@ -94,7 +105,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
-    public function createEcondaCategoryCollector(): \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
+    public function createEcondaCategoryCollector(): DatabaseCollectorInterface
     {
         return new EcondaCategoryCollector(
             $this->createCriteriaBuilder(),
@@ -105,7 +116,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
      */
-    public function createEcondaProductCollector(): \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
+    public function createEcondaProductCollector(): DatabaseCollectorInterface
     {
         return new EcondaProductCollector(
             $this->createCriteriaBuilder(),
@@ -120,7 +131,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface
      */
-    protected function createFileExporter(): \SprykerEco\Zed\Econda\Business\Exporter\ExporterInterface
+    protected function createFileExporter(): ExporterInterface
     {
         return new FileExporter(
             $this->createFileWriter(),
@@ -133,7 +144,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    protected function getCollectorFileExporterPlugins(): \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface
+    protected function getCollectorFileExporterPlugins(): EcondaPluginInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FILE_PLUGINS);
     }
@@ -141,7 +152,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface
      */
-    protected function getLocaleFacade(): \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface
+    protected function getLocaleFacade(): EcondaToLocaleFacadeInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_LOCALE);
     }
@@ -149,7 +160,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface
      */
-    protected function createCsvFileWriterAdapter(): \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface
+    protected function createCsvFileWriterAdapter(): AdapterInterface
     {
         return new CsvAdapter(
             $this->getConfig()->getFileExportPath(),
@@ -218,7 +229,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer
      */
-    protected function createCriteriaBuilderContainer(): \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer
+    protected function createCriteriaBuilderContainer(): CriteriaBuilderDependencyContainer
     {
         return new CriteriaBuilderDependencyContainer();
     }

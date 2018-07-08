@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\StorageProductImageTransfer;
 use Orm\Zed\Category\Persistence\Map\SpyCategoryTableMap;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Collection\Collection;
+use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
@@ -181,7 +182,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return \Orm\Zed\ProductCategory\Persistence\SpyProductCategory[]|\Propel\Runtime\Collection\ObjectCollection
      */
-    protected function getProductCategoryMappings($idProductAbstract): \Propel\Runtime\Collection\ObjectCollection
+    protected function getProductCategoryMappings($idProductAbstract): ObjectCollection
     {
         return $this->productCategoryQueryContainer
             ->queryLocalizedProductCategoryMappingByIdProduct($idProductAbstract)

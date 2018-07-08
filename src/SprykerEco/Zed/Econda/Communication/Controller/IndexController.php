@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Econda\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * @method \SprykerEco\Zed\Econda\Business\EcondaFacadeInterface getFacade()
@@ -23,7 +24,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function categoryAction(Request $request): \Symfony\Component\HttpFoundation\StreamedResponse
+    public function categoryAction(Request $request): StreamedResponse
     {
         return $this->getResponse($request, static::CATEGORIES);
     }
@@ -33,7 +34,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function productAction(Request $request): \Symfony\Component\HttpFoundation\StreamedResponse
+    public function productAction(Request $request): StreamedResponse
     {
         return $this->getResponse($request, static::PRODUCTS);
     }
@@ -44,7 +45,7 @@ class IndexController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    private function getResponse(Request $request, $type): \Symfony\Component\HttpFoundation\StreamedResponse
+    private function getResponse(Request $request, $type): StreamedResponse
     {
         $fileContent = $this->getFacade()->getFileContent($type, $this->getLocale($request));
 
