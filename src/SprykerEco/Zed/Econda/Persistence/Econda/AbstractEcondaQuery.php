@@ -34,7 +34,7 @@ abstract class AbstractEcondaQuery
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getLocale(): LocaleTransfer
+    public function getLocale(): \Generated\Shared\Transfer\LocaleTransfer
     {
         return $this->locale;
     }
@@ -44,7 +44,7 @@ abstract class AbstractEcondaQuery
      *
      * @return $this
      */
-    public function setLocale(LocaleTransfer $locale): LocaleTransfer
+    public function setLocale(LocaleTransfer $locale): \Generated\Shared\Transfer\LocaleTransfer
     {
         $this->locale = $locale;
 
