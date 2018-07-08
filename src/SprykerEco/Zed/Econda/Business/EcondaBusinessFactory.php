@@ -150,7 +150,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
      */
-    protected function getCollectorFileExporterPlugins(): EcondaPluginInterface
+    protected function getCollectorFileExporterPlugins(): \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FILE_PLUGINS);
     }
