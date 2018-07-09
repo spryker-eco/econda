@@ -182,7 +182,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      *
      * @return \Orm\Zed\ProductCategory\Persistence\SpyProductCategory[]|\Propel\Runtime\Collection\ObjectCollection
      */
-    protected function getProductCategoryMappings($idProductAbstract): ObjectCollection
+    protected function getProductCategoryMappings($idProductAbstract): \Propel\Runtime\Collection\ObjectCollection
     {
         return $this->productCategoryQueryContainer
             ->queryLocalizedProductCategoryMappingByIdProduct($idProductAbstract)
