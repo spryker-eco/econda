@@ -184,16 +184,17 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     protected function getProductCategoryMappings($idProductAbstract): ObjectCollection
     {
-        $this->productCategoryQueryContainer
-            ->queryLocalizedProductCategoryMappingByIdProduct($idProductAbstract)
-            ->innerJoinSpyCategory()
+        $spyProductCategoryQuery = $this->productCategoryQueryContainer
+            ->queryLocalizedProductCategoryMappingByIdProduct($idProductAbstract);
+
+        $spyProductCategoryQuery->innerJoinSpyCategory()
             ->addAnd(
                 SpyCategoryTableMap::COL_IS_ACTIVE,
                 true,
                 Criteria::EQUAL
             );
 
-        return $this->productCategoryQueryContainer
+        return $spyProductCategoryQuery
             ->orderByProductOrder()
             ->find();
     }
