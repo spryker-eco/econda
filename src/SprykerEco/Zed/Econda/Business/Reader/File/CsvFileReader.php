@@ -35,7 +35,10 @@ class CsvFileReader implements FileReaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $type
+     * @param string $locale
+     *
+     * @return string
      */
     public function readFile($type, $locale): string
     {

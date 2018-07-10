@@ -6,5 +6,4 @@
 
 use SprykerEco\Shared\Econda\EcondaConstants;
 
-$config[EcondaConstants::ECONDA_CSV_FOLDER_PATH] = '';
-$config[EcondaConstants::ECONDA_CSV_DELIMITER] = '|';
+$config[EcondaConstants::CSV_FOLDER_PATH] = '';

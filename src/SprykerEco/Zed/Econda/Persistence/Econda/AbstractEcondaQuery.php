@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Econda\Persistence\Econda;
 
 use Generated\Shared\Transfer\LocaleTransfer;
 
-abstract class AbstractEcondaQuery
+abstract class AbstractEcondaQuery implements EcondaQueryInterface
 {
     /**
      * @var \Generated\Shared\Transfer\LocaleTransfer

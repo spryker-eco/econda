@@ -19,33 +19,33 @@ use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Collector\AbstractDatabaseCollector;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface;
 use SprykerEco\Zed\Econda\EcondaConfig;
-use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
+use SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery;
 
 class EcondaProductCollector extends AbstractDatabaseCollector
 {
     // CSV File Columns
-    private const ID_COLUMN = 'ID';
-    private const NAME_COLUMN = 'Name';
-    private const DESCRIPTION_COLUMN = 'Description';
-    private const PRODUCT_URL_COLUMN = 'ProductURL';
-    private const IMAGE_URL_COLUMN = 'ImageURL';
-    private const PRICE_COLUMN = 'Price';
-    private const STOCK_COLUMN = 'Stock';
-    private const PRODUCT_CATEGORY_COLUMN = 'ProductCategory';
+    protected const ID_COLUMN = 'ID';
+    protected const NAME_COLUMN = 'Name';
+    protected const DESCRIPTION_COLUMN = 'Description';
+    protected const PRODUCT_URL_COLUMN = 'ProductURL';
+    protected const IMAGE_URL_COLUMN = 'ImageURL';
+    protected const PRICE_COLUMN = 'Price';
+    protected const STOCK_COLUMN = 'Stock';
+    protected const PRODUCT_CATEGORY_COLUMN = 'ProductCategory';
 
     // Internal Query Fields
-    private const ID_PRODUCT_ABSTRACT = 'id_product_abstract';
-    private const SKU = 'sku';
-    private const URL = 'url';
-    private const NAME = 'name';
-    private const DESCRIPTION = 'description';
-    private const META_DESCRIPTION = 'meta_description';
-    private const QUANTITY = 'quantity';
-    private const ID_PRODUCT_CONCRETE = 'id_product';
-    private const DEFAULT_QUERY_FIELD = 'default';
-    private const EXTERNAL_URL_SMALL_QUERY_FIELD = 'externalUrlSmall';
+    protected const ID_PRODUCT_ABSTRACT = 'id_product_abstract';
+    protected const SKU = 'sku';
+    protected const URL = 'url';
+    protected const NAME = 'name';
+    protected const DESCRIPTION = 'description';
+    protected const META_DESCRIPTION = 'meta_description';
+    protected const QUANTITY = 'quantity';
+    protected const ID_PRODUCT_CONCRETE = 'id_product';
+    protected const DEFAULT_QUERY_FIELD = 'default';
+    protected const EXTERNAL_URL_SMALL_QUERY_FIELD = 'externalUrlSmall';
 
-    private const RESOURCE_TYPE = 'products';
+    protected const RESOURCE_TYPE = 'products';
 
     /**
      * @var \SprykerEco\Zed\Econda\EcondaConfig
@@ -74,7 +74,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
 
     /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteria
-     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
+     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery $econdaPdoQuery
      * @param \Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface $productCategoryQueryContainer
      * @param \Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface $productImageQueryContainer
      * @param \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface $priceProductFacade
@@ -82,14 +82,14 @@ class EcondaProductCollector extends AbstractDatabaseCollector
      */
     public function __construct(
         CriteriaBuilderInterface $criteria,
-        AbstractPdoEcondaQuery $pdoEcondaQuery,
+        AbstractEcondaPdoQuery $econdaPdoQuery,
         ProductCategoryQueryContainerInterface $productCategoryQueryContainer,
         ProductImageQueryContainerInterface $productImageQueryContainer,
         EcondaToPriceProductFacadeInterface $priceProductFacade,
         EcondaConfig $config
     ) {
 
-        parent::__construct($criteria, $pdoEcondaQuery);
+        parent::__construct($criteria, $econdaPdoQuery);
 
         $this->productCategoryQueryContainer = $productCategoryQueryContainer;
         $this->productImageQueryContainer = $productImageQueryContainer;
@@ -132,7 +132,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
             static::IMAGE_URL_COLUMN => $imageUrl,
             static::PRICE_COLUMN => number_format($this->findPriceBySku($collectItemData[static::SKU]) / 100, 2),
             static::STOCK_COLUMN => (int)$collectItemData[static::QUANTITY],
-            static::PRODUCT_CATEGORY_COLUMN => implode(EcondaConfig::ECONDA_CSV_CATEGORY_DELIMITER, $this->generateCategories($collectItemData[static::ID_PRODUCT_ABSTRACT])),
+            static::PRODUCT_CATEGORY_COLUMN => implode($this->config->getCsvCategoryDelimiter(), $this->generateCategories($collectItemData[static::ID_PRODUCT_ABSTRACT])),
         ];
     }
 

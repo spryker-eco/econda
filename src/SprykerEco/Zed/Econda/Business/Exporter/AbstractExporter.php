@@ -14,7 +14,7 @@ use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 abstract class AbstractExporter implements ExporterInterface
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
+     * @var \SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface[]
      */
     protected $collectorPlugins = [];
 
@@ -53,7 +53,7 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
+     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface[]
      */
     public function getCollectorPlugins(): array
     {

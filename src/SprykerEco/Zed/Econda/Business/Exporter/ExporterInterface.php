@@ -22,7 +22,7 @@ interface ExporterInterface
     public function exportByType($type, LocaleTransfer $locale, OutputInterface $output);
 
     /**
-     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
+     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface[]
      */
     public function getCollectorPlugins();
 }

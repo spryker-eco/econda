@@ -31,10 +31,10 @@ use SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface;
 use SprykerEco\Zed\Econda\Business\Reader\File\CsvFileReader;
 use SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface;
-use SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface;
+use SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface;
 use SprykerEco\Zed\Econda\EcondaDependencyProvider;
 use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
-use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
+use SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery;
 use Spryker\Zed\Propel\Business\PropelFacadeInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
@@ -115,7 +115,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new EcondaCategoryCollector(
             $this->createCriteriaBuilder(),
-            $this->createPdoEcondaQuery(static::CATEGORY_NODE_ECONDA_QUERY)
+            $this->createEcondaPdoQuery(static::CATEGORY_NODE_ECONDA_QUERY)
         );
     }
 
@@ -126,7 +126,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new EcondaProductCollector(
             $this->createCriteriaBuilder(),
-            $this->createPdoEcondaQuery('ProductConcreteEcondaQuery'),
+            $this->createEcondaPdoQuery('ProductConcreteEcondaQuery'),
             $this->getProductCategoryQueryContainer(),
             $this->getProductImageQueryContainer(),
             $this->getPriceProductFacade(),
@@ -148,7 +148,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface[]
+     * @return \SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface[]
      */
     protected function getCollectorFileExporterPlugins(): array
     {
@@ -170,7 +170,7 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     {
         return new CsvAdapter(
             $this->getConfig()->getFileExportPath(),
-            $this->getConfig()->getFileExportDelimiter()
+            $this->getConfig()->getCsvDelimiter()
         );
     }
 
@@ -183,18 +183,18 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @param string $pdoEcondaQueryName
+     * @param string $econdaPdoQueryName
      *
-     * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
+     * @return \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery
      */
-    protected function createPdoEcondaQuery($pdoEcondaQueryName): AbstractPdoEcondaQuery
+    protected function createEcondaPdoQuery($econdaPdoQueryName): AbstractEcondaPdoQuery
     {
-        $pdoEcondaQuery = $this->getConfig()->getPdoEcondaQueryClassName(
-            $pdoEcondaQueryName,
-            $this->getPropelFacade()->getCurrentDatabaseEngineName()
+        $econdaPdoQuery = $this->getConfig()->getEcondaPdoQueryClassName(
+            $this->getPropelFacade()->getCurrentDatabaseEngineName(),
+            $econdaPdoQueryName
         );
 
-        return new $pdoEcondaQuery();
+        return new $econdaPdoQuery();
     }
 
     /**

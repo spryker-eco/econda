@@ -9,8 +9,8 @@ namespace SprykerEco\Zed\Econda;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
-use SprykerEco\Zed\Econda\Communication\Plugin\CategoryPlugin;
-use SprykerEco\Zed\Econda\Communication\Plugin\ProductsPlugin;
+use SprykerEco\Zed\Econda\Communication\Plugin\CategoryExporterPlugin;
+use SprykerEco\Zed\Econda\Communication\Plugin\ProductExporterPlugin;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeBridge;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeBridge;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge;
@@ -23,8 +23,8 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
     public const QUERY_CONTAINER_PRODUCT_IMAGE = 'QUERY_CONTAINER_PRODUCT_IMAGE';
     public const QUERY_CONTAINER_PRODUCT_CATEGORY = 'QUERY_CONTAINER_PRODUCT_CATEGORY';
     public const FILE_PLUGINS = 'FILE_PLUGINS';
-    public const PRODUCTS = 'products';
-    public const CATEGORIES = 'categories';
+    public const PRODUCTS_PLUGIN = 'ProductsPlugin';
+    public const CATEGORIES_PLUGIN = 'CategoryPlugin';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -53,13 +53,19 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
             return $container->getLocator()->productCategory()->queryContainer();
         };
 
-        $container[static::FILE_PLUGINS] = function () {
-            return [
-                static::PRODUCTS => new ProductsPlugin(),
-                static::CATEGORIES => new CategoryPlugin(),
-            ];
-        };
+        $container[static::FILE_PLUGINS] = $this->getFilePlugins();
 
         return $container;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFilePlugins(): array
+    {
+        return [
+            static::PRODUCTS => new ProductExporterPlugin(),
+            static::CATEGORIES => new CategoryExporterPlugin(),
+        ];
     }
 }

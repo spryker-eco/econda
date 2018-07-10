@@ -12,9 +12,9 @@ use Generated\Shared\Transfer\LocaleTransfer;
 abstract class AbstractCollector
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
+     * @var \SprykerEco\Zed\Econda\Persistence\Econda\EcondaPdoQueryInterface
      */
-    protected $pdoEcondaQuery;
+    protected $econdaPdoQuery;
 
     /**
      * @var \Generated\Shared\Transfer\LocaleTransfer

@@ -14,8 +14,8 @@ use SprykerEco\Shared\Econda\EcondaConstants;
 
 class EcondaConfig extends AbstractBundleConfig
 {
-    public const ECONDA_CSV_DELIMITER = '|';
-    public const ECONDA_CSV_CATEGORY_DELIMITER = '^^';
+    protected const ECONDA_CSV_DELIMITER = '|';
+    protected const ECONDA_CSV_CATEGORY_DELIMITER = '^^';
 
     /**
      * @return string
@@ -30,40 +30,48 @@ class EcondaConfig extends AbstractBundleConfig
      */
     public function getFileExportPath(): string
     {
-        return $this->get(EcondaConstants::ECONDA_CSV_FOLDER_PATH);
+        return $this->get(EcondaConstants::CSV_FOLDER_PATH);
     }
 
     /**
      * @return string
      */
-    public function getFileExportDelimiter(): string
+    public function getCsvDelimiter(): string
     {
-        return $this->get(EcondaConstants::ECONDA_CSV_DELIMITER);
+        return static::ECONDA_CSV_DELIMITER;
     }
 
     /**
-     * @param string $pdoEcondaQueryName
+     * @return string
+     */
+    public function getCsvCategoryDelimiter(): string
+    {
+        return static::ECONDA_CSV_CATEGORY_DELIMITER;
+    }
+
+    /**
+     * @param string $econdaPdoQueryName
      * @param string $dbEngineName
      *
      * @throws \Exception
      *
      * @return string
      */
-    public function getPdoEcondaQueryClassName($pdoEcondaQueryName, $dbEngineName): string
+    public function getEcondaPdoQueryClassName($dbEngineName, $econdaPdoQueryName): string
     {
         $data = [
-            'MySql' => [
+            'mysql' => [
 
             ],
-            'PostgreSql' => [
+            'postgresql' => [
 
             ],
         ];
 
-        if (!isset($data[$dbEngineName][$pdoEcondaQueryName])) {
-            throw new Exception('Invalid PdoEcondaQueryName name: ' . $pdoEcondaQueryName);
+        if (!isset($data[$dbEngineName][$econdaPdoQueryName])) {
+            throw new Exception('Invalid EcondaPdoQueryName name: ' . $econdaPdoQueryName);
         }
 
-        return $data[$dbEngineName][$pdoEcondaQueryName];
+        return $data[$dbEngineName][$econdaPdoQueryName];
     }
 }

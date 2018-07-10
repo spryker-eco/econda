@@ -9,30 +9,17 @@ namespace SprykerEco\Zed\Econda\Persistence\Econda;
 
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 
-abstract class AbstractPdoEcondaQuery extends AbstractEcondaQuery
+interface EcondaPdoQueryInterface
 {
-    /**
-     * @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
-     */
-    protected $criteriaBuilder;
-
     /**
      * @return \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
      */
-    public function getCriteriaBuilder()
-    {
-        return $this->criteriaBuilder;
-    }
+    public function getCriteriaBuilder();
 
     /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
      *
      * @return $this
      */
-    public function setCriteriaBuilder(CriteriaBuilderInterface $criteriaBuilder)
-    {
-        $this->criteriaBuilder = $criteriaBuilder;
-
-        return $this;
-    }
+    public function setCriteriaBuilder(CriteriaBuilderInterface $criteriaBuilder);
 }

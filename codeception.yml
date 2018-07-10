@@ -1,4 +1,4 @@
-namespace: ComputopApi
+namespace: Econda
 
 include:
     - tests/SprykerEcoTest/Zed/Econda

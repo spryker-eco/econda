@@ -11,14 +11,14 @@ use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
-use SprykerEco\Zed\Econda\Dependency\Plugin\EcondaPluginInterface;
+use SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @method \SprykerEco\Zed\Econda\Business\EcondaFacadeInterface getFacade()
- * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
+ * @method \Spryker\Zed\Collector\CollectorConfig getConfig()
  */
-class ProductsPlugin extends AbstractPlugin implements EcondaPluginInterface
+class CategoryExporterPlugin extends AbstractPlugin implements ExporterPluginInterface
 {
     /**
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
@@ -34,13 +34,8 @@ class ProductsPlugin extends AbstractPlugin implements EcondaPluginInterface
         FileWriterInterface $dataWriter,
         OutputInterface $output
     ): void {
-        $csvDir = $this->getConfig()->getFileExportPath();
-        if (!is_dir($csvDir)) {
-            mkdir($csvDir);
-        }
-        $dataWriter->setFolderPath($csvDir);
         $this->getFacade()
-            ->exportProducts(
+            ->exportCategories(
                 $localeTransfer,
                 $batchResultTransfer,
                 $dataWriter,

@@ -12,14 +12,14 @@ class EcondaToPriceProductFacadeBridge implements EcondaToPriceProductFacadeInte
     /**
      * @var \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
      */
-    protected $facade;
+    protected $priceProductFacade;
 
     /**
      * @param \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface $facade
      */
-    public function __construct($facade)
+    public function __construct($priceProductFacade)
     {
-        $this->facade = $facade;
+        $this->priceProductFacade = $priceProductFacade;
     }
 
     /**
@@ -30,6 +30,6 @@ class EcondaToPriceProductFacadeBridge implements EcondaToPriceProductFacadeInte
      */
     public function findPriceBySku($sku, $priceTypeName = null): ?int
     {
-        return $this->facade->findPriceBySku($sku, $priceTypeName);
+        return $this->priceProductFacade->findPriceBySku($sku, $priceTypeName);
     }
 }

@@ -14,16 +14,16 @@ use Spryker\Service\UtilDataReader\Model\BatchIterator\PdoBatchIterator;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\Kernel\Persistence\QueryContainer\QueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
-use SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery;
+use SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractDatabaseCollector extends AbstractCollector implements DatabaseCollectorInterface
 {
     /**
-     * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery
+     * @var \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery
      */
-    protected $pdoEcondaQuery;
+    protected $econdaPdoQuery;
 
     /**
      * @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface
@@ -32,14 +32,14 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
 
     /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
-     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractPdoEcondaQuery $pdoEcondaQuery
+     * @param \SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery $econdaPdoQuery
      */
     public function __construct(
         CriteriaBuilderInterface $criteriaBuilder,
-        AbstractPdoEcondaQuery $pdoEcondaQuery
+        AbstractEcondaPdoQuery $econdaPdoQuery
     ) {
         $this->criteriaBuilder = $criteriaBuilder;
-        $this->pdoEcondaQuery = $pdoEcondaQuery;
+        $this->econdaPdoQuery = $econdaPdoQuery;
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         QueryContainerInterface $queryContainer,
         $chunkSize = 100
     ): CountableIteratorInterface {
-        $this->pdoEcondaQuery
+        $this->econdaPdoQuery
             ->setCriteriaBuilder($criteriaBuilder)
             ->setLocale($locale)
             ->prepare();
