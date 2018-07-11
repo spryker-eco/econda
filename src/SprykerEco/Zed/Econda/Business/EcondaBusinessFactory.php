@@ -39,6 +39,7 @@ use Spryker\Zed\Propel\Business\PropelFacadeInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
+use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
@@ -198,9 +199,9 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \Spryker\Zed\Propel\Business\PropelFacadeInterface
+     * @return \SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge
      */
-    protected function getPropelFacade(): PropelFacadeInterface
+    protected function getPropelFacade(): EcondaToPropelFacadeBridge
     {
         return $this->getProvidedDependency(EcondaDependencyProvider::FACADE_PROPEL);
     }

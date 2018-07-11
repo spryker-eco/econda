@@ -11,6 +11,8 @@ use Exception;
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Econda\EcondaConstants;
+use SprykerEco\Zed\Econda\Persistence\Storage\Pdo\PostgreSql\CategoryNodeEcondaQuery as StorageCategoryNodeEcondaQuery;
+use SprykerEco\Zed\Econda\Persistence\Storage\Pdo\PostgreSql\ProductConcreteEcondaQuery as StorageProductConcreteEcondaQuery;
 
 class EcondaConfig extends AbstractBundleConfig
 {
@@ -60,11 +62,9 @@ class EcondaConfig extends AbstractBundleConfig
     public function getEcondaPdoQueryClassName($dbEngineName, $econdaPdoQueryName): string
     {
         $data = [
-            'mysql' => [
-
-            ],
-            'postgresql' => [
-
+            'PostgreSql' => [
+                'CategoryNodeEcondaQuery' => StorageCategoryNodeEcondaQuery::class,
+                'ProductConcreteEcondaQuery' => StorageProductConcreteEcondaQuery::class,
             ],
         ];
 

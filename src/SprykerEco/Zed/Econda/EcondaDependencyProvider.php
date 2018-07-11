@@ -64,8 +64,8 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
     public function getFilePlugins(): array
     {
         return [
-            static::PRODUCTS => new ProductExporterPlugin(),
-            static::CATEGORIES => new CategoryExporterPlugin(),
+            static::PRODUCTS_PLUGIN => new ProductExporterPlugin(),
+            static::CATEGORIES_PLUGIN => new CategoryExporterPlugin(),
         ];
     }
 }

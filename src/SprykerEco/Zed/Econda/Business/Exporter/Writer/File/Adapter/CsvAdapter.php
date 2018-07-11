@@ -48,7 +48,7 @@ class CsvAdapter implements AdapterInterface
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct($directory, $delimiter = ',', $enclosure = '""', $escape = '\\')
+    public function __construct($directory, $delimiter = ',', $enclosure = '"', $escape = '\\')
     {
         $this->folderPath = $directory;
 
