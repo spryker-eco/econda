@@ -6,7 +6,6 @@
     "spryker/application": "^3.0.0",
     "spryker/category": "^4.0.0",
     "spryker/gui": "^3.0.0",
-    "spryker/kernel": "^3.0.0",
     "spryker/price-product": "^2.0.0",
     "spryker/product-category": "^4.0.0",
     "spryker/product-image": "^3.0.0",
