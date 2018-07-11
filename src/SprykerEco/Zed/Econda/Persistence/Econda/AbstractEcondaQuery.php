@@ -34,7 +34,7 @@ abstract class AbstractEcondaQuery implements EcondaQueryInterface
     /**
      * @return \Generated\Shared\Transfer\LocaleTransfer
      */
-    public function getLocale(): \Generated\Shared\Transfer\LocaleTransfer
+    public function getLocale(): LocaleTransfer
     {
         return $this->locale;
     }

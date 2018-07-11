@@ -52,8 +52,8 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
-     * @param string $econdaPdoQueryName
      * @param string $dbEngineName
+     * @param string $econdaPdoQueryName
      *
      * @throws \Exception
      *

@@ -15,7 +15,7 @@ class EcondaToPriceProductFacadeBridge implements EcondaToPriceProductFacadeInte
     protected $priceProductFacade;
 
     /**
-     * @param \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface $facade
+     * @param \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface $priceProductFacade
      */
     public function __construct($priceProductFacade)
     {

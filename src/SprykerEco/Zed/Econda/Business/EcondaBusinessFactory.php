@@ -10,7 +10,10 @@ namespace SprykerEco\Zed\Econda\Business;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactory;
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker;
+use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
+use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
+use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
 use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaCategoryCollector;
 use SprykerEco\Zed\Econda\Business\Collector\File\EcondaProductCollector;
@@ -31,15 +34,10 @@ use SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface;
 use SprykerEco\Zed\Econda\Business\Reader\File\CsvFileReader;
 use SprykerEco\Zed\Econda\Business\Reader\File\FileReaderInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToLocaleFacadeInterface;
-use SprykerEco\Zed\Econda\Dependency\Plugin\ExporterPluginInterface;
-use SprykerEco\Zed\Econda\EcondaDependencyProvider;
-use Spryker\Zed\ProductImage\Persistence\ProductImageQueryContainerInterface;
-use SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery;
-use Spryker\Zed\Propel\Business\PropelFacadeInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPriceProductFacadeInterface;
-use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface;
-use Spryker\Zed\ProductCategory\Persistence\ProductCategoryQueryContainerInterface;
 use SprykerEco\Zed\Econda\Dependency\Facade\EcondaToPropelFacadeBridge;
+use SprykerEco\Zed\Econda\EcondaDependencyProvider;
+use SprykerEco\Zed\Econda\Persistence\Econda\AbstractEcondaPdoQuery;
 
 /**
  * @method \SprykerEco\Zed\Econda\EcondaConfig getConfig()
