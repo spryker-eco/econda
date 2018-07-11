@@ -1,0 +1,16 @@
+# IDEs
+/.idea
+/.project
+/nbproject
+/.buildpath
+/.settings
+*.sublime-*
+*.AppleDouble
+*.AppleDB
+*.AppleDesktop
+*.DS_Store
+
+# Tests
+/tests/_output/*
+/tests/SprykerEcoTest/Zed/Econda/_support/_generated/*
+!/tests/_output/.gitkeep

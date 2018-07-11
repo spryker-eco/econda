@@ -1,0 +1,35 @@
+{
+  "name": "spryker-eco/econda",
+  "description": "Econda Module",
+  "license": "MIT",
+  "require": {
+    "spryker/application": "^3.0.0",
+    "spryker/category": "^4.0.0",
+    "spryker/gui": "^3.0.0",
+    "spryker/price-product": "^2.0.0",
+    "spryker/product-category": "^4.0.0",
+    "spryker/product-image": "^3.0.0",
+    "spryker/sql-criteria-builder": "^1.0.0",
+    "spryker/transfer": "^3.0.0",
+    "spryker/util-data-reader": "^1.0.0"
+  },
+  "require-dev": {
+    "spryker/code-sniffer": "*",
+    "spryker/testify": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SprykerEco\\": "src/SprykerEco/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SprykerTest\\": "tests/SprykerEcoTest/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  }
+}

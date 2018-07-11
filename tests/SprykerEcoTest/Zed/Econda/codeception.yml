@@ -1,0 +1,18 @@
+namespace: SprykerEcoTest\Zed\Econda
+paths:
+    tests: .
+    data: ../../../_data
+    support: _support
+    log: ../../../_output
+coverage:
+    enabled: true
+    remote: false
+    whitelist: { include: ['../../../../src/*'] }
+suites:
+    Business:
+        path: .
+        actor: EcondaBusinessTester
+        modules:
+          enabled:
+            - \SprykerTest\Shared\Testify\Helper\Environment
+            - \SprykerTest\Shared\Testify\Helper\ConfigHelper
