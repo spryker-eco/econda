@@ -74,12 +74,26 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
      */
-    public function createCollectorManager(): CollectorManagerInterface
+    public function createCategoryCollectorManager(): CollectorManagerInterface
     {
         return new CollectorManager(
             $this->createCriteriaBuilder(),
             $this->getQueryContainer(),
-            $this->createProgressBarHelper()
+            $this->createProgressBarHelper(),
+            $this->createEcondaCategoryCollector()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Zed\Econda\Business\Manager\CollectorManagerInterface
+     */
+    public function createProductCollectorManager(): CollectorManagerInterface
+    {
+        return new CollectorManager(
+            $this->createCriteriaBuilder(),
+            $this->getQueryContainer(),
+            $this->createProgressBarHelper(),
+            $this->createEcondaProductCollector()
         );
     }
 

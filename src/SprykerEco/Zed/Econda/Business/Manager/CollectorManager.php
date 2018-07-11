@@ -34,22 +34,29 @@ class CollectorManager implements CollectorManagerInterface
     protected $progressBarHelper;
 
     /**
+     * @var \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface
+     */
+    protected $databaseCollector;
+
+    /**
      * @param \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder
      * @param \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface $queryContainer
      * @param \SprykerEco\Zed\Econda\Business\Helper\ProgressBarHelperInterface $progressBarHelper
+     * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $databaseCollector
      */
     public function __construct(
         CriteriaBuilderInterface $criteriaBuilder,
         EcondaQueryContainerInterface $queryContainer,
-        ProgressBarHelperInterface $progressBarHelper
+        ProgressBarHelperInterface $progressBarHelper,
+        DatabaseCollectorInterface $databaseCollector
     ) {
         $this->criteriaBuilder = $criteriaBuilder;
         $this->queryContainer = $queryContainer;
         $this->progressBarHelper = $progressBarHelper;
+        $this->databaseCollector = $databaseCollector;
     }
 
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
@@ -58,15 +65,15 @@ class CollectorManager implements CollectorManagerInterface
      * @return void
      */
     public function runCollector(
-        DatabaseCollectorInterface $collector,
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $batchResultTransfer,
         FileWriterInterface $dataWriter,
         OutputInterface $output
     ): void {
-        $batchCollection = $collector->createIteratorAndPrepareQuery($localeTransfer, $this->criteriaBuilder, $this->queryContainer);
+        $batchCollection = $this->databaseCollector
+            ->createIteratorAndPrepareQuery($localeTransfer, $this->criteriaBuilder, $this->queryContainer);
         $progressBar = $this->progressBarHelper->startProgressBar($output, '', $batchCollection->count());
-
-        $collector->exportDataToStore($batchCollection, $batchResultTransfer, $dataWriter, $localeTransfer, $output, $progressBar);
+        $this->databaseCollector
+            ->exportDataToStore($batchCollection, $batchResultTransfer, $dataWriter, $localeTransfer, $output, $progressBar);
     }
 }

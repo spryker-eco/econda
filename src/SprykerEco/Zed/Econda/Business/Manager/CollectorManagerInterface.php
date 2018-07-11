@@ -9,14 +9,12 @@ namespace SprykerEco\Zed\Econda\Business\Manager;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
 use Generated\Shared\Transfer\LocaleTransfer;
-use SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface;
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface CollectorManagerInterface
 {
     /**
-     * @param \SprykerEco\Zed\Econda\Business\Collector\DatabaseCollectorInterface $collector
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $batchResultTransfer
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
@@ -25,7 +23,6 @@ interface CollectorManagerInterface
      * @return void
      */
     public function runCollector(
-        DatabaseCollectorInterface $collector,
         LocaleTransfer $localeTransfer,
         BatchResultTransfer $batchResultTransfer,
         FileWriterInterface $dataWriter,
