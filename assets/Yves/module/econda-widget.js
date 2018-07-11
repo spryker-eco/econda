@@ -7,7 +7,7 @@
 
 require('./html/cross-sell-widget.html');
 
-var econda_aid = "";
+var econda_aid = document.getElementsByName('econda_application_key')[0].value;
 
 module.exports = {
     init: function() {

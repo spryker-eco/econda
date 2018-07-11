@@ -34,11 +34,6 @@ abstract class AbstractExporter implements ExporterInterface
     protected $writer;
 
     /**
-     * @var \Spryker\Zed\Touch\Persistence\TouchQueryContainerInterface
-     */
-    protected $queryContainer;
-
-    /**
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $writer
      * @param array $collectorPlugins
      */

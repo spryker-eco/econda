@@ -15,6 +15,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 interface EcondaFacadeInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
@@ -30,6 +32,8 @@ interface EcondaFacadeInterface
     );
 
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
@@ -55,6 +59,8 @@ interface EcondaFacadeInterface
     public function getFileContent($type, $locale);
 
     /**
+     * @api
+     *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return array

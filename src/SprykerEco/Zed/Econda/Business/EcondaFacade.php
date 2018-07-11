@@ -32,6 +32,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return array
@@ -42,6 +44,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
@@ -68,6 +72,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
      * @param \Generated\Shared\Transfer\BatchResultTransfer $result
      * @param \SprykerEco\Zed\Econda\Business\Exporter\Writer\File\FileWriterInterface $dataWriter
