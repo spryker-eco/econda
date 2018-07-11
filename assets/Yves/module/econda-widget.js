@@ -7,8 +7,6 @@
 
 require('./html/cross-sell-widget.html');
 
-var econda_aid = document.getElementsByName('econda_aid')[0].value;
-
 module.exports = {
     init: function() {
         /**
@@ -18,6 +16,7 @@ module.exports = {
             window.ecWidgets = [];
         }
         if (document.getElementById('econda_widget_container')) {
+            var econda_aid = document.getElementsByName('econda_aid')[0].value;
             var product_sku = document.getElementsByName('econda_product_sku')[0].value;
             var category_name = document.getElementsByName('econda_category_name')[0].value;
             window.ecWidgets.push({
