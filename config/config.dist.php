@@ -7,4 +7,3 @@
 use SprykerEco\Shared\Econda\EcondaConstants;
 
 $config[EcondaConstants::CSV_FOLDER_PATH] = '';
-$config[EcondaConstants::API_ID] = '';
