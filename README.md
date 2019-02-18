@@ -1,6 +1,10 @@
-# Econda Module
-[![Build Status](https://travis-ci.org/spryker-eco/econda.svg)](https://travis-ci.org/spryker-eco/econda)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/econda/badges/quality-score.png)](https://scrutinizer-ci.com/g/spryker-eco/econda/)
+# EcondaModule
+
+[![Build Status](https://travis-ci.org/spryker-eco/econda.svg?branch=master)](https://travis-ci.org/spryker-eco/econda)
+[![License](https://img.shields.io/github/license/spryker-eco/econda.svg?b=master)](https://github.com/spryker-eco/econda)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-eco/econda/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/econda/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/spryker-eco/econda/badges/build.png?b=master)](https://scrutinizer-ci.com/g/spryker-eco/econda/build-status/master)
+
 ## Installation
 
 ```
@@ -9,4 +13,4 @@ composer require spryker-eco/econda
 
 ## Documentation
 
-[Documentation](http://academy.spryker.com/developing_with_spryker/industry_partner_integration/econda/integration_monitoring_econda.html?Highlight=econda)
+[Documentation](https://documentation.spryker.com/industry_partners/performance/econda/econda.htm)
