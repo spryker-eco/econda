@@ -1,4 +1,4 @@
-# EcondaModule
+# Econda Module
 
 [![Build Status](https://travis-ci.org/spryker-eco/econda.svg?branch=master)](https://travis-ci.org/spryker-eco/econda)
 [![License](https://img.shields.io/github/license/spryker-eco/econda.svg?b=master)](https://github.com/spryker-eco/econda)
