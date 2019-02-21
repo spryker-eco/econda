@@ -1,6 +1,6 @@
 {
   "name": "spryker-eco/econda",
-  "description": "Econda Module",
+  "description": "Econda module",
   "license": "MIT",
   "require": {
     "spryker/application": "^3.0.0",
