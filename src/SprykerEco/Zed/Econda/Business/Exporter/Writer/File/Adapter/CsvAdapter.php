@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
-
 namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter;
 
 use SplFileObject;
@@ -79,7 +78,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFolderPath($folderPath): self
+    public function setFolderPath($folderPath)
     {
         $this->folderPath = $folderPath;
         $this->csvFile = null;
@@ -92,7 +91,7 @@ class CsvAdapter implements AdapterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName): self
+    public function setFileName($fileName)
     {
         $this->fileName = $fileName;
         $this->csvFile = null;
