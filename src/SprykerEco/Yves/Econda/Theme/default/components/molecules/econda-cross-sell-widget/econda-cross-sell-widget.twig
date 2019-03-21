@@ -1,0 +1,55 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'econda-cross-sell-widget',
+    tag: 'econda-cross-sell-widget'
+} %}
+
+{% define data = {
+    product: required,
+    category: required
+} %}
+
+{% define attributes = {
+    template: '<h3>Econda Cross Sell</h3>
+            <div class="product js-product-container">
+                <% for (ip = 0; ip < products.length; ip++) { %>
+                <div class="product__container">
+                    <a href="<%= products[ip].deeplink %>" title="<%= products[ip].name %>" class="thumbnail">
+                        <img src="<%= products[ip].iconurl %>" alt="<%= products[ip].name %>"/>
+                    </a>
+                    <p class=""><strong><%= products[ip].name %></strong></p>
+                    <p><%= products[ip].price %></p>
+                    <div class="product__action">
+                        <a class="button expanded" href="<%= products[ip].deeplink %>" tabindex="0">View »</a>
+                    </div>
+                </div>
+                <% } %>
+            </div>'
+} %}
+
+{% block body %}
+    <input type="hidden" name="econda_aid" value="00000cec-d98025a8-912b-46a4-a57d-7a691ba7a376-1">
+    <input type="hidden" name="econda_product_sku" value="{{ data.product.sku }}">
+    <input type="hidden" name="econda_category_name" value="{{ data.category.name }}">
+    <div id="econda_widget_container" class="catalog">Loading Econda widget...</div>
+    <div class="is-hidden">
+        <div class="{{ config.jsName }}__widget-template">
+            {#<h3>Econda Cross Sell</h3>#}
+            {#<div class="product js-product-container">#}
+                {#<% for (ip = 0; ip < products.length; ip++) { %>#}
+                {#<div class="product__container">#}
+                    {#<a href="<%= products[ip].deeplink %>" title="<%= products[ip].name %>" class="thumbnail">#}
+                        {#<img src="<%= products[ip].iconurl %>" alt="<%= products[ip].name %>"/>#}
+                    {#</a>#}
+                    {#<p class=""><strong><%= products[ip].name %></strong></p>#}
+                    {#<p><%= products[ip].price %></p>#}
+                    {#<div class="product__action">#}
+                        {#<a class="button expanded" href="<%= products[ip].deeplink %>" tabindex="0">View »</a>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<% } %>#}
+            {#</div>#}
+        </div>
+    </div>
+{% endblock %}
