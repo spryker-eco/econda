@@ -1,5 +1,11 @@
 import Component from 'ShopUi/models/component';
 
+declare global {
+    interface Window {
+        ecWidgets: object[];
+    }
+}
+
 export default class EcondaCrossSellWidget extends Component {
 
     protected econdaContainer: HTMLElement;
@@ -21,20 +27,20 @@ export default class EcondaCrossSellWidget extends Component {
 
     protected initEcondaCrossSell(): void{
         if(typeof window['ecWidgets'] == 'undefined') {
-            window['ecWidgets'] = [];
+            window.ecWidgets = [];
         }
 
         if (this.econdaContainer) {
-
-            window['ecWidgets'].push({
-
+            window.ecWidgets.push({
                 element: this.econdaContainer,
-                renderer: {type: 'function', rendererFn: this.getWidgetTemplate},
-                accountId: this.econdaAid,
-                id: 2, //id of widget you defined in Econda UI
-                context: {
-                    products: [{id: this.productSku }],
-                    categories: [{
+                renderer: {
+                    type: 'function',
+                    rendererFn: this.getWidgetTemplate},
+                    accountId: this.econdaAid,
+                    id: 2, //id of widget you defined in Econda UI
+                    context: {
+                        products: [{id: this.productSku }],
+                        categories: [{
                         type: 'productcategory',
                         path: this.categoryName
                     }]
@@ -44,11 +50,13 @@ export default class EcondaCrossSellWidget extends Component {
         }
     }
 
-    public getWidgetTemplate(): string {
-        return this.template;
+    public getWidgetTemplate(): HTMLElement {
+        const widgetTemplate = document.createElement('div');
+        widgetTemplate.innerHTML = this.widgetTemplateContent;
+        return widgetTemplate;
     }
 
-    get template(): string {
-        return this.getAttribute('template');
+    get widgetTemplateContent(): string {
+        return this.getAttribute('widget-template-content');
     }
 }
