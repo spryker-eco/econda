@@ -1,5 +1,7 @@
 import Component from 'ShopUi/models/component';
 
+declare var econda: any;
+
 declare global {
     interface Window {
         ecWidgets: object[];
@@ -31,22 +33,42 @@ export default class EcondaCrossSellWidget extends Component {
         }
 
         if (this.econdaContainer) {
-            window.ecWidgets.push({
+            // window.ecWidgets.push({
+            //     element: this.econdaContainer,
+            //     renderer: {
+            //         type: 'function',
+            //         rendererFn: this.getWidgetTemplate
+            //     },
+            //     accountId: this.econdaAid,
+            //     id: 2, //id of widget you defined in Econda UI
+            //     context: {
+            //         products: [{id: this.productSku }],
+            //         categories: [{
+            //             type: 'productcategory',
+            //             path: this.categoryName
+            //         }]
+            //     },
+            //     chunkSize: 3
+            // });
+
+            var widget = new econda.recengine.Widget({
                 element: this.econdaContainer,
+                accountId: this.econdaAid,
                 renderer: {
                     type: 'function',
-                    rendererFn: this.getWidgetTemplate},
-                    accountId: this.econdaAid,
-                    id: 2, //id of widget you defined in Econda UI
-                    context: {
-                        products: [{id: this.productSku }],
-                        categories: [{
+                    rendererFn: this.getWidgetTemplate
+                },
+                id: 2,
+                context: {
+                    products: [{id: this.productSku }],
+                    categories: [{
                         type: 'productcategory',
                         path: this.categoryName
                     }]
                 },
-                chunkSize: 3
             });
+
+            widget.render();
         }
     }
 
