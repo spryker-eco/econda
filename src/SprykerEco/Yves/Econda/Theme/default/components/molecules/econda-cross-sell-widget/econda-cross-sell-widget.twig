@@ -12,26 +12,12 @@
 } %}
 
 {% define attributes = {
-    'widget-template-content': '<h3>Econda Cross Sell</h3>
-            <div class="product js-product-container">
-                <% for (ip = 0; ip < products.length; ip++) { %>
-                    <div class="product__container">
-                        <a href="<%= products[ip].deeplink %>" title="<%= products[ip].name %>" class="thumbnail">
-                            <img src="<%= products[ip].iconurl %>" alt="<%= products[ip].name %>"/>
-                        </a>
-                        <p class=""><strong><%= products[ip].name %></strong></p>
-                        <p><%= products[ip].price %></p>
-                        <div class="product__action">
-                            <a class="button expanded" href="<%= products[ip].deeplink %>" tabindex="0">View »</a>
-                        </div>
-                    </div>
-                <% } %>
-            </div>'
+    'widget-title': 'econda.cross-sell-widget.title' | trans,
+    'account-id': data.accountId,
+    'product-sku': data.product.sku,
+    'category-name': data.category.name
 } %}
 
 {% block body %}
-    <input type="hidden" name="econda_aid" value="{{ data.accountId }}">
-    <input type="hidden" name="econda_product_sku" value="{{ data.product.sku }}">
-    <input type="hidden" name="econda_category_name" value="{{ data.category.name }}">
-    <div id="econda_widget_container" class="catalog">Loading Econda widget...</div>
+    <div class="{{ config.jsName }}__container">Loading Econda widget...</div>
 {% endblock %}

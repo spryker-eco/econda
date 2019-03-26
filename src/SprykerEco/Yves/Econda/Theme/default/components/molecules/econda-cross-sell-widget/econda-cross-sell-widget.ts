@@ -2,61 +2,22 @@ import Component from 'ShopUi/models/component';
 
 declare var econda: any;
 
-declare global {
-    interface Window {
-        ecWidgets: object[];
-    }
-}
-
 export default class EcondaCrossSellWidget extends Component {
-
     protected econdaContainer: HTMLElement;
-    protected econdaAid: string;
-    protected productSku: string;
-    protected categoryName: string;
-    protected widgetTemplate: HTMLElement;
 
     protected readyCallback(): void {
-
-        this.econdaContainer = document.getElementById('econda_widget_container');
-        this.econdaAid = (<HTMLInputElement> document.getElementsByName('econda_aid')[0]).value;
-        this.productSku = (<HTMLInputElement> document.getElementsByName('econda_product_sku')[0]).value;
-        this.categoryName = (<HTMLInputElement> document.getElementsByName('econda_category_name')[0]).value;
-        this.widgetTemplate = this.querySelector(`.${this.jsName}__widget-template`);
-
-        this.initEcondaCrossSell();
+        this.econdaContainer = this.querySelector(`.${this.jsName}__container`);
+        this.initEcondaCrossSellWidget();
     }
 
-    protected initEcondaCrossSell(): void{
-        if(typeof window['ecWidgets'] == 'undefined') {
-            window.ecWidgets = [];
-        }
-
+    protected initEcondaCrossSellWidget(): void{
         if (this.econdaContainer) {
-            // window.ecWidgets.push({
-            //     element: this.econdaContainer,
-            //     renderer: {
-            //         type: 'function',
-            //         rendererFn: this.getWidgetTemplate
-            //     },
-            //     accountId: this.econdaAid,
-            //     id: 2, //id of widget you defined in Econda UI
-            //     context: {
-            //         products: [{id: this.productSku }],
-            //         categories: [{
-            //             type: 'productcategory',
-            //             path: this.categoryName
-            //         }]
-            //     },
-            //     chunkSize: 3
-            // });
-
-            var widget = new econda.recengine.Widget({
+            const econdaWidget = new econda.recengine.Widget({
                 element: this.econdaContainer,
-                accountId: this.econdaAid,
+                accountId: this.accountId,
                 renderer: {
                     type: 'function',
-                    rendererFn: this.getWidgetTemplate
+                    rendererFn: this.getWidgetTemplate.bind(this)
                 },
                 id: 2,
                 context: {
@@ -66,19 +27,43 @@ export default class EcondaCrossSellWidget extends Component {
                         path: this.categoryName
                     }]
                 },
+                chunkSize: 3
             });
-
-            widget.render();
+            econdaWidget.render();
         }
     }
 
-    public getWidgetTemplate(): HTMLElement {
-        const widgetTemplate = document.createElement('div');
-        widgetTemplate.innerHTML = this.widgetTemplateContent;
+    protected getWidgetTemplate(data, element, esc): string {
+        let widgetTitle = `<h3>${this.widgetTitle}</h3>`;
+        let widgetProducts = ``;
+
+        data.products.forEach((product)=>{
+            let productImage = `<img class="thumbnail" src="${product.iconurl}" alt="${product.name}"/>`
+            let productLink = `<a class="link" href="${product.deeplink}">${esc.html(product.name)}${productImage}</a>`;
+            let productPrice = `<p class=""><strong>${product.price}</strong></p>`;
+            let productAction = `<div><a class="button button--expand" href="${product.deeplink}" tabindex="0">View »</a></div>`
+
+            widgetProducts += `<div class="col--sm-4"><div class="spacing">${productLink}${productPrice}${productAction}</div></div>`;
+        })
+
+        let widgetTemplate = `${widgetTitle}<div class="grid">${widgetProducts}</div>`;
+
         return widgetTemplate;
     }
 
-    get widgetTemplateContent(): string {
-        return this.getAttribute('widget-template-content');
+    get widgetTitle(): string {
+        return this.getAttribute('widget-title');
+    }
+
+    get accountId(): string {
+        return this.getAttribute('account-id');
+    }
+
+    get productSku(): string {
+        return this.getAttribute('product-sku');
+    }
+
+    get categoryName(): string {
+        return this.getAttribute('category-name');
     }
 }
