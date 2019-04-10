@@ -20,6 +20,8 @@ declare global {
         econda_bought_product_sku: any;
         econda_bought_product_price: any;
         econda_bought_product_count: any;
+        econda_billing_customer_id: any;
+        econda_billing_location: any;
         emosPropertiesEvent(emospro: Emospro): any;
     }
 }
@@ -53,7 +55,14 @@ export default class EcondaTracker extends Component {
     public emospro: Emospro;
 
     protected readyCallback(): void {
+        this.getValues();
         this.initEcondaTracker();
+    }
+
+    protected getValues(): void {
+        this.querySelectorAll('input').forEach((input)=>{
+            window[input.name] = input.value;
+        })
     }
 
     protected initEcondaTracker(): void {
@@ -103,9 +112,9 @@ export default class EcondaTracker extends Component {
         if (window.econda_billing_order_value) {
             this.emospro.billing = [
                 window.econda_billing_invoice_number,
-                // econda_billing_customer_id,
-                // econda_billing_location,
-                // econda_billing_order_value
+                window.econda_billing_customer_id,
+                window.econda_billing_location,
+                window.econda_billing_order_value
             ];
         }
 
