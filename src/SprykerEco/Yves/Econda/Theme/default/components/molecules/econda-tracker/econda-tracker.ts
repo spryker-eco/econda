@@ -4,50 +4,50 @@ declare global {
     interface Window {
         emosTrackVersion: number;
         econda_search_query_string: string;
-        econda_siteid: any;
-        econda_tracking_content: any;
-        econda_search_number_results: any;
-        econda_register_result: boolean;
-        econda_login_result: boolean;
-        econda_newsletter_subscription: any;
-        econda_product_name: any;
-        econda_product_sku: any;
-        econda_product_price: any;
-        econda_billing_order_value: any;
-        econda_billing_invoice_number: any;
-        econda_order_process: any;
-        econda_bought_product_name: any;
-        econda_bought_product_sku: any;
-        econda_bought_product_price: any;
-        econda_bought_product_count: any;
-        econda_billing_customer_id: any;
-        econda_billing_location: any;
+        econda_siteid: string;
+        econda_tracking_content: string;
+        econda_search_number_results: string;
+        econda_register_result: string;
+        econda_login_result: string;
+        econda_newsletter_subscription: string;
+        econda_product_name: string;
+        econda_product_sku: string;
+        econda_product_price: string;
+        econda_billing_order_value: string;
+        econda_billing_invoice_number: string;
+        econda_order_process: string;
+        econda_bought_product_name: string;
+        econda_bought_product_sku: string;
+        econda_bought_product_price: string;
+        econda_bought_product_count: string;
+        econda_billing_customer_id: string;
+        econda_billing_location: string;
         emosPropertiesEvent(emospro: Emospro): any;
     }
 }
 
 interface Emospro {
-    siteid: any;
-    content: any;
+    siteid: string;
+    content: string;
     langid: string;
     pageId: string | number;
-    search?: any;
-    register?: [boolean | number, number];
-    login?: [boolean | number, number];
+    search?: [string, number | string];
+    register?: [number, number];
+    login?: [number, number];
     Target?: [string, string, number, string];
     ec_Event?: EmosproEvent[];
-    billing?: any[];
-    orderProcess?: any;
+    billing?: string[];
+    orderProcess?: string;
 }
 
 interface EmosproEvent {
     type: string;
-    pid: any;
-    sku: any;
-    name: any;
-    price: any;
-    group?: any;
-    count: number;
+    pid: string;
+    sku: string;
+    name: string;
+    price: string;
+    group?: string;
+    count: string | number;
 }
 
 export default class EcondaTracker extends Component {
@@ -60,7 +60,7 @@ export default class EcondaTracker extends Component {
     }
 
     protected getValues(): void {
-        this.querySelectorAll('input').forEach((input)=>{
+        this.querySelectorAll('input').forEach((input: HTMLInputElement)=>{
             window[input.name] = input.value;
         })
     }
@@ -80,14 +80,14 @@ export default class EcondaTracker extends Component {
         }
 
         if (window.econda_register_result) {
-            this.emospro.register = [window.econda_register_result, 0];
-        } else if (window.econda_register_result == false) {
+            this.emospro.register = [Number(window.econda_register_result), 0];
+        } else if (Boolean(window.econda_register_result) === false) {
             this.emospro.register = [0, 1];
         }
 
         if (window.econda_login_result) {
-            this.emospro.login = [window.econda_login_result, 0];
-        } else if (window.econda_login_result == false) {
+            this.emospro.login = [Number(window.econda_login_result), 0];
+        } else if (Boolean(window.econda_login_result) === false) {
             this.emospro.login = [0, 1];
         }
 
@@ -142,6 +142,7 @@ export default class EcondaTracker extends Component {
     protected gethashCode(string: string): string | number {
         let hash = 0;
         let char;
+
         if (string.length == 0) return hash;
         for (let i = 0; i < string.length; i++) {
             char = string.charCodeAt(i);
