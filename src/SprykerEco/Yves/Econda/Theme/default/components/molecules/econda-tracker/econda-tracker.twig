@@ -6,58 +6,59 @@
 } %}
 
 {% define data = {
-    product: required,
-    category: required,
-    content: required,
-    query: '',
-    number: '',
-    invoiceNumber: '',
-    location: '',
-    customerId: '',
-    orderValue: '',
-    orderProcess: ''
+    product: null,
+    category: null,
+    content: null,
+    query: null,
+    number: null,
+    invoiceNumber: null,
+    location: null,
+    customerId: null,
+    orderValue: null,
+    orderProcess: null,
+    items: null
 } %}
 
 {% block body %}
     <input type="hidden" name="econda_tracking_content" value="{{ data.content }}">
-    {% if data.query is defined %}
+    {% if data.query is not empty %}
         <input type="hidden" name="econda_search_query_string" value="{{ data.query }}">
     {% endif %}
 
-    {% if data.number is defined %}
+    {% if data.number is not empty %}
         <input type="hidden" name="econda_search_number_results" value="{{ data.number }}">
     {% endif %}
-    {% if data.product is defined %}
+    {% if data.product is not empty %}
         <input type="hidden" name="econda_product_name" value="{{ data.product.name }}">
         <input type="hidden" name="econda_product_sku" value="{{ data.product.sku }}">
         <input type="hidden" name="econda_product_price" value="{{ data.product.price | money }}">
     {% endif %}
-    {% if data.category is defined %}
+    {% if data.category is not empty %}
         <input type="hidden" name="econda_category_name" value="{{ data.category.name }}">
     {% endif %}
 
-    {% if data.invoiceNumber is defined %}
+    {% if data.invoiceNumber is not empty %}
         <input type="hidden" name="econda_billing_invoice_number" value="{{ data.invoiceNumber }}">
     {% endif %}
 
-    {% if data.location is defined %}
+    {% if data.location is not empty %}
         <input type="hidden" name="econda_billing_location" value="{{ data.location }}">
     {% endif %}
 
-    {% if data.customerId is defined %}
+    {% if data.customerId is not empty %}
         <input type="hidden" name="econda_billing_customer_id" value="{{ data.customerId }}">
     {% endif %}
 
-    {% if data.orderValue is defined %}
+    {% if data.orderValue is not empty %}
         <input type="hidden" name="econda_billing_order_value" value="{{ data.orderValue }}">
     {% endif %}
 
-    {% if data.orderProcess is defined %}
+    {% if data.orderProcess is not empty %}
         <input type="hidden" name="econda_order_process" value="{{ data.orderProcess }}">
     {% endif %}
 
-    {%  if items is defined %}
-        {% for item in items %}
+    {%  if data.items is defined %}
+        {% for item in data.items %}
             <input type="hidden" name="econda_bought_product_name[]" value="{{ item.name }}">
             <input type="hidden" name="econda_bought_product_sku[]" value="{{ item.sku }}">
             <input type="hidden" name="econda_bought_product_price[]" value="{{ item.unitGrossPrice | money }}">
