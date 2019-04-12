@@ -15,9 +15,10 @@
     'widget-title': 'econda.cross-sell-widget.title' | trans,
     'account-id': data.accountId,
     'product-sku': data.product.sku,
-    'category-name': data.category.name
+    'category-name': data.category.name,
+    'product-view-button-text': 'econda.cross-sell-widget.view-button-text' | trans
 } %}
 
 {% block body %}
-    <div class="{{ config.jsName }}__container">Loading Econda widget...</div>
+    <div class="{{ config.jsName }}__container">{{'econda.cross-sell-widget.loading-message' | trans}}</div>
 {% endblock %}

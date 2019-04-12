@@ -54,12 +54,14 @@ export default class EcondaTracker extends Component {
 
     public emospro: Emospro;
 
-    protected readyCallback(): void {
-        this.getValues();
+    protected readyCallback(): void {}
+
+    protected connectedCallback(): void {
+        this.collectInputsValues();
         this.initEcondaTracker();
     }
 
-    protected getValues(): void {
+    protected collectInputsValues(): void {
         this.querySelectorAll('input').forEach((input: HTMLInputElement)=>{
             window[input.name] = input.value;
         })
@@ -71,10 +73,26 @@ export default class EcondaTracker extends Component {
         this.emospro = {
             siteid: window.econda_siteid,
             content: window.econda_tracking_content,
-            langid: document.querySelector('html').getAttribute('lang'),
-            pageId: this.gethashCode(window.location.href)
+            langid: this.getLanguage(),
+            pageId: this.getHashCode(window.location.href)
         };
 
+        this.configureMainEcondaTracking();
+
+        this.configureEcondaProductViewEvent();
+
+        this.configureEcondaBillingReport();
+
+        this.configureEcondaProductSellEvent();
+
+        window.emosPropertiesEvent(this.emospro);
+    }
+
+    protected getLanguage(): string {
+        return document.querySelector('html').getAttribute('lang');
+    }
+
+    protected configureMainEcondaTracking(): void {
         if (window.econda_search_query_string) {
             this.emospro.search = [window.econda_search_query_string, window.econda_search_number_results];
         }
@@ -95,6 +113,12 @@ export default class EcondaTracker extends Component {
             this.emospro.Target =  ['newsletter', 'Default newsletter subscription', 1, 'd'];
         }
 
+        if (window.econda_order_process) {
+            this.emospro.orderProcess = window.econda_order_process;
+        }
+    }
+
+    protected configureEcondaProductViewEvent(): void {
         if (window.econda_product_name) {
             this.emospro.ec_Event = [
                 {
@@ -108,7 +132,9 @@ export default class EcondaTracker extends Component {
                 }
             ];
         }
+    }
 
+    protected configureEcondaBillingReport(): void {
         if (window.econda_billing_order_value) {
             this.emospro.billing = [
                 window.econda_billing_invoice_number,
@@ -117,11 +143,9 @@ export default class EcondaTracker extends Component {
                 window.econda_billing_order_value
             ];
         }
+    }
 
-        if (window.econda_order_process) {
-            this.emospro.orderProcess = window.econda_order_process;
-        }
-
+    protected configureEcondaProductSellEvent(): void {
         if (window.econda_bought_product_name && window.econda_bought_product_name.length > 0) {
             this.emospro.ec_Event = [];
             for (let i = 0, productNameLength = window.econda_bought_product_name.length; i < productNameLength; i++) {
@@ -135,11 +159,9 @@ export default class EcondaTracker extends Component {
                 });
             }
         }
-
-        window.emosPropertiesEvent(this.emospro);
     }
 
-    protected gethashCode(string: string): string | number {
+    protected getHashCode(string: string): string | number {
         let hash = 0;
         let char;
 
@@ -153,6 +175,4 @@ export default class EcondaTracker extends Component {
         if (hash < 0) hash = -hash;
         return String(hash);
     }
-
-
 }
