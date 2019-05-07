@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
-
 namespace SprykerEco\Zed\Econda\Business\Exporter\Writer\File;
 
 use SprykerEco\Zed\Econda\Business\Exporter\Writer\File\Adapter\AdapterInterface;
@@ -29,7 +28,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFileName($fileName): self
+    public function setFileName($fileName)
     {
         $this->fileWriterAdapter->setFileName($fileName);
 
@@ -41,7 +40,7 @@ class FileWriter implements FileWriterInterface
      *
      * @return $this
      */
-    public function setFolderPath($directory): self
+    public function setFolderPath($directory)
     {
         $this->fileWriterAdapter->setFolderPath($directory);
 

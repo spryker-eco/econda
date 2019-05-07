@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
-
 namespace SprykerEco\Zed\Econda\Communication\Console;
 
 use Spryker\Zed\Kernel\Communication\Console\Console;
@@ -14,6 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @method \SprykerEco\Zed\Econda\Business\EcondaFacadeInterface getFacade()
+ * @method \SprykerEco\Zed\Econda\Persistence\EcondaQueryContainerInterface getQueryContainer()
  */
 class EcondaFileExportConsole extends Console
 {

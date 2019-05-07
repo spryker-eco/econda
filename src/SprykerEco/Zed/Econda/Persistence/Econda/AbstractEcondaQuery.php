@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
-
 namespace SprykerEco\Zed\Econda\Persistence\Econda;
 
 use Generated\Shared\Transfer\LocaleTransfer;
@@ -24,7 +23,7 @@ abstract class AbstractEcondaQuery implements EcondaQueryInterface
     /**
      * @return $this
      */
-    public function prepare(): self
+    public function prepare()
     {
         $this->prepareQuery();
 
@@ -44,7 +43,7 @@ abstract class AbstractEcondaQuery implements EcondaQueryInterface
      *
      * @return $this
      */
-    public function setLocale(LocaleTransfer $locale): self
+    public function setLocale(LocaleTransfer $locale)
     {
         $this->locale = $locale;
 
