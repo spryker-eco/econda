@@ -41,9 +41,9 @@ export default class EcondaCrossSellWidget extends Component {
 
         data.products.forEach((product) => {
             const productImageTemplate = `<img class="thumbnail" src="${product.iconurl}" alt="${product.name}">`
-            const productLinkTemplate = `<a class="link" href="${product.deeplink}">${escape.html(product.name)}${productImageTemplate}</a>`;
+            const productLinkTemplate = `<a class="link" href="${this.getPathname(product.deeplink)}">${escape.html(product.name)}${productImageTemplate}</a>`;
             const productPriceTemplate = `<p><strong>${product.price}</strong></p>`;
-            const productActionTemplate = `<div><a class="button button--expand" href="${product.deeplink}" tabindex="0">${this.viewButtonText} \»</a></div>`
+            const productActionTemplate = `<div><a class="button button--expand" href="${this.getPathname(product.deeplink)}" tabindex="0">${this.viewButtonText} \»</a></div>`
 
             widgetProducts += `<div class="col--sm-4"><div class="spacing">${productLinkTemplate}${productPriceTemplate}${productActionTemplate}</div></div>`;
         })
@@ -51,6 +51,10 @@ export default class EcondaCrossSellWidget extends Component {
         const widgetTemplate = `${widgetTitleTemplate}<div class="grid">${widgetProducts}</div>`;
 
         return widgetTemplate;
+    }
+
+    protected getPathname(url): string {
+        return url.replace(document.location.hostname, '');
     }
 
     get widgetTitle(): string {
