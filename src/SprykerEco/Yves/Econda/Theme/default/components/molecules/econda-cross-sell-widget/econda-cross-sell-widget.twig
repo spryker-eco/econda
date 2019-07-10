@@ -1,0 +1,24 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'econda-cross-sell-widget',
+    tag: 'econda-cross-sell-widget'
+} %}
+
+{% define data = {
+    product: required,
+    category: required,
+    econdaAccountId: required
+} %}
+
+{% define attributes = {
+    'widget-title': 'econda.cross-sell-widget.title' | trans,
+    'account-id': data.econdaAccountId,
+    'product-sku': data.product.sku,
+    'category-name': data.category.name,
+    'product-view-button-text': 'econda.cross-sell-widget.view-button-text' | trans
+} %}
+
+{% block body %}
+    <div class="{{ config.jsName }}__container">{{'econda.cross-sell-widget.loading-message' | trans}}</div>
+{% endblock %}
