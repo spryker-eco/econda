@@ -2,7 +2,7 @@
   "name": "spryker-eco/econda",
   "type": "library",
   "description": "Econda module",
-  "license": "proprietary",
+  "license": "MIT",
   "require": {
     "php": ">=7.3",
     "spryker/application": "^3.0.0",
