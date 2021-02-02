@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business\Collector;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
@@ -81,7 +82,6 @@ abstract class AbstractDatabaseCollector extends AbstractCollector implements Da
         OutputInterface $output,
         ProgressBar $progressBar
     ): void {
-
         $totalCount = $batchCollection->count();
         $batchResult->setTotalCount($totalCount);
 

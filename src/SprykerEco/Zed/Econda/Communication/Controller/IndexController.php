@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Communication\Controller;
 
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
@@ -54,7 +55,7 @@ class IndexController extends AbstractController
                 echo $fileContent;
             },
             200,
-            ["Content-type" => "text/csv", 'Content-Disposition' => sprintf("attachment; filename='%s.csv'", $type)]
+            ['Content-type' => 'text/csv', 'Content-Disposition' => sprintf("attachment; filename='%s.csv'", $type)]
         );
     }
 
@@ -68,6 +69,7 @@ class IndexController extends AbstractController
         if ($request->query->get('locale') !== null) {
             return $request->query->get('locale');
         }
+
         return $this->getApplication()['locale'];
     }
 }

@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda;
 
 use Exception;
@@ -19,6 +20,8 @@ class EcondaConfig extends AbstractBundleConfig
     protected const ECONDA_CSV_CATEGORY_DELIMITER = '^^';
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getHostYves(): string
@@ -27,6 +30,8 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getFileExportPath(): string
@@ -35,6 +40,8 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getCsvDelimiter(): string
@@ -43,6 +50,8 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getCsvCategoryDelimiter(): string
@@ -51,6 +60,8 @@ class EcondaConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @param string $dbEngineName
      * @param string $econdaPdoQueryName
      *

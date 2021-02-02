@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business\Helper;
 
 use Spryker\Shared\Gui\ProgressBar\ProgressBarBuilder;
@@ -46,6 +47,7 @@ class ProgressBarHelper implements ProgressBarHelperInterface
     protected function generateProgressBar(OutputInterface $output, $count, $resourceType): ProgressBar
     {
         $builder = new ProgressBarBuilder($output, $count, $resourceType);
+
         return $builder->build();
     }
 }

@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
@@ -32,27 +33,27 @@ class EcondaDependencyProvider extends AbstractBundleDependencyProvider
      */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
-        $container[static::FACADE_LOCALE] = function (Container $container) {
+        $container->set(static::FACADE_LOCALE, function (Container $container) {
             return new EcondaToLocaleFacadeBridge($container->getLocator()->locale()->facade());
-        };
+        });
 
-        $container[static::FACADE_PROPEL] = function (Container $container) {
+        $container->set(static::FACADE_PROPEL, function (Container $container) {
             return new EcondaToPropelFacadeBridge($container->getLocator()->propel()->facade());
-        };
+        });
 
-        $container[static::FACADE_PRICE_PRODUCT] = function (Container $container) {
+        $container->set(static::FACADE_PRICE_PRODUCT, function (Container $container) {
             return new EcondaToPriceProductFacadeBridge($container->getLocator()->priceProduct()->facade());
-        };
+        });
 
-        $container[static::QUERY_CONTAINER_PRODUCT_IMAGE] = function (Container $container) {
+        $container->set(static::QUERY_CONTAINER_PRODUCT_IMAGE, function (Container $container) {
             return $container->getLocator()->productImage()->queryContainer();
-        };
+        });
 
-        $container[static::QUERY_CONTAINER_PRODUCT_CATEGORY] = function (Container $container) {
+        $container->set(static::QUERY_CONTAINER_PRODUCT_CATEGORY, function (Container $container) {
             return $container->getLocator()->productCategory()->queryContainer();
-        };
+        });
 
-        $container[static::FILE_PLUGINS] = $this->getFilePlugins();
+        $container->set(static::FILE_PLUGINS, $this->getFilePlugins());
 
         return $container;
     }

@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
@@ -14,6 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 interface EcondaFacadeInterface
 {
     /**
+     * Specification:
+     * - Collects all the categories using database.
+     * - Exports categories data to a store file.
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
@@ -31,6 +36,10 @@ interface EcondaFacadeInterface
     );
 
     /**
+     * Specification:
+     * - Collects all the products using database.
+     * - Export products data to a store file.
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
@@ -48,6 +57,9 @@ interface EcondaFacadeInterface
     );
 
     /**
+     * Specification:
+     * - Reads content of a store file.
+     *
      * @api
      *
      * @param string $type
@@ -58,6 +70,9 @@ interface EcondaFacadeInterface
     public function getFileContent($type, $locale);
 
     /**
+     * Specification:
+     * - Writes store data by locale into the given file output.
+     *
      * @api
      *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
