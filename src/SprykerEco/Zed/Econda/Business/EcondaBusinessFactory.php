@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business;
 
 use Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderDependencyContainer;
@@ -240,8 +241,10 @@ class EcondaBusinessFactory extends AbstractBusinessFactory
 
         /** @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderFactoryWorker $factoryWorker */
         $factoryWorker = $factory->getWorkerByName(static::CRITERIA_BUILDER_FACTORY_WORKER);
+        /** @var \Spryker\Shared\SqlCriteriaBuilder\CriteriaBuilder\CriteriaBuilderInterface $criteriaBuilder */
+        $criteriaBuilder = $factoryWorker->buildCriteriaBuilder();
 
-        return $factoryWorker->buildCriteriaBuilder();
+        return $criteriaBuilder;
     }
 
     /**

@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
@@ -18,6 +19,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
 {
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param string $type
@@ -31,6 +34,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
@@ -43,6 +48,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
@@ -69,6 +76,8 @@ class EcondaFacade extends AbstractFacade implements EcondaFacadeInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer

@@ -1,16 +1,22 @@
 {
   "name": "spryker-eco/econda",
+  "type": "library",
   "description": "Econda module",
   "license": "MIT",
   "require": {
+    "php": ">=7.3",
     "spryker/application": "^3.0.0",
-    "spryker/category": "^4.0.0",
+    "spryker/category": "^4.0.0 || ^5.0.0",
     "spryker/gui": "^3.0.0",
+    "spryker/kernel": "^3.30.0",
+    "spryker/locale": "^1.0.0 || ^2.0.0 || ^3.0.0",
     "spryker/price-product": "^2.0.0 || ^4.0.0",
     "spryker/product-category": "^4.0.0",
     "spryker/product-image": "^3.0.0",
+    "spryker/propel": "^2.0.0 || ^3.0.0",
+    "spryker/propel-orm": "^1.6.0",
     "spryker/sql-criteria-builder": "^1.0.0",
-    "spryker/transfer": "^3.0.0",
+    "spryker/symfony": "^3.0.0",
     "spryker/util-data-reader": "^1.0.0"
   },
   "require-dev": {
@@ -24,11 +30,20 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "SprykerTest\\": "tests/SprykerEcoTest/"
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "scripts": {
+    "cs-check": "phpcs -p -s --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/",
+    "cs-fix": "phpcbf -p --standard=vendor/spryker/code-sniffer/Spryker/ruleset.xml src/ tests/"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    }
+  },
   "config": {
     "sort-packages": true
   }

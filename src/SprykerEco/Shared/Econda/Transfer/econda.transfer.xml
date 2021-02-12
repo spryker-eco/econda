@@ -1,33 +1,44 @@
 <?xml version="1.0"?>
 <transfers xmlns="spryker:transfer-01"
-           xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
 
     <transfer name="EcondaCsv">
-        <property name="locale" type="string" />
-        <property name="type" type="string" />
-        <property name="contents" type="string" />
+        <property name="locale" type="string"/>
+        <property name="type" type="string"/>
+        <property name="contents" type="string"/>
     </transfer>
 
     <transfer name="BatchResult">
-        <property name="totalCount" type="int" />
-        <property name="processedCount" type="int" />
-        <property name="fetchedCount" type="int" />
-        <property name="successCount" type="int" />
-        <property name="failed" type="FailedResult[]" />
-        <property name="failedCount" type="int" />
-        <property name="deletedCount" type="int" />
-        <property name="isFailed" type="bool" />
-        <property name="processedLocale" type="Locale" />
+        <property name="totalCount" type="int"/>
+        <property name="processedCount" type="int"/>
+        <property name="fetchedCount" type="int"/>
+        <property name="successCount" type="int"/>
+        <property name="failed" type="FailedResult[]" singular="failed"/>
+        <property name="failedCount" type="int"/>
+        <property name="deletedCount" type="int"/>
+        <property name="isFailed" type="bool"/>
+        <property name="processedLocale" type="Locale"/>
     </transfer>
 
     <transfer name="FailedResult">
-        <property name="reason" type="string" />
-        <property name="firstId" type="int" />
-        <property name="lastId" type="int" />
-        <property name="itemType" type="string" />
-        <property name="processor" type="string" />
-        <property name="failedCount" type="int" />
+        <property name="reason" type="string"/>
+        <property name="firstId" type="int"/>
+        <property name="lastId" type="int"/>
+        <property name="itemType" type="string"/>
+        <property name="processor" type="string"/>
+        <property name="failedCount" type="int"/>
+    </transfer>
+
+    <transfer name="Locale">
+        <property name="idLocale" type="int"/>
+        <property name="localeName" type="string"/>
+    </transfer>
+
+    <transfer name="StorageProductImage">
+        <property name="idProductImage" type="int"/>
+        <property name="externalUrlLarge" type="string"/>
+        <property name="externalUrlSmall" type="string"/>
     </transfer>
 
 </transfers>

@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Communication\Plugin;
 
 use Generated\Shared\Transfer\BatchResultTransfer;
@@ -21,6 +22,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CategoryExporterPlugin extends AbstractPlugin implements ExporterPluginInterface
 {
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer

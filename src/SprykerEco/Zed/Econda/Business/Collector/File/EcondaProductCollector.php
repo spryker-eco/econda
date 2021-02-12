@@ -4,6 +4,7 @@
  * MIT License
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
+
 namespace SprykerEco\Zed\Econda\Business\Collector\File;
 
 use Generated\Shared\Transfer\LocaleTransfer;
@@ -87,7 +88,6 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         EcondaToPriceProductFacadeInterface $priceProductFacade,
         EcondaConfig $config
     ) {
-
         parent::__construct($criteria, $econdaPdoQuery);
 
         $this->productCategoryQueryContainer = $productCategoryQueryContainer;
@@ -288,6 +288,7 @@ class EcondaProductCollector extends AbstractDatabaseCollector
         if (array_key_exists(static::EXTERNAL_URL_SMALL_QUERY_FIELD, $imageArray)) {
             return $imageArray[static::EXTERNAL_URL_SMALL_QUERY_FIELD];
         }
+
         return '';
     }
 }
