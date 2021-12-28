@@ -10,6 +10,11 @@
 *.AppleDesktop
 *.DS_Store
 
+# tooling
+vendor/
+composer.lock
+.phpunit.result.cache
+
 # Tests
 /tests/_output/*
 /tests/SprykerEcoTest/Zed/Econda/_support/_generated/*
